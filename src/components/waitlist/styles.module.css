@@ -1,0 +1,81 @@
+.waitlistForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inputField,
+.textAreaField,
+.checkboxField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.inputField label,
+.textAreaField label,
+.checkboxField label {
+  color: #000;
+  font-size: 14px;
+  font-family: "GeneralSans-Medium";
+}
+
+.inputField input,
+.textAreaField textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: transparent;
+  color: #000;
+  font-family: "GeneralSans-Regular";
+}
+
+.textAreaField textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.checkboxField div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #000;
+  font-size: 14px;
+}
+
+.checkboxField input {
+  border-radius: 4px;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  accent-color: var(--primary);
+}
+
+.submitButton {
+  margin-top: 1rem;
+  display: inline-block;
+  background-color: var(--primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: 2px solid;
+  border-image-source: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 100px;
+  font-weight: 600;
+  box-shadow: 0px 0px 0px 2px #cb1a3638, 0px 4px 8px 0px #cb1a3633;
+  font-family: "GeneralSans-Regular";
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #ab1a31;
+}
+.error {
+  color: red;
+  font-size: 12px;
+}

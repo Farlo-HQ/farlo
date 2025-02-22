@@ -1,0 +1,280 @@
+import React, { useState } from "react";
+import axios from "axios";
+import Modal from "../modal";
+import styles from "./styles.module.css";
+import Toast from "../toast";
+
+const SCRIPT_API_URL =
+  "https://script.google.com/macros/s/AKfycbx3v4_9GtY5kwd7Ns81UPqJmqluN9JOG7twU2H2cI6XZPjw9T-V7T90M1fJZgfiuKerNQ/exec";
+
+interface WaitlistFormProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const InputField: React.FC<{
+  label: string;
+  type: string;
+  value: string;
+  placeholder?: string;
+  error?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}> = ({ label, type, value, onChange, placeholder, error }) => (
+  <div className={styles.inputField}>
+    <label>{label}</label>
+    <input
+      placeholder={placeholder}
+      type={type}
+      value={value}
+      onChange={onChange}
+    />
+    <p className={styles.error}>{error}</p>
+  </div>
+);
+
+const TextAreaField: React.FC<{
+  label: string;
+  value: string;
+  placeholder?: string;
+  error?: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}> = ({ label, value, onChange, placeholder, error }) => (
+  <div className={styles.textAreaField}>
+    <label>{label}</label>
+    <textarea placeholder={placeholder} value={value} onChange={onChange} />
+    <p className={styles.error}>{error}</p>
+  </div>
+);
+
+const CheckboxField: React.FC<{
+  label: string;
+  options: string[];
+  selectedOptions: string[];
+  onChange: (option: string) => void;
+  error?: string;
+}> = ({ label, options, selectedOptions, onChange, error }) => (
+  <div className={styles.checkboxField}>
+    <label>{label}</label>
+    {options.map((option) => (
+      <div key={option}>
+        <input
+          type="checkbox"
+          checked={selectedOptions.includes(option)}
+          onChange={() => onChange(option)}
+        />
+        {option}
+      </div>
+    ))}
+    <p className={styles.error}>{error}</p>
+  </div>
+);
+
+const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [investorType, setInvestorType] = useState<string[]>([]);
+  const [lookingForward, setLookingForward] = useState("");
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    investorType: "",
+  });
+  const [showToast, setShowToast] = useState({
+    type: "",
+    message: "",
+    show: false,
+  });
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      investorType: "",
+    };
+
+    if (!name) {
+      newErrors.name = "Name is required";
+      valid = false;
+    }
+    if (!email) {
+      newErrors.email = "Email is required";
+      valid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Email is invalid";
+      valid = false;
+    }
+    if (!phoneNumber) {
+      newErrors.phoneNumber = "Phone number is required";
+      valid = false;
+    }
+    if (investorType.length === 0) {
+      newErrors.investorType = "At least one investor type is required";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
+    // Handle form submission
+
+    console.log({
+      name,
+      email,
+      phoneNumber,
+      investorType,
+      lookingForward,
+    });
+
+    submit();
+  };
+
+  const handleCheckboxChange = (option: string) => {
+    setInvestorType((prev) =>
+      prev.includes(option)
+        ? prev.filter((item) => item !== option)
+        : [...prev, option]
+    );
+  };
+
+  const submit = () => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("Name", name);
+    formData.append("Email", email);
+    formData.append("Phone", phoneNumber);
+    formData.append("Type", investorType.join(","));
+    formData.append("Message", lookingForward);
+
+    if (SCRIPT_API_URL) {
+      axios
+        .post(SCRIPT_API_URL, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(() => {
+          setName("");
+          setEmail("");
+          setPhoneNumber("");
+          setInvestorType([]);
+          setLookingForward("");
+          setErrors({
+            name: "",
+            email: "",
+            phoneNumber: "",
+            investorType: "",
+          });
+          onClose();
+
+          handleToast({
+            show: true,
+            type: "success",
+            message: "Your request has been submitted successfully",
+          });
+        })
+        .catch((e) => {
+          setLoading(false);
+          console.log(e, "e");
+
+          handleToast({
+            show: true,
+            type: "error",
+            message:
+              e?.response?.data?.message ?? "Your request failed to submit",
+          });
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  const handleToast = ({
+    show,
+    type,
+    message,
+  }: {
+    show: boolean;
+    type: "error" | "success";
+    message: string;
+  }) => {
+    setShowToast({ show, type, message });
+
+    setTimeout(() => {
+      setShowToast({ type: "", message: "", show: false });
+    }, 2000);
+  };
+
+  return (
+    <>
+      <Toast
+        show={showToast.show}
+        type={showToast.type}
+        message={showToast.message}
+        onClose={() => setShowToast({ ...showToast, show: false })}
+      />
+
+      <Modal isOpen={isOpen} onClose={onClose} title="Join the Waitlist">
+        <form onSubmit={handleSubmit} className={styles.waitlistForm}>
+          <InputField
+            label="Name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Enter full name"
+            error={errors.name}
+          />
+          <InputField
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email address"
+            error={errors.email}
+          />
+          <InputField
+            label="Phone Number"
+            type="tel"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            placeholder="Enter phone number"
+            error={errors.phoneNumber}
+          />
+          <CheckboxField
+            label="Investor Type"
+            options={["Institution", "Retail investor"]}
+            selectedOptions={investorType}
+            onChange={handleCheckboxChange}
+            error={errors.investorType}
+          />
+          <TextAreaField
+            label="What are you looking forward to?"
+            value={lookingForward}
+            onChange={(e) => setLookingForward(e.target.value)}
+            placeholder="Enter your message"
+          />
+          <button
+            disabled={loading}
+            type="submit"
+            className={styles.submitButton}
+          >
+            {loading ? "Loading..." : "Submit"}
+          </button>
+        </form>
+      </Modal>
+    </>
+  );
+};
+
+export default WaitlistForm;
