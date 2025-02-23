@@ -19,7 +19,7 @@ export default function Home() {
         </header>
         <main className={styles.main}>
           <section className={styles.content}>
-            <h1>Take control of your trading journey</h1>
+            <h1>Take Control of Your Trading Journey</h1>
             <p className={styles.sub_txt}>
               Whether you're a seasoned pro or just getting started, we provide
               the tools, security, and transparency to help you trade
