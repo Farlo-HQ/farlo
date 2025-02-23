@@ -18,8 +18,9 @@ const InputField: React.FC<{
   value: string;
   placeholder?: string;
   error?: string;
+  disabled?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}> = ({ label, type, value, onChange, placeholder, error }) => (
+}> = ({ label, type, value, onChange, placeholder, error, disabled }) => (
   <div className={styles.inputField}>
     <label>{label}</label>
     <input
@@ -27,6 +28,7 @@ const InputField: React.FC<{
       type={type}
       value={value}
       onChange={onChange}
+      disabled={disabled}
     />
     <p className={styles.error}>{error}</p>
   </div>
@@ -37,11 +39,17 @@ const TextAreaField: React.FC<{
   value: string;
   placeholder?: string;
   error?: string;
+  disabled?: boolean;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-}> = ({ label, value, onChange, placeholder, error }) => (
+}> = ({ label, value, onChange, placeholder, error, disabled }) => (
   <div className={styles.textAreaField}>
     <label>{label}</label>
-    <textarea placeholder={placeholder} value={value} onChange={onChange} />
+    <textarea
+      disabled={disabled}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+    />
     <p className={styles.error}>{error}</p>
   </div>
 );
@@ -52,7 +60,8 @@ const CheckboxField: React.FC<{
   selectedOptions: string[];
   onChange: (option: string) => void;
   error?: string;
-}> = ({ label, options, selectedOptions, onChange, error }) => (
+  disabled?: boolean;
+}> = ({ label, options, selectedOptions, onChange, error, disabled }) => (
   <div className={styles.checkboxField}>
     <label>{label}</label>
     {options.map((option) => (
@@ -61,6 +70,7 @@ const CheckboxField: React.FC<{
           type="checkbox"
           checked={selectedOptions.includes(option)}
           onChange={() => onChange(option)}
+          disabled={disabled}
         />
         {option}
       </div>
@@ -234,6 +244,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter full name"
             error={errors.name}
+            disabled={loading}
           />
           <InputField
             label="Email"
@@ -242,6 +253,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter email address"
             error={errors.email}
+            disabled={loading}
           />
           <InputField
             label="Phone Number"
@@ -250,6 +262,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
             onChange={(e) => setPhoneNumber(e.target.value)}
             placeholder="Enter phone number"
             error={errors.phoneNumber}
+            disabled={loading}
           />
           <CheckboxField
             label="Investor Type"
@@ -257,12 +270,14 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
             selectedOptions={investorType}
             onChange={handleCheckboxChange}
             error={errors.investorType}
+            disabled={loading}
           />
           <TextAreaField
             label="What are you looking forward to?"
             value={lookingForward}
             onChange={(e) => setLookingForward(e.target.value)}
             placeholder="Enter your message"
+            disabled={loading}
           />
           <button
             disabled={loading}

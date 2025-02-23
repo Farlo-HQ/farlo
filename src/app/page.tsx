@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [waitlist, setWaitlist] = useState(false);
-  
+
   return (
     <>
       <WaitlistForm isOpen={waitlist} onClose={() => setWaitlist(false)} />
@@ -22,9 +22,8 @@ export default function Home() {
             <h1>Take control of your trading journey</h1>
             <p className={styles.sub_txt}>
               Whether you're a seasoned pro or just getting started, we provide
-              the tools, security, and transparency to help you trade with
-              confidence. Supported by cutting-edge technology and 24/5 expert
-              assistance,
+              the tools, security, and transparency to help you trade
+              confidently.
             </p>
             <p className={styles.sub_txt}>
               FarloFX puts you in the driver’s seat of your financial future.
