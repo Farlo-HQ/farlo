@@ -14,30 +14,33 @@ export default function Home() {
         <header className={styles.header}>
           <Logo className={styles.header__logo} />
           <button onClick={() => setWaitlist(true)} className={styles.btn}>
-            Join waitlist
+            Join the waitlist
           </button>
         </header>
         <main className={styles.main}>
           <section className={styles.content}>
-            <h1>Take Control of Your Trading Journey</h1>
+            <h1>Trade Smarter. Trade Faster. <br /> Trade with FarloFX.</h1>
             <p className={styles.sub_txt}>
-              Whether you're a seasoned pro or just getting started, we provide
-              the tools, security, and transparency to help you trade
-              confidently.
+              Whether you’re a seasoned pro or just starting out, <b>FarloFX</b>{" "}
+              provides the tools, security, and transparency you need to master
+              the forex markets.
             </p>
             <p className={styles.sub_txt}>
-              FarloFX puts you in the driver’s seat of your financial future.
+              Experience a smarter, more seamless way to trade, where{" "}
+              <b>control</b>, <b>confidence</b>, and <b>clarity</b> define your
+              trading journey.
             </p>
           </section>
 
           <div className={styles.ctas}>
             <button onClick={() => setWaitlist(true)} className={styles.btn}>
-              Join waitlist
+              Join the waitlist
             </button>
           </div>
           <p className={styles.rider}>
-            Join a global network of traders who trust FarloFX for a smarter,
-            more seamless way to trade.
+            Join a growing global community of traders who trust <b>FarloFX</b>{" "}
+            for a faster, smarter trading experience.{" "}
+            <b>Your financial future, powered by precision and performance.</b>
           </p>
         </main>
       </div>
