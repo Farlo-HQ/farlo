@@ -84,13 +84,13 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [investorType, setInvestorType] = useState<string[]>([]);
+  const [clientType, setClientType] = useState<string[]>([]);
   const [lookingForward, setLookingForward] = useState("");
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     phoneNumber: "",
-    investorType: "",
+    clientType: "",
   });
   const [showToast, setShowToast] = useState({
     type: "",
@@ -104,7 +104,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
       name: "",
       email: "",
       phoneNumber: "",
-      investorType: "",
+      clientType: "",
     };
 
     if (!name) {
@@ -122,8 +122,8 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
       newErrors.phoneNumber = "Phone number is required";
       valid = false;
     }
-    if (investorType.length === 0) {
-      newErrors.investorType = "At least one investor type is required";
+    if (clientType.length === 0) {
+      newErrors.clientType = "At least one investor type is required";
       valid = false;
     }
 
@@ -142,7 +142,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
       name,
       email,
       phoneNumber,
-      investorType,
+      clientType,
       lookingForward,
     });
 
@@ -150,7 +150,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
   };
 
   const handleCheckboxChange = (option: string) => {
-    setInvestorType((prev) =>
+    setClientType((prev) =>
       prev.includes(option)
         ? prev.filter((item) => item !== option)
         : [...prev, option]
@@ -163,7 +163,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
     formData.append("Name", name);
     formData.append("Email", email);
     formData.append("Phone", phoneNumber);
-    formData.append("Type", investorType.join(","));
+    formData.append("Client Type", clientType.join(","));
     formData.append("Message", lookingForward);
 
     if (SCRIPT_API_URL) {
@@ -177,13 +177,13 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
           setName("");
           setEmail("");
           setPhoneNumber("");
-          setInvestorType([]);
+          setClientType([]);
           setLookingForward("");
           setErrors({
             name: "",
             email: "",
             phoneNumber: "",
-            investorType: "",
+            clientType: "",
           });
           onClose();
 
@@ -265,11 +265,11 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
             disabled={loading}
           />
           <CheckboxField
-            label="Investor Type"
-            options={["Institution", "Retail investor"]}
-            selectedOptions={investorType}
+            label="Client Type"
+            options={["Institutional Client", "Retail Client"]}
+            selectedOptions={clientType}
             onChange={handleCheckboxChange}
-            error={errors.investorType}
+            error={errors.clientType}
             disabled={loading}
           />
           <TextAreaField
