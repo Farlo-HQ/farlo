@@ -28,7 +28,7 @@
   font-size: 14px;
   background: transparent;
   color: #000;
-  font-family: "GeneralSans-Regular";
+  font-family: "GeneralSans";
 }
 
 .textAreaField textarea {
@@ -67,7 +67,7 @@
   border-radius: 100px;
   font-weight: 600;
   box-shadow: 0px 0px 0px 2px #cb1a3638, 0px 4px 8px 0px #cb1a3633;
-  font-family: "GeneralSans-Regular";
+  font-family: "GeneralSans";
   font-size: 1rem;
   cursor: pointer;
 }

@@ -1,0 +1,14 @@
+.section {
+  height: 100dvh;
+  background-image: url("../../../public/red-grid.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.bg {
+  padding-top: 105px;
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 65px;
+  }
+}

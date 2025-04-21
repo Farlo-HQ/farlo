@@ -1,0 +1,57 @@
+.btn {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-family: "GeneralSans";
+  font-size: 1rem;
+  cursor: pointer;
+
+  &--fill-red {
+    border: 2px solid;
+    background: linear-gradient(0deg, #cb1a36, #cb1a36),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    color: #fff;
+    box-shadow: 0px 0px 0px 2px #cb1a3638, 0px 4px 8px 0px #cb1a3633;
+    border-image-source: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  &--fill-white {
+    color: var(--primary);
+    background-color: #fff;
+  }
+
+  &--ghost-red {
+    background-color: var(--primary);
+    color: #fff;
+  }
+
+  &--ghost-white {
+    color: var(--primary);
+  }
+
+  &--outline {
+    border-color: var(--primary);
+    color: #fff;
+  }
+
+  &--ghost {
+  }
+}
+
+// .btn--fill__red {
+//     background-color: var(--primary);
+//     color: #fff;
+//   }
