@@ -1,30 +1,38 @@
 import { Button } from "../button";
+import { Section } from "../section";
 import styles from "./styles.module.scss";
 import { ArrowRight } from "@/assets/icons/arrow-right";
 
 interface HeroSection1Props {
   sectionClassName?: string;
   bgClassName?: string;
+  tag?: string;
+  title: string;
+  text: string;
 }
 
 const HeroSection1: React.FC<HeroSection1Props> = ({
   sectionClassName,
   bgClassName,
+  title,
+  text,
+  tag,
 }) => {
   return (
     <>
-      <section className={`${styles.bg} ${bgClassName}`}>
-        <div className={`container ${styles.section} ${sectionClassName}`}>
-          <h1>Take Control Of Your Trading Journey</h1>
-          <p>
-            Join a global network of traders who trust FarloFX for a smarter,
-            more seamless way to trade.
-          </p>
+      <Section
+        bgClassName={`${styles.bg} ${bgClassName}`}
+        sectionClassName={`container ${styles.section} ${sectionClassName}`}
+      >
+        <div className={styles.txtContent}>
+          {tag ? <p className={styles.tag}>{tag}</p> : null}
+          <h1 className={styles.ttl}>{title}</h1>
+          <p className={styles.txt}>{text}</p>
           <Button variant="fill-red">
             Open Account <ArrowRight />
           </Button>
         </div>
-      </section>
+      </Section>
     </>
   );
 };
