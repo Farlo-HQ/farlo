@@ -1,0 +1,91 @@
+.bg {
+  background-image: url("../../../../public/gantt.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.section {
+  padding-top: 5rem;
+  padding-bottom: 6rem;
+
+  @media screen and (max-width: 1140px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+.ttl {
+  color: #2d3135;
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  max-width: 400px;
+  line-height: 110%;
+
+  @media screen and (max-width: 1140px) {
+    font-size: 36px;
+    margin-bottom: 1rem;
+  }
+}
+.txt {
+  color: #575a5d;
+  font-size: 20px;
+  max-width: 450px;
+
+  @media screen and (max-width: 1140px) {
+    font-size: 16px;
+  }
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-top: -5rem;
+
+  @media screen and (max-width: 1140px) {
+    margin-top: 4rem;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+.card {
+  background-color: #f9e7ea;
+  border-left: 4px solid #cb1a3633;
+  padding: 1rem;
+
+  @media screen and (max-width: 1140px) {
+    border-width: 2px;
+  }
+
+  img {
+    margin-left: auto;
+    margin-bottom: 1rem;
+    display: block;
+
+    @media screen and (max-width: 1140px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__ttl {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--primary);
+
+    @media screen and (max-width: 1140px) {
+      font-size: 18px;
+    }
+  }
+  &__txt {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary);
+    margin-top: 6px;
+
+    @media screen and (max-width: 1140px) {
+      font-size: 14px;
+    }
+  }
+}

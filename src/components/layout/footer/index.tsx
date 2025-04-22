@@ -191,7 +191,7 @@ const Footer = () => {
           <div className={styles.sec1}>
             {links.map((item) =>
               item.type === "dual" ? (
-                <div className={styles.linkSubWrap}>
+                <div key={item.title} className={styles.linkSubWrap}>
                   {item.sublinks.map((item) => (
                     <div className={styles.linkWrap}>
                       <p>{item.title}</p>
@@ -202,7 +202,7 @@ const Footer = () => {
                   ))}
                 </div>
               ) : (
-                <div className={styles.linkWrap}>
+                <div key={item.title} className={styles.linkWrap}>
                   <p>{item.title}</p>
                   {item.links?.map((link) => (
                     <Link href={link.path}>{link.title}</Link>
