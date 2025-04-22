@@ -1,4 +1,4 @@
-import { HeroSection1, Rates } from "@/components";
+import { GettingStarted, HeroSection1, Rates } from "@/components";
 import styles from "./styles.module.scss";
 import { Gateway } from "./gateway";
 
@@ -13,6 +13,7 @@ const HomeUI = () => {
       />
       <Rates />
       <Gateway />
+      <GettingStarted />
     </>
   );
 };
