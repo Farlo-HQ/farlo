@@ -44,8 +44,8 @@ const Gateway = () => {
           the world, ensuring you can trade the assets that matters most
         </p>
         <div className={styles.cards} >
-          {gateways.map(({ icon, title, text }) => (
-            <div className={styles.card}>
+          {gateways.map(({ icon, title, text }, index) => (
+            <div key={`gateway-${index}`} className={styles.card}>
               <Image src={icon} alt={title} width={48} height={48} />
               <p className={styles.card__ttl}>{title}</p>
               {text ? <p className={styles.card__txt}>{text}</p> : null}

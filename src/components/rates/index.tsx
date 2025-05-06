@@ -37,8 +37,8 @@ const Rates = () => {
   return (
     <section className={styles.bg}>
       <div className={styles.rates}>
-        {rates.map(({ title, value, rate }) => (
-          <p className={styles.rate}>
+        {rates.map(({ title, value, rate }, index) => (
+          <p key={`rate-${index}`} className={styles.rate}>
             <span className={styles.rate__ttl}>{title}</span>
             <span className={styles.rate__value}>{value}</span>
             <span
