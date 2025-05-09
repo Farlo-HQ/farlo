@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import { Gateway } from "./gateway";
 import { Opportunity } from "./opportunity";
 import { TradeAnywhere } from "./trade-anywhere";
+import { WhyFarlo } from "./why-farlo";
 
 const HomeUI = () => {
   return (
@@ -17,6 +18,7 @@ const HomeUI = () => {
       <GettingStarted />
       <Opportunity />
       <TradeAnywhere />
+      <WhyFarlo />
     </>
   );
 };

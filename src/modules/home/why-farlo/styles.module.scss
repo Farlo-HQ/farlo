@@ -1,0 +1,82 @@
+.bg {
+}
+.section {
+  padding-top: 7rem;
+  padding-bottom: 6rem;
+
+  @media screen and (max-width: 800px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+.sec1 {
+  margin-bottom: 7rem;
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 4rem;
+  }
+}
+.tag {
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 1rem;
+  }
+}
+.ttl {
+  font-size: 38px;
+  line-height: 1.1;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 800px) {
+    font-size: 36px;
+    margin-bottom: 1rem;
+  }
+}
+.txt {
+  font-size: 19px;
+  line-height: 1.4;
+  max-width: 450px;
+
+  @media screen and (max-width: 800px) {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5rem 4rem;
+
+  @media screen and (max-width: 1024px) {
+    gap: 5rem 2rem;
+  }
+
+  @media screen and (max-width: 900px) {
+    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+.card {
+  display: grid;
+  gap: 1rem;
+  &__ttl {
+    font-size: 19px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  &__txt {
+    font-family: "Geist", sans-serif;
+    font-size: 19px;
+    line-height: 1.4;
+    color: #575a5d;
+  }
+}
