@@ -7,6 +7,8 @@ import { WhyFarlo } from "./why-farlo";
 import { CompletePackage } from "./completePackage";
 import Lottie from "lottie-react";
 import CoinsAnimation from "@/assets/animations/coins.json";
+import { LearnTrade } from "./learn-trade";
+import { GetHelp } from "./get-help";
 
 const HomeUI = () => {
   return (
@@ -33,6 +35,8 @@ const HomeUI = () => {
       <TradeAnywhere />
       <WhyFarlo />
       <CompletePackage />
+      <LearnTrade />
+      <GetHelp />
     </>
   );
 };

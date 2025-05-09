@@ -1,0 +1,102 @@
+.bg {
+  background-color: #fafafa;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.ttl {
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #2d3135;
+}
+.txt {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #575a5d;
+}
+.header {
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.card {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid #f0f0f0;
+  background: #fff;
+  border-radius: 4px;
+  padding: 1.5rem;
+
+  &__ttl {
+    color: #2d3135;
+    line-height: 1.4;
+    font-weight: 500;
+    font-size: 24px;
+  }
+  &__txt {
+    color: #575a5d;
+    line-height: 1.4;
+    font-size: 20px;
+    font-family: "Geist";
+  }
+
+  button {
+    padding: 0;
+    width: fit-content;
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    gap: 1.5rem;
+  }
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .ttl {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  .txt {
+    font-size: 16px;
+  }
+  .card {
+    padding: 1rem;
+    svg {
+      margin-bottom: 6px;
+    }
+    &__ttl {
+      font-size: 20px;
+    }
+    &__txt,
+    button {
+      font-size: 16px;
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .bg {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .ttl,
+  .txt {
+    text-align: left;
+  }
+  .cards {
+    gap: 1rem;
+  }
+}

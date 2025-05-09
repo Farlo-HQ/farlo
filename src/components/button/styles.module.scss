@@ -29,14 +29,14 @@
   }
 
   &--fill-white {
-    color: #575A5D;
+    color: #575a5d;
     background-color: #fff;
-    box-shadow: 0px 0px 0px 2px #F0F0F0;
+    box-shadow: 0px 0px 0px 2px #f0f0f0;
   }
 
   &--ghost-red {
-    background-color: var(--primary);
-    color: #fff;
+    background-color: transparent;
+    color: var(--primary);
   }
 
   &--ghost-white {
