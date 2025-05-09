@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Button } from "../button";
 import { Section } from "../section";
 import styles from "./styles.module.scss";
@@ -9,6 +10,7 @@ interface HeroSection1Props {
   tag?: string;
   title: string;
   text: string;
+  element: ReactNode
 }
 
 const HeroSection1: React.FC<HeroSection1Props> = ({
@@ -16,7 +18,7 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
   bgClassName,
   title,
   text,
-  tag,
+  tag,element
 }) => {
   return (
     <>
@@ -32,6 +34,7 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
             Open Account <ArrowRight />
           </Button>
         </div>
+        {element}
       </Section>
     </>
   );

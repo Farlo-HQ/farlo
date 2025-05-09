@@ -5,6 +5,8 @@ import { Opportunity } from "./opportunity";
 import { TradeAnywhere } from "./trade-anywhere";
 import { WhyFarlo } from "./why-farlo";
 import { CompletePackage } from "./completePackage";
+import Lottie from "lottie-react";
+import CoinsAnimation from "@/assets/animations/coins.json";
 
 const HomeUI = () => {
   return (
@@ -13,6 +15,16 @@ const HomeUI = () => {
         title="Take Control Of Your Trading Journey"
         text={`Join a global network of traders who trust FarloFX for a smarter, more seamless way to trade.`}
         bgClassName={styles.bg}
+        element={
+          <>
+            <div className={styles.overlay}></div>
+            <Lottie
+              className={styles.animation_wrapper}
+              animationData={CoinsAnimation}
+              loop={true}
+            />
+          </>
+        }
       />
       <Rates />
       <Gateway />
