@@ -230,7 +230,7 @@ const Navbar = () => {
     <>
       <header className={styles.header}>
         <section
-          className={`container ${styles.nav} ${
+          className={`layout-container ${styles.nav} ${
             showNav ? styles["nav--open"] : ""
           }`}
         >

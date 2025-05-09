@@ -1,0 +1,77 @@
+.bg {
+  background: #263238;
+  color: #fff;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  @media screen and (max-width: 1300px) {
+    padding: 2rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 0;
+  }
+}
+.section {
+  background-image: url(../../../../public/coins-bg.png);
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+  padding: 4rem;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  gap: 2rem;
+
+  @media screen and (max-width: 1024px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0px;
+    background-position: center;
+  }
+}
+.ttl {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.txt {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 530px;
+  margin-bottom: 2rem;
+}
+.ctas {
+  display: flex;
+  gap: 1rem;
+}
+.scan {
+  p {
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .ttl {
+    font-size: 32px;
+    margin-bottom: 1.5rem;
+  }
+  .txt {
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .scan {
+    display: none;
+  }
+}

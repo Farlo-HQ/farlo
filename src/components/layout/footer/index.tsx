@@ -187,7 +187,7 @@ const Footer = () => {
   return (
     <>
       <footer className={styles.footerBg}>
-        <section className={`container ${styles.footer}`}>
+        <section className={`layout-container ${styles.footer}`}>
           <div className={styles.sec1}>
             {links.map((item) =>
               item.type === "dual" ? (

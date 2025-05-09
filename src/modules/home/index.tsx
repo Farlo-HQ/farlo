@@ -1,6 +1,8 @@
 import { GettingStarted, HeroSection1, Rates } from "@/components";
 import styles from "./styles.module.scss";
 import { Gateway } from "./gateway";
+import { Opportunity } from "./opportunity";
+import { TradeAnywhere } from "./trade-anywhere";
 
 const HomeUI = () => {
   return (
@@ -13,6 +15,8 @@ const HomeUI = () => {
       <Rates />
       <Gateway />
       <GettingStarted />
+      <Opportunity />
+      <TradeAnywhere />
     </>
   );
 };

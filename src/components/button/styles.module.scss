@@ -29,8 +29,9 @@
   }
 
   &--fill-white {
-    color: var(--primary);
+    color: #575A5D;
     background-color: #fff;
+    box-shadow: 0px 0px 0px 2px #F0F0F0;
   }
 
   &--ghost-red {
