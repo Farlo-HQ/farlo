@@ -4,6 +4,7 @@ import { Gateway } from "./gateway";
 import { Opportunity } from "./opportunity";
 import { TradeAnywhere } from "./trade-anywhere";
 import { WhyFarlo } from "./why-farlo";
+import { CompletePackage } from "./completePackage";
 
 const HomeUI = () => {
   return (
@@ -19,6 +20,7 @@ const HomeUI = () => {
       <Opportunity />
       <TradeAnywhere />
       <WhyFarlo />
+      <CompletePackage />
     </>
   );
 };
