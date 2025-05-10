@@ -1,0 +1,49 @@
+.accordion {
+  width: 627px;
+  max-width: 100%;
+  padding-right: 1rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  color: var(--neutral-100);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: -0.25px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  &::after {
+    content: url("../../assets/vectors/icons/caretUp.svg");
+    transition: all 0.3s ease-in-out;
+    margin-top: 18px;
+    margin-right: 5px;
+    height: 22px;
+  }
+}
+
+.item.openQuestion::after {
+  transform: rotate(180deg);
+}
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -0.25px;
+}
+
+.answer.open {
+  max-height: 30px;
+}
+
+@media only screen and (max-width: 800px) {
+  .accordion {
+    width: 100%;
+    padding-right: 0;
+  }
+}

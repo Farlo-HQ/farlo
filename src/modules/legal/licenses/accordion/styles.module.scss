@@ -1,0 +1,98 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: -0.25px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+
+  &::after {
+    // content: url("../../assets/vectors/icons/caretUp.svg");
+    transition: all 0.3s ease-in-out;
+    margin-top: 18px;
+    margin-right: 5px;
+    height: 22px;
+  }
+}
+
+.header.openQuestion::after {
+  transform: rotate(180deg);
+}
+.accordion {
+  border-top: 1px solid #ffffff1f;
+  padding: 2.5rem 0 1rem;
+
+  @media screen and (max-width: 1024px) {
+    padding: 1.5rem 0;
+  }
+
+  &:last-of-type {
+    border-bottom: 1px solid #ffffff1f;
+  }
+}
+
+.question {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 160%;
+  letter-spacing: 0px;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 24px;
+  }
+}
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+.accordion_body {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  gap: 2rem;
+  justify-content: space-between;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.description {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 140%;
+  letter-spacing: 0px;
+  color: #ffffffa6;
+  max-width: 850px;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+.link {
+  color: #ffffff8c;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 1rem;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+.answer.open {
+  // max-height: max-content;
+  max-height: 800px;
+
+}
+
+@media only screen and (max-width: 800px) {
+  .accordion {
+    width: 100%;
+    padding-right: 0;
+  }
+}
