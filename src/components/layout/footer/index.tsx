@@ -8,6 +8,7 @@ import { YoutubeLogo } from "@/assets/icons/youtube";
 import { LinkedinLogo } from "@/assets/icons/linkedin";
 import { FacebookLogo } from "@/assets/icons/facebook";
 import { InstagramLogo } from "@/assets/icons/instagram";
+import { ROUTES } from "@/utils/routes";
 
 const Footer = () => {
   const links = [
@@ -16,7 +17,7 @@ const Footer = () => {
       links: [
         {
           title: "About Farlo",
-          path: "",
+          path: ROUTES.about,
         },
         {
           title: "Farlo Careers",
@@ -40,7 +41,7 @@ const Footer = () => {
         },
         {
           title: "Legal",
-          path: "",
+          path: ROUTES.legal,
         },
       ],
     },
