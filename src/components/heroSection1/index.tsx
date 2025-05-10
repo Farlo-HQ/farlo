@@ -7,10 +7,11 @@ import { ArrowRight } from "@/assets/icons/arrow-right";
 interface HeroSection1Props {
   sectionClassName?: string;
   bgClassName?: string;
+  txtClassName?: string;
   tag?: string;
-  title: string;
+  title: string | ReactNode;
   text: string;
-  element: ReactNode
+  element: ReactNode;
 }
 
 const HeroSection1: React.FC<HeroSection1Props> = ({
@@ -18,7 +19,9 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
   bgClassName,
   title,
   text,
-  tag,element
+  tag,
+  element,
+  txtClassName,
 }) => {
   return (
     <>
@@ -29,7 +32,7 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
         <div className={styles.txtContent}>
           {tag ? <p className={styles.tag}>{tag}</p> : null}
           <h1 className={styles.ttl}>{title}</h1>
-          <p className={styles.txt}>{text}</p>
+          <p className={`${styles.txt} ${txtClassName}`}>{text}</p>
           <Button variant="fill-red">
             Open Account <ArrowRight />
           </Button>
