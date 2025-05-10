@@ -4,6 +4,7 @@ import { WhoWeAre } from "./who-we-are";
 import { Stats } from "./stats";
 import { WhyFarlo } from "./why-farlo";
 import { Mission } from "./mission";
+import { Note } from "./note";
 
 const AboutUI = () => {
   return (
@@ -34,6 +35,7 @@ const AboutUI = () => {
       <Stats />
       <WhyFarlo />
       <Mission />
+      <Note />
     </>
   );
 };
