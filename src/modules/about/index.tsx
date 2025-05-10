@@ -5,6 +5,7 @@ import { Stats } from "./stats";
 import { WhyFarlo } from "./why-farlo";
 import { Mission } from "./mission";
 import { Note } from "./note";
+import { OurPromise } from "./promise";
 
 const AboutUI = () => {
   return (
@@ -36,6 +37,7 @@ const AboutUI = () => {
       <WhyFarlo />
       <Mission />
       <Note />
+      <OurPromise />
     </>
   );
 };

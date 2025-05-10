@@ -1,0 +1,110 @@
+.bg {
+  background-color: #fafafa;
+}
+.section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  display: grid;
+  grid-template-columns: 3fr 1.8fr;
+  gap: 3rem;
+  align-items: flex-start;
+
+  @media screen and (max-width: 1024px) {
+    gap: 1rem;
+    grid-template-columns: 3fr 2fr;
+  }
+
+  @media screen and (max-width: 800px) {
+    gap: 3rem;
+    grid-template-columns: 1fr;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+.content {
+  display: grid;
+  gap: 2rem;
+
+  @media screen and (max-width: 1024px) {
+    gap: 1rem;
+  }
+
+  &__tag {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+
+  &__ttl {
+    color: var(--title);
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 120%;
+    letter-spacing: 0%;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 32px;
+    }
+  }
+
+  &__txt {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 155%;
+    letter-spacing: -0.4px;
+    max-width: 700px;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 20px;
+    }
+  }
+}
+.card {
+  padding: 1.5rem;
+  border-radius: 4px;
+
+  @media screen and (max-width: 800px) {
+    padding: 1rem;
+  }
+
+  &__txt1 {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 140%;
+    letter-spacing: -0.4px;
+    margin-bottom: 1.5rem;
+  }
+
+  &__txt2 {
+    color: var(--text);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 140%;
+    letter-spacing: -0.4px;
+    max-width: 400px;
+  }
+}
+.security {
+  background: #f0f0f0;
+}
+.webinar {
+  background: var(--primary);
+  p {
+    color: #fff;
+  }
+}
+
+.books {
+  background: #fe7117;
+  p {
+    color: #fff;
+  }
+}
