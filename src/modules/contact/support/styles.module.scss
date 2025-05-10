@@ -1,0 +1,68 @@
+.bg {
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+  background-color: #fafafa;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
+.tag {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: 0%;
+  color: #ffffffcc;
+}
+.ttl {
+  max-width: 670px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 140%;
+  letter-spacing: 0%;
+
+  span {
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 32px;
+  }
+}
+.section {
+  background-image: url(../../../../public/cutout-bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 5rem 8%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  @media screen and (max-width: 1024px) {
+    padding: 5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    background-image: url(../../../../public/cutout-bg-mobile.svg);
+    padding: 4rem 1rem;
+  }
+}
+.btns {
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    > button {
+      width: 48%;
+      justify-content: flex-start;
+    }
+  }
+}

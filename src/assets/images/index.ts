@@ -13,8 +13,10 @@ import mission from "./mission.png";
 import vision from "./vision.png";
 import join_us from "./join-us.png";
 import contact_hero from "./contact-hero.png";
+import buildings from "./buildings.png";
 
 export {
+  buildings,
   contact_hero,
   join_us,
   core_values,

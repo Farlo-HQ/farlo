@@ -8,9 +8,9 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     {...props}
   >
-    <g clipPath="url(#a)">
+    <g clipPath="url(#a-icon)">
       <mask
-        id="b"
+        id="b-icon"
         width={89}
         height={88}
         x={0}
@@ -22,12 +22,12 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
       >
         <path fill="#fff" d="M88.5 0H.5v88h88V0Z" />
       </mask>
-      <g mask="url(#b)">
+      <g mask="url(#b-icon)">
         <path
-          fill="url(#c)"
+          fill="url(#c-icon)"
           d="M86.687 0H2.313A1.813 1.813 0 0 0 .5 1.813v84.374C.5 87.188 1.312 88 2.313 88h84.374a1.813 1.813 0 0 0 1.813-1.813V1.813A1.813 1.813 0 0 0 86.687 0Z"
         />
-        <g fill="#FAFAFA" filter="url(#d)">
+        <g fill="#FAFAFA" filter="url(#d-icon)">
           <path d="M46.853 16.807H34.37a5.458 5.458 0 0 0-3.825 1.563L18.938 29.978a5.462 5.462 0 0 0-1.631 3.893v12.477h13.837V30.645h15.709V16.807Z" />
           <path d="M31.144 42.809 18.938 55.014a5.462 5.462 0 0 0-1.631 3.894v12.291h13.837V42.81ZM43.321 30.64 55.51 18.446c1.024-1.042 2.107-1.64 3.57-1.64h12.614v13.846h-15.02l-13.357-.014h.005ZM71.694 35.874H53.456a5.458 5.458 0 0 0-3.825 1.564l-11.617 11.62a5.463 5.463 0 0 0-1.631 3.894v18.243H50.22V49.707h21.474V35.874Z" />
         </g>
@@ -44,7 +44,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
     />
     <defs>
       <linearGradient
-        id="c"
+        id="c-icon"
         x1={44.5}
         x2={44.5}
         y1={0}
@@ -54,11 +54,11 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
         <stop stopColor="#2C2E30" />
         <stop offset={1} stopColor="#1D1F22" />
       </linearGradient>
-      <clipPath id="a">
+      <clipPath id="a-icon">
         <rect width={88} height={88} x={0.5} fill="#fff" rx={16} />
       </clipPath>
       <filter
-        id="d"
+        id="d-icon"
         width={54.387}
         height={55.593}
         x={17.307}
