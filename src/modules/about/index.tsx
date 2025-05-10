@@ -6,6 +6,7 @@ import { WhyFarlo } from "./why-farlo";
 import { Mission } from "./mission";
 import { Note } from "./note";
 import { OurPromise } from "./promise";
+import { JoinFarlo } from "./join-farlo";
 
 const AboutUI = () => {
   return (
@@ -38,6 +39,7 @@ const AboutUI = () => {
       <Mission />
       <Note />
       <OurPromise />
+      <JoinFarlo />
     </>
   );
 };
