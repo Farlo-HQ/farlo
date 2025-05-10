@@ -8,8 +8,14 @@ import qrCodeImg from "./qr-code-download.png";
 import aboutUs1 from "./about-us-1.png";
 import aboutUs2 from "./about-us-2.png";
 import aboutUs3 from "./about-us-3.png";
+import core_values from "./core-values.png";
+import mission from "./mission.png";
+import vision from "./vision.png";
 
 export {
+  core_values,
+  vision,
+  mission,
   aboutUs1,
   aboutUs2,
   aboutUs3,

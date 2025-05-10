@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import { WhoWeAre } from "./who-we-are";
 import { Stats } from "./stats";
 import { WhyFarlo } from "./why-farlo";
+import { Mission } from "./mission";
 
 const AboutUI = () => {
   return (
@@ -32,6 +33,7 @@ const AboutUI = () => {
       <WhoWeAre />
       <Stats />
       <WhyFarlo />
+      <Mission />
     </>
   );
 };

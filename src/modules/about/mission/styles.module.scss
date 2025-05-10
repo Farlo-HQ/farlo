@@ -1,0 +1,122 @@
+.bg {
+  background-color: #191919;
+  color: #fff;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+.section {
+  max-width: 1350px;
+}
+
+.content {
+  padding: 6rem 8.5%;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 9%;
+  align-items: center;
+  > div {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 1200px) {
+    padding: 4rem;
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    > div {
+      width: 100%;
+    }
+  }
+
+  img {
+    width: 40%;
+    height: auto;
+    max-width: 497px;
+
+    @media screen and (max-width: 800px) {
+      width: 100%;
+      max-width: unset;
+    }
+  }
+
+  &__ttl {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 40px;
+    }
+
+    @media screen and (max-width: 800px) {
+      font-size: 24px;
+    }
+  }
+  &__txt {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.55;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 20px;
+    }
+
+    @media screen and (max-width: 800px) {
+      font-size: 16px;
+    }
+  }
+}
+.core_values {
+  background-color: #2c2c2c;
+
+  &__items {
+    margin-top: 4rem;
+
+    @media screen and (max-width: 1024px) {
+      margin-top: 2rem;
+    }
+
+    p {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.55;
+      margin-bottom: 4px;
+
+      @media screen and (max-width: 1024px) {
+        font-size: 20px;
+      }
+
+      @media screen and (max-width: 800px) {
+        font-size: 16px;
+        margin-bottom: 1rem;
+      }
+
+      span {
+        color: #e07686;
+        font-weight: 700;
+      }
+    }
+  }
+}
+.vision {
+  background-color: #960118;
+}
+.mission {
+  color: #1d1d1e;
+  background-color: #e5efff;
+
+  @media screen and (max-width: 800px) {
+    background-color: var(--primary);
+    color: #fff;
+  }
+}
