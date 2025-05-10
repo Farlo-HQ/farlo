@@ -1,0 +1,46 @@
+.checkboxWrap {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 5px;
+}
+.label {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: left;
+  color: #fff;
+  display: block;
+  margin-bottom: 6px;
+}
+.input {
+  outline: none;
+  height: 44px;
+  padding: 10px 14px 10px 1rem;
+  border: none;
+  border-bottom: 1px solid #fff;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  background-color: var(--white);
+  width: 100%;
+  color: #ffffff;
+  font-family: "Inter";
+  font-size: 15px;
+  accent-color: var(--vobb-primary-70);
+  height: 54px;
+
+  &::placeholder {
+    color: #575A5D;
+    font-size: 15px;
+    font-weight: 400;
+  }
+}
+.error {
+  font-size: 12px;
+  color: var(--primary);
+  display: block;
+  margin-top: 8px;
+}
+.textarea {
+  min-height: 200px;
+}

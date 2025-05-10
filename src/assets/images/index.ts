@@ -12,8 +12,10 @@ import core_values from "./core-values.png";
 import mission from "./mission.png";
 import vision from "./vision.png";
 import join_us from "./join-us.png";
+import contact_hero from "./contact-hero.png";
 
 export {
+  contact_hero,
   join_us,
   core_values,
   vision,
