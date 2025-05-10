@@ -4,6 +4,14 @@
   background-color: #00000020;
   top: 0;
   z-index: 100;
+
+  &--scroll {
+    background-color: #00000090;
+
+    &:hover {
+      background-color: #000000;
+    }
+  }
 }
 .nav {
   display: flex;
@@ -131,7 +139,6 @@
   flex-direction: column;
   overflow: auto;
 
-
   nav {
     flex-direction: column;
     gap: 2rem;
@@ -256,7 +263,6 @@
     > span {
       display: none;
     }
-
   }
 
   p {

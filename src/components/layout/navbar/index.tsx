@@ -226,16 +226,44 @@ const Navbar = () => {
     },
   ];
 
+  const router = useRouter();
+
+  const goHome = () => {
+    router.push(ROUTES.home);
+  };
+
+  const [scrolledPastViewport, setScrolledPastViewport] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const hasScrolledPast = window.scrollY > window.innerHeight;
+      setScrolledPastViewport(hasScrolledPast);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <header className={styles.header}>
+      <header
+        className={`${styles.header} ${
+          scrolledPastViewport ? styles["header--scroll"] : ""
+        }`}
+      >
         <section
           className={`layout-container ${styles.nav} ${
             showNav ? styles["nav--open"] : ""
           }`}
         >
           <div className={styles.logoSec}>
-            {!showNav ? <Logo /> : <LogoBlack />}
+            {!showNav ? (
+              <Logo onClick={goHome} style={{ cursor: "pointer" }} />
+            ) : (
+              <LogoBlack onClick={goHome} style={{ cursor: "pointer" }} />
+            )}
             {isMobile ? (
               <button
                 className={styles.hamburger}

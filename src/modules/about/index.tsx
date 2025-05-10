@@ -7,6 +7,7 @@ import { Mission } from "./mission";
 import { Note } from "./note";
 import { OurPromise } from "./promise";
 import { JoinFarlo } from "./join-farlo";
+import { BottomBanner } from "@/components/bottom-banner";
 
 const AboutUI = () => {
   return (
@@ -40,6 +41,12 @@ const AboutUI = () => {
       <Note />
       <OurPromise />
       <JoinFarlo />
+      <BottomBanner
+        title="The Future of Trading Starts Here"
+        text="Experience world-class trading conditions, advanced tools, and dedicated support all in one platform."
+        fillBtn={{ text: "Register", action: console.log }}
+        outlineBtn={{ text: "Open Demo", action: console.log }}
+      />
     </>
   );
 };
