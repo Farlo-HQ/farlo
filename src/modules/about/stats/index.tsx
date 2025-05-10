@@ -45,7 +45,7 @@ const Stats = () => {
     >
       {stats.map(({ value, label }, i) => (
         <>
-          <div className={styles.stat} key={i}>
+          <div className={styles.stat} key={`stat-${i}`}>
             <p className={styles.stat__ttl}>
               {useCountUp(value, hasAnimated)}+
             </p>

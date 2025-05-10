@@ -2,6 +2,7 @@ import { HeroSection1 } from "@/components";
 import styles from "./styles.module.scss";
 import { WhoWeAre } from "./who-we-are";
 import { Stats } from "./stats";
+import { WhyFarlo } from "./why-farlo";
 
 const AboutUI = () => {
   return (
@@ -30,6 +31,7 @@ const AboutUI = () => {
       />
       <WhoWeAre />
       <Stats />
+      <WhyFarlo />
     </>
   );
 };
