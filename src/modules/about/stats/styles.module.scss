@@ -1,0 +1,48 @@
+.bg {
+  background-color: #191919;
+}
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  align-items: center;
+  gap: 2rem;
+
+  @media screen and (max-width: 800px) {
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+.stat {
+  text-align: center;
+
+  &__ttl {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 48px;
+    }
+  }
+
+  &__txt {
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}
+.line {
+  display: block;
+  height: 30px;
+  width: 1px;
+  background: #ffffff26;
+
+  @media screen and (max-width: 800px) {
+    width: 30px;
+    height: 1px;
+  }
+}
