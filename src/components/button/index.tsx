@@ -8,7 +8,7 @@ interface ButtonProps
   > {
   children: any;
   className?: string;
-  variant?: "fill-red" | "fill-white" | "ghost-red" | "ghost-white" | "outline";
+  variant?: "fill-red" | "fill-white" | "ghost-red" | "ghost-white" | "outline-white" | "outline-red";
   disabled?: boolean;
 }
 

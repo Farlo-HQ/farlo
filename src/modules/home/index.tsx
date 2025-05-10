@@ -9,6 +9,7 @@ import Lottie from "lottie-react";
 import CoinsAnimation from "@/assets/animations/coins.json";
 import { LearnTrade } from "./learn-trade";
 import { GetHelp } from "./get-help";
+import { BottomBanner } from "@/components/bottom-banner";
 
 const HomeUI = () => {
   return (
@@ -37,6 +38,7 @@ const HomeUI = () => {
       <CompletePackage />
       <LearnTrade />
       <GetHelp />
+      <BottomBanner />
     </>
   );
 };
