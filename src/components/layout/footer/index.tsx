@@ -25,7 +25,7 @@ const Footer = () => {
         },
         {
           title: "Contact us",
-          path: "",
+          path: ROUTES.contact,
         },
         {
           title: "Support",
