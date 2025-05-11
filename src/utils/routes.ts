@@ -8,4 +8,7 @@ export const ROUTES = {
   crypto_trading: "/trading/crypto",
   stocks_trading: "/trading/stocks",
   commodities_trading: "/trading/commodities",
+  platforms_desktop: "/platforms/desktop",
+  platforms_mobile: "/platforms/mobile",
+  platforms_web: "/platforms/web",
 };

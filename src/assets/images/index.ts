@@ -14,8 +14,14 @@ import vision from "./vision.png";
 import join_us from "./join-us.png";
 import contact_hero from "./contact-hero.png";
 import buildings from "./buildings.png";
+import mt5_desktop from "./mt5-desktop.png";
+import mt5_desktop_mobile from "./mt5-desktop-mobile.png";
+import mt5_mobile from "./mt5-mobile.png";
 
 export {
+  mt5_desktop_mobile,
+  mt5_desktop,
+  mt5_mobile,
   buildings,
   contact_hero,
   join_us,

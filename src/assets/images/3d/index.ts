@@ -25,8 +25,12 @@ import trading_crypto_coins from "./trading-crypto-coins.png";
 import trading_indices from "./trading-indices.png";
 import trading_stocks from "./trading-stocks.png";
 import trading_brokers from "./trading-brokers.png";
+import economic_calendar from "./economic_calendar.png";
+import market_analysis from "./market_analysis.png";
 
 export {
+  economic_calendar,
+  market_analysis,
   trading_hero_4,
   trading_hero_5,
   trading_stocks,

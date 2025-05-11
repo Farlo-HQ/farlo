@@ -86,15 +86,15 @@ const Footer = () => {
           links: [
             {
               title: "MT5 Desktop",
-              path: "",
+              path: ROUTES.platforms_desktop,
             },
             {
               title: "MT5 Mobile",
-              path: "",
+              path: ROUTES.platforms_mobile,
             },
             {
               title: "MT5 Web",
-              path: "",
+              path: ROUTES.platforms_web,
             },
           ],
         },

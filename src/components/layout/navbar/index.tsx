@@ -103,33 +103,33 @@ const Navbar = () => {
           options: [
             {
               title: "DESKTOP",
-              text: "MT5 or desktop",
+              text: "MT5 for desktop",
               icon: (
                 <span className={styles.dropdown__item__icon}>
                   <Monitor />
                 </span>
               ),
-              path: "/",
+              path: ROUTES.platforms_desktop,
             },
             {
               title: "MOBILE",
-              text: "MT5 or mobile",
+              text: "MT5 for mobile",
               icon: (
                 <span className={styles.dropdown__item__icon}>
                   <Mobile />
                 </span>
               ),
-              path: "/",
+              path: ROUTES.platforms_mobile,
             },
             {
               title: "WEB",
-              text: "MT5 or web",
+              text: "MT5 for web",
               icon: (
                 <span className={styles.dropdown__item__icon}>
                   <MonitorMobile />
                 </span>
               ),
-              path: "/",
+              path: ROUTES.platforms_web,
             },
           ],
         },

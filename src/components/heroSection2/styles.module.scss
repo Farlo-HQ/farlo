@@ -1,5 +1,13 @@
 .bg {
   background: linear-gradient(180deg, #1d1d1e 0%, #191919 100%);
+  padding-top: 105px;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  
+  @media screen and (max-width: 1024px) {
+    padding-top: 65px;
+  }
 }
 .section {
   height: 100%;

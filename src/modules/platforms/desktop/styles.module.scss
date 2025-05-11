@@ -1,0 +1,57 @@
+.bg {
+  padding-top: 105px;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 65px;
+  }
+}
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+.hero {
+  padding-bottom: 12rem;
+  padding-top: 5rem;
+
+  > section {
+    align-items: center;
+
+    img {
+      width: 120%;
+      max-width: unset;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: calc(100% + 1rem);
+      }
+    }
+
+    > div {
+      > div {
+        @media screen and (max-width: 600px) {
+          flex-direction: column;
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    padding-bottom: 5rem;
+    padding-top: 8rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-bottom: 0;
+  }
+}

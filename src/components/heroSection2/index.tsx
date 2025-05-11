@@ -13,7 +13,7 @@ interface HeroSection2Props {
   tag?: string;
   title: string | ReactNode;
   text: string;
-  element: ReactNode;
+  element?: ReactNode;
   btn1?: { text: string; action: () => void };
   btn2?: { text: string; action: () => void };
 }
