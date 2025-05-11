@@ -1,0 +1,31 @@
+.bg {
+}
+.img {
+  width: calc(100% + 1rem);
+  height: auto;
+}
+
+.hero {
+  padding-bottom: 9rem;
+  padding-top: 11rem;
+//   min-height: unset;
+//   max-height: 900px;
+//   height: 100dvh;
+
+h1 {
+    font-weight: 600;
+}
+
+  @media screen and (max-width: 900px) {
+    height: auto;
+  }
+
+  > section {
+    align-items: flex-start;
+  }
+
+  @media screen and (max-width: 900px) {
+    padding-bottom: 14rem;
+    padding-top: 8rem;
+  }
+}

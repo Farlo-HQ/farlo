@@ -36,8 +36,12 @@ import professional from "./professional.png";
 import starter_plan from "./starter_plan.png";
 import professional_plan from "./professional_plan.png";
 import vip_plan from "./vip_plan.png";
+import grad_hat from "./grad_hat.png";
+import horse_head from "./horse_head.png";
 
 export {
+  horse_head,
+  grad_hat,
   vip_plan,
   professional_plan,
   starter_plan,

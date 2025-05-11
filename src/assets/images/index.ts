@@ -18,8 +18,10 @@ import mt5_desktop from "./mt5-desktop.png";
 import mt5_desktop_mobile from "./mt5-desktop-mobile.png";
 import mt5_mobile from "./mt5-mobile.png";
 import account_hero_mobile from "./account_hero_mobile.png";
+import mobile_market_chart from "./mobile_market_chart.png";
 
 export {
+  mobile_market_chart,
   account_hero_mobile,
   mt5_desktop_mobile,
   mt5_desktop,
