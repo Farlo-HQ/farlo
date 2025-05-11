@@ -33,8 +33,14 @@ import one_tap from "./one_tap.png";
 import universal_compatibility from "./universal_compatibility.png";
 import account from "./account.png";
 import professional from "./professional.png";
+import starter_plan from "./starter_plan.png";
+import professional_plan from "./professional_plan.png";
+import vip_plan from "./vip_plan.png";
 
 export {
+  vip_plan,
+  professional_plan,
+  starter_plan,
   universal_compatibility,
   account,
   professional,

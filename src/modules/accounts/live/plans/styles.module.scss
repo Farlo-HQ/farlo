@@ -1,0 +1,89 @@
+.bg {
+  background: #fafafa;
+}
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+
+  @media screen and (max-width: 1024px) {
+    gap: 1rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+.plan {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 4px;
+
+  @media screen and (max-width: 1024px) {
+    padding: 1rem;
+  }
+
+  &__header {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 2rem;
+    display: grid;
+    gap: 1rem;
+
+    @media screen and (max-width: 1024px) {
+      gap: 12px;
+    }
+
+    img {
+      @media screen and (max-width: 1024px) {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__ttl {
+      color: var(--title);
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 100%;
+
+      @media screen and (max-width: 1024px) {
+        font-size: 24px;
+      }
+    }
+
+    &__txt {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 120%;
+      color: var(--text);
+    }
+  }
+
+  &__list {
+    color: var(--text);
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 155%;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 16px;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    li {
+      margin-bottom: 1rem;
+      list-style: none;
+
+      &::before {
+        content: url(../../../../../public/sms-edit.svg);
+        margin-right: 8px;
+      }
+    }
+  }
+  button {
+    width: 100%;
+  }
+}
