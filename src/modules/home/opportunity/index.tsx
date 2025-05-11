@@ -2,8 +2,10 @@ import { Button, Section } from "@/components";
 import React from "react";
 import styles from "./styles.module.scss";
 import { ArrowRight } from "@/assets/icons/arrow-right";
-import Lottie from "lottie-react";
 import CoinsAnimation from "@/assets/animations/coins2.json";
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 const Opportunity: React.FC = () => {
   return (
