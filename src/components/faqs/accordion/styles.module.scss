@@ -1,0 +1,78 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: -0.25px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 1rem;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.header.openQuestion::after {
+  transform: rotate(180deg);
+}
+.accordion {
+  padding: 1.5rem;
+  padding-bottom: 0;
+  background-color: #f0f0f0;
+  margin-bottom: 1rem;
+
+  @media screen and (max-width: 1024px) {
+    padding: 1rem;
+    padding-bottom: 0;
+  }
+
+  &:last-of-type {
+    border-bottom: 1px solid #ffffff1f;
+  }
+}
+
+.question {
+  color: var(--title);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.5px;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+.accordion_body {
+  color: var(--text);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 155%;
+  padding-bottom: 1.5rem;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 16px;
+    padding-bottom: 1rem;
+  }
+}
+
+.answer.open {
+  // max-height: max-content;
+  max-height: 800px;
+}
+
+@media only screen and (max-width: 800px) {
+  .accordion {
+    width: 100%;
+  }
+}

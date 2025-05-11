@@ -18,22 +18,22 @@ const Licenses = () => {
     },
     {
       title: "Central Bank of Curaçao and Sint Maarten (CBCS)",
-      description: "",
+      description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
       link: "",
     },
     {
       title: "Financial Services Commission (FSC)",
-      description: "",
+      description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
       link: "",
     },
     {
       title: "Financial Services Authority (FSA)",
-      description: "",
+      description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
       link: "",
     },
     {
       title: "Central Bank of Curaçao and Sint Maarten (CBCS)",
-      description: "",
+      description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
       link: "",
     },
   ];
