@@ -66,7 +66,7 @@ const Footer = () => {
         },
         {
           title: "Crypto",
-          path: "",
+          path: ROUTES.crypto_trading,
         },
         {
           title: "Conditions",

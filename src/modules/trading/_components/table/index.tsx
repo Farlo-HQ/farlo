@@ -41,13 +41,13 @@ const SpreadTable = ({
 export interface TableHeaderProps {
   title: string;
   items: { label: string; key: string; unit: string; sup?: string }[];
-  grey?: boolean
+  grey?: boolean;
 }
 
 const TableHeader = ({ title, items, grey }: TableHeaderProps) => {
   return (
     <>
-      <div className={`${styles.header} ${grey ? styles["header--grey"] :""}`}>
+      <div className={`${styles.header} ${grey ? styles["header--grey"] : ""}`}>
         <p className={styles.header__ttl}>{title}</p>
         {items.map(({ label, key, unit, sup }) => (
           <div key={`header-${key}`} className={styles.header__item}>
@@ -66,7 +66,7 @@ const TableHeader = ({ title, items, grey }: TableHeaderProps) => {
 export interface TableRowProps {
   label: {
     title: string;
-    sub_title: string;
+    sub_title?: string;
     tag?: string;
   };
   items: { label: string; key: string }[];
@@ -77,7 +77,9 @@ const TableRow = ({ label, items }: TableRowProps) => {
       <div className={`${styles.row}`}>
         <div className={styles.row__label}>
           <p className={styles.row__ttl}>{label.title}</p>
-          <p className={styles.row__txt1}>{label.sub_title}</p>
+          {label.sub_title ? (
+            <p className={styles.row__txt1}>{label.sub_title}</p>
+          ) : null}
           {label.tag ? <p className={styles.row__txt2}>{label.tag}</p> : null}
         </div>
         {items.map(({ label, key }) => (

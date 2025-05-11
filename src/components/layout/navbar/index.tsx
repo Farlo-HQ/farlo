@@ -66,7 +66,7 @@ const Navbar = () => {
               title: <>CRYPTOCURRENCIES </>,
               text: "BTCUSD, ETHUSD, SOLUSD",
               icon: <Image src={cryptoIcon} alt="" width={32} height={32} />,
-              path: "/",
+              path: ROUTES.crypto_trading,
             },
           ],
         },

@@ -72,9 +72,13 @@
   }
 }
 .card {
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #f0f0f0;
   margin-bottom: 1rem;
+
+  @media screen and (max-width: 1024px) {
+    padding: 1rem;
+  }
   
   &__ttl {
     color: var(--title);
@@ -82,7 +86,7 @@
     font-size: 28px;
     line-height: 120%;
     letter-spacing: -0.5px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 
     @media screen and (max-width: 1024px) {
       font-size: 20px;

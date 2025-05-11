@@ -5,4 +5,5 @@ export const ROUTES = {
   contact: "/contact-us",
   forex_trading: "/trading/forex",
   indices_trading: "/trading/indices",
+  crypto_trading: "/trading/crypto",
 };

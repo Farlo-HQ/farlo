@@ -17,10 +17,14 @@ import comp_edu from "./comp_edu.png";
 import support_center from "./support_center.png";
 import trading_hero_1 from "./trading-hero-1.png";
 import trading_hero_2 from "./trading-hero-2.png";
+import trading_hero_3 from "./trading-hero-3.png";
 import trading_forex_coins from "./trading-forex-coins.png";
+import trading_crypto_coins from "./trading-crypto-coins.png";
 import trading_indices from "./trading-indices.png";
 
 export {
+  trading_hero_3,
+  trading_crypto_coins,
   trading_indices,
   trading_hero_2,
   trading_forex_coins,
