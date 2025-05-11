@@ -37,6 +37,7 @@
   line-height: 150%;
   letter-spacing: 0%;
   color: var(--text);
+  text-transform: uppercase;
 
   @media screen and (max-width: 1024px) {
     font-size: 20px;
@@ -98,7 +99,6 @@
   align-items: center;
   gap: 1.5rem;
   margin-top: 1.5rem;
-  flex-wrap: wrap;
   
   @media screen and (max-width: 1024px) {
     gap: 1rem;

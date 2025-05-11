@@ -121,23 +121,19 @@ const Footer = () => {
       title: "Accounts",
       links: [
         {
-          title: "Demo Account",
-          path: "",
+          title: "Account Comparison",
+          path: ROUTES.accounts_comparison,
         },
         {
           title: "Demo Account",
-          path: "",
+          path: ROUTES.accounts_demo,
         },
         {
-          title: "Flex Leverage Account",
-          path: "",
+          title: "Live Account",
+          path: ROUTES.accounts_live,
         },
         {
-          title: "Payment Methods",
-          path: "",
-        },
-        {
-          title: "Withdrawal Methods",
+          title: "Deposits & Withdrawals",
           path: "",
         },
       ],

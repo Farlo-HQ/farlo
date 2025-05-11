@@ -11,4 +11,7 @@ export const ROUTES = {
   platforms_desktop: "/platforms/desktop",
   platforms_mobile: "/platforms/mobile",
   platforms_web: "/platforms/web",
+  accounts_comparison: "/accounts/comparison",
+  accounts_live: "/accounts/live",
+  accounts_demo: "/accounts/demo",
 };
