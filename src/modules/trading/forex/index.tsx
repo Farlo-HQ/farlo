@@ -8,6 +8,31 @@ import { GettingStarted } from "@/components";
 import { TradingHours } from "./trading-hours";
 import { FAQS } from "@/components/faqs";
 import { BottomBanner } from "@/components/bottom-banner";
+import { FAQData } from "@/components/faqs/accordion";
+
+const faqs: FAQData[] = [
+  {
+    question: "Is Farlo FX regulated?",
+    answer:
+      "Farlo FX is a regulated broker, holding multiple regulatory licenses from several financial authorities across the globe such as the Seychelles Financial Services Authority (FSA), Cyprus Securities and Exchange Commission (CySEC)*, the Financial Conduct Authority (FCA) in the UK*, South Africa Financial Sector Conduct Authority (FSCA), Central Bank of Curacao and Sint Maarten (CBCS), Financial Services Commission (FSC) in the British Virgin Islands, Financial Services Commission (FSC) in Mauritius, Capital Markets Authority (CMA) in Kenya, and the Jordan Securities Commission (JSC).",
+  },
+  {
+    question: "In which countries is Farlo FX regulated?",
+    answer:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
+  },
+  {
+    question:
+      "What is the difference between a regulated broker and an unregulated broker",
+    answer:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
+  },
+  {
+    question: "How can I create an Farlo account?",
+    answer:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
+  },
+];
 
 const ForexUI = () => {
   return (
@@ -38,7 +63,7 @@ const ForexUI = () => {
       <Spreads />
       <GettingStarted greyBg />
       <TradingHours />
-      <FAQS />
+      <FAQS title="Frequently asked questions" faqs={faqs} />
       <BottomBanner />
     </>
   );

@@ -4,4 +4,5 @@ export const ROUTES = {
   legal: "/legal",
   contact: "/contact-us",
   forex_trading: "/trading/forex",
+  indices_trading: "/trading/indices",
 };

@@ -60,7 +60,7 @@ const Navbar = () => {
               title: <>INDICIES </>,
               text: "NASDAQ100, S&P500, FTSE100",
               icon: <Image src={indicesIcon} alt="" width={32} height={32} />,
-              path: "/",
+              path: ROUTES.indices_trading,
             },
             {
               title: <>CRYPTOCURRENCIES </>,

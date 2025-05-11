@@ -62,14 +62,14 @@ const Footer = () => {
         },
         {
           title: "Indices",
-          path: "",
+          path: ROUTES.indices_trading,
         },
         {
           title: "Crypto",
           path: "",
         },
         {
-          title: "TConditions",
+          title: "Conditions",
           path: "",
         },
         {

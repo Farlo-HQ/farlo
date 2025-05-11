@@ -5,10 +5,11 @@ import { PlusIcon } from "@/assets/icons/icon-plus";
 
 export interface SpreadTableProps {
   header: TableHeaderProps;
-  data_groups: {
+  data_groups?: {
     title: string;
     rows: TableRowProps[];
   }[];
+  rows?: TableRowProps[];
   tableClassName?: string;
 }
 
@@ -16,17 +17,21 @@ const SpreadTable = ({
   header,
   data_groups,
   tableClassName,
+  rows,
 }: SpreadTableProps) => {
   return (
     <>
       <section className={`${styles.table} ${tableClassName || ""}`}>
-        <TableHeader {...header} />
-        {data_groups.map((group, index) => (
+        <TableHeader {...header} grey={!!rows && !data_groups} />
+        {data_groups?.map((group, index) => (
           <DataGroup key={`group-${index}`} title={group.title}>
             {group.rows.map((row, rowIndex) => (
               <TableRow key={`group-${index}-row-${rowIndex}`} {...row} />
             ))}
           </DataGroup>
+        ))}
+        {rows?.map((row, rowIndex) => (
+          <TableRow key={`row-${rowIndex}`} {...row} />
         ))}
       </section>
     </>
@@ -36,12 +41,13 @@ const SpreadTable = ({
 export interface TableHeaderProps {
   title: string;
   items: { label: string; key: string; unit: string; sup?: string }[];
+  grey?: boolean
 }
 
-const TableHeader = ({ title, items }: TableHeaderProps) => {
+const TableHeader = ({ title, items, grey }: TableHeaderProps) => {
   return (
     <>
-      <div className={`${styles.header}`}>
+      <div className={`${styles.header} ${grey ? styles["header--grey"] :""}`}>
         <p className={styles.header__ttl}>{title}</p>
         {items.map(({ label, key, unit, sup }) => (
           <div key={`header-${key}`} className={styles.header__item}>
