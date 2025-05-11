@@ -54,7 +54,7 @@ const Navbar = () => {
               title: <>FOREX </>,
               text: "EURUSD, GBPUSD, NZDUSD",
               icon: <Image src={forexIcon} alt="" width={32} height={32} />,
-              path: "/",
+              path: ROUTES.forex_trading,
             },
             {
               title: <>INDICIES </>,

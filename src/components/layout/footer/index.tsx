@@ -50,7 +50,7 @@ const Footer = () => {
       links: [
         {
           title: "Forex",
-          path: "",
+          path: ROUTES.forex_trading,
         },
         {
           title: "Commodities",

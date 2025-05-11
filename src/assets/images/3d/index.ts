@@ -15,8 +15,10 @@ import ultrafast_execution from "./ultrafast_execution.png";
 import advanced_trading from "./advanced_trading.png";
 import comp_edu from "./comp_edu.png";
 import support_center from "./support_center.png";
+import trading_hero_1 from "./trading-hero-1.png";
 
 export {
+  trading_hero_1,
   advanced_trading,
   comp_edu,
   support_center,
