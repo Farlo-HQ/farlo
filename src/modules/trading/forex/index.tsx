@@ -1,14 +1,14 @@
-import { trading_hero_1 } from "@/assets/images";
+import { trading_forex_coins, trading_hero_1 } from "@/assets/images";
 import { HeroSection2 } from "@/components/heroSection2";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { WhyFarlo } from "./why-farlo";
 import { Spreads } from "./spreads";
 import { GettingStarted } from "@/components";
 import { TradingHours } from "./trading-hours";
 import { FAQS } from "@/components/faqs";
 import { BottomBanner } from "@/components/bottom-banner";
 import { FAQData } from "@/components/faqs/accordion";
+import { WhyFarlo } from "../_components/why-farlo";
 
 const faqs: FAQData[] = [
   {
@@ -31,6 +31,33 @@ const faqs: FAQData[] = [
     question: "How can I create an Farlo account?",
     answer:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
+  },
+];
+
+const list = [
+  {
+    title: "Stop Out Protection",
+    text: "Shield your trades from extreme volatility with automated risk management.",
+  },
+  {
+    title: "Instant Payouts",
+    text: "Access your earnings with swift withdrawals and instant transaction processing.",
+  },
+  {
+    title: "Next-Gen Trading Platforms",
+    text: "Trade on MT5, fully equipped with advanced charting, indicators, and automation.",
+  },
+  {
+    title: "Capitalize on Currency Movements",
+    text: "Trade major, minor, and exotic pairs with ultra-low spreads.",
+  },
+  {
+    title: "Precision Execution",
+    text: "Execute trades in milliseconds with institutional-grade technology.",
+  },
+  {
+    title: "Low and Stable Spreads",
+    text: "Enjoy consistent pricing, even during high-impact news events.",
   },
 ];
 
@@ -59,7 +86,16 @@ const ForexUI = () => {
         btn1={{ text: "Register", action: console.log }}
         btn2={{ text: "Open Demo", action: console.log }}
       />
-      <WhyFarlo />
+      <WhyFarlo
+        tag="Why FarloFX"
+        title={
+          <>
+            Your <span>forex advantage</span> starts here
+          </>
+        }
+        list={list}
+        image={trading_forex_coins}
+      />
       <Spreads />
       <GettingStarted greyBg />
       <TradingHours />

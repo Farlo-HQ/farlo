@@ -1,14 +1,14 @@
-import { trading_hero_2 } from "@/assets/images";
+import { trading_hero_2, trading_indices } from "@/assets/images";
 import { HeroSection2 } from "@/components/heroSection2";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { WhyFarlo } from "./why-farlo";
 import { Spreads } from "./spreads";
 import { GettingStarted } from "@/components";
 import { MarketDive } from "./market-dive";
 import { FAQS } from "@/components/faqs";
 import { BottomBanner } from "@/components/bottom-banner";
 import { FAQData } from "@/components/faqs/accordion";
+import { WhyFarlo } from "../_components/why-farlo";
 
 const faqs: FAQData[] = [
   {
@@ -25,6 +25,29 @@ const faqs: FAQData[] = [
     question: "How can you trade on indices profitably?",
     answer:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
+  },
+];
+
+const list = [
+  {
+    title: "Global Market Access",
+    text: "Trade major indices that reflect entire national stock markets instead of individual stocks.",
+  },
+  {
+    title: "Go Long or Short",
+    text: "Profit from both bullish and bearish market trends with equal flexibility.",
+  },
+  {
+    title: "Leverage Up to 1:400",
+    text: "Amplify your exposure while maintaining precise risk control.",
+  },
+  {
+    title: "Tight Spreads & Low Commissions",
+    text: "Maximize profits with some of the lowest trading costs in the industry.",
+  },
+  {
+    title: "Expert Advisors & Trading Signals",
+    text: "Automate your trades and enhance your strategy with market insights.",
   },
 ];
 
@@ -54,7 +77,16 @@ const IndicesUI = () => {
         btn1={{ text: "Register", action: console.log }}
         btn2={{ text: "Open Demo", action: console.log }}
       />
-      <WhyFarlo />
+      <WhyFarlo
+        tag="Why FarloFX"
+        title={
+          <>
+            Benefits of trading indices on <span>FarloFX</span>
+          </>
+        }
+        list={list}
+        image={trading_indices}
+      />
       <MarketDive />
       <Spreads />
       <GettingStarted greyBg />

@@ -1,30 +1,33 @@
-import { trading_hero_3 } from "@/assets/images";
+import { trading_crypto_coins, trading_hero_3 } from "@/assets/images";
 import { HeroSection2 } from "@/components/heroSection2";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { WhyFarlo } from "./why-farlo";
 import { Spreads } from "./spreads";
 import { GettingStarted } from "@/components";
 import { MarketDive } from "./market-dive";
-import { FAQS } from "@/components/faqs";
 import { BottomBanner } from "@/components/bottom-banner";
-import { FAQData } from "@/components/faqs/accordion";
+import { WhyFarlo } from "../_components/why-farlo";
 
-const faqs: FAQData[] = [
+const list = [
   {
-    question: "What are indices in trading?",
-    answer:
-      "Indices are measures of the performance of a group of assets, typically stocks. They allow traders to speculate on the broader market trends without investing in individual stocks.",
+    title: "Ultra-Competitive Spreads & Leverage",
+    text: "Tight spreads and leverage up to 1:500 to maximize your trading potential.",
   },
   {
-    question: "How does index trading work?",
-    answer:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
+    title: "Instant & Secure Transactions",
+    text: "Fund your account with lightning-fast deposits and withdrawals using multiple payment options.",
   },
   {
-    question: "How can you trade on indices profitably?",
-    answer:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, exercitationem provident minus commodi maiores harum corrupti est obcaecati nesciunt dolorum! Officia culpa quae repellendus facilis dolorem. Inventore dolor architecto maxime.",
+    title: "Globally Regulated Broker",
+    text: "Trade confidently with a licensed and regulated broker recognized by major financial authorities.",
+  },
+  {
+    title: "Intuitive & Mobile-Friendly Platform",
+    text: "Start trading in just a few clicks on desktop or mobile via our FarloFX app.",
+  },
+  {
+    title: "Real-Time Transparent Pricing",
+    text: "Trade with live market prices 24/7, ensuring zero manipulation and full transparency.",
   },
 ];
 
@@ -33,11 +36,7 @@ const CryptoUI = () => {
     <>
       <HeroSection2
         tag="CRYPTO"
-        title={
-          <>
-            Trade Cryptocurrencies With Precision & Speed
-          </>
-        }
+        title={<>Trade Cryptocurrencies With Precision & Speed</>}
         text={
           "Access and trade top cryptocurrencies like BTCUSD and ETHUSD with zero overnight fees and seamless execution."
         }
@@ -53,7 +52,17 @@ const CryptoUI = () => {
         btn1={{ text: "Register", action: console.log }}
         btn2={{ text: "Open Demo", action: console.log }}
       />
-      <WhyFarlo />
+      <WhyFarlo
+        tag="How it works"
+        title={
+          <>
+            {" "}
+            A Smarter Way To <span>Trade</span> Digital Assets
+          </>
+        }
+        list={list}
+        image={trading_crypto_coins}
+      />
       <MarketDive />
       <Spreads />
       <GettingStarted greyBg />
