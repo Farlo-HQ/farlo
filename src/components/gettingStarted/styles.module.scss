@@ -1,6 +1,13 @@
+.greyBg {
+  background: #fafafa;
+}
 .section {
   padding-top: 3rem;
   padding-bottom: 8rem;
+
+  @media screen and (max-width: 1024px) {
+    padding-bottom: 4rem;
+  }
 }
 .header {
   margin-bottom: 3rem;
@@ -9,11 +16,19 @@
     color: var(--primary);
     font-weight: 600;
     font-size: 20px;
+
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
   }
 
   h3 {
     font-size: 48px;
     font-weight: 600;
     color: #2d3135;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 36px;
+    }
   }
 }

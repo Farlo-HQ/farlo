@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import { WhyFarlo } from "./why-farlo";
 import { Spreads } from "./spreads";
 import { GettingStarted } from "@/components";
+import { TradingHours } from "./trading-hours";
 
 const ForexUI = () => {
   return (
@@ -33,7 +34,8 @@ const ForexUI = () => {
       />
       <WhyFarlo />
       <Spreads />
-      <GettingStarted />
+      <GettingStarted greyBg />
+      <TradingHours />
     </>
   );
 };

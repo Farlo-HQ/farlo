@@ -2,9 +2,12 @@ import { Section } from "../section";
 import styles from "./styles.module.scss";
 import { Button } from "../button";
 
-const GettingStarted = () => {
+const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
   return (
-    <Section sectionClassName={styles.section}>
+    <Section
+      bgClassName={greyBg ? styles.greyBg : ""}
+      sectionClassName={styles.section}
+    >
       <div className={styles.header}>
         <p>What are you waiting for?</p>
         <h3 className="">Get started in three easy steps.</h3>
