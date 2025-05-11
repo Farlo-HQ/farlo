@@ -41,9 +41,9 @@ const WhySection = () => {
     <Section sectionClassName={styles.section}>
       <div className={styles.sec1}>
         <p className={styles.tag}>Why MT5 Desktop</p>
-        <h5 className={styles.ttl}>
+        <h2 className={styles.ttl}>
           A <span>multi-asset</span> platform built for performance
-        </h5>
+        </h2>
         <p className={styles.txt}>
           Full-featured trading, real-time analytics, and instant
           execution—wherever you are.

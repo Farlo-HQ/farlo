@@ -98,7 +98,8 @@
   align-items: center;
   gap: 1.5rem;
   margin-top: 1.5rem;
-
+  flex-wrap: wrap;
+  
   @media screen and (max-width: 1024px) {
     gap: 1rem;
   }

@@ -27,8 +27,14 @@ import trading_stocks from "./trading-stocks.png";
 import trading_brokers from "./trading-brokers.png";
 import economic_calendar from "./economic_calendar.png";
 import market_analysis from "./market_analysis.png";
+import live_alert from "./live_alert.png";
+import multi_device from "./multi_device.png";
+import one_tap from "./one_tap.png";
 
 export {
+  live_alert,
+  multi_device,
+  one_tap,
   economic_calendar,
   market_analysis,
   trading_hero_4,
