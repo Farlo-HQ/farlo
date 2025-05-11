@@ -2,6 +2,9 @@ import { trading_hero_1 } from "@/assets/images";
 import { HeroSection2 } from "@/components/heroSection2";
 import Image from "next/image";
 import styles from "./styles.module.scss";
+import { WhyFarlo } from "./why-farlo";
+import { Spreads } from "./spreads";
+import { GettingStarted } from "@/components";
 
 const ForexUI = () => {
   return (
@@ -28,6 +31,9 @@ const ForexUI = () => {
         btn1={{ text: "Register", action: console.log }}
         btn2={{ text: "Open Demo", action: console.log }}
       />
+      <WhyFarlo />
+      <Spreads />
+      <GettingStarted />
     </>
   );
 };

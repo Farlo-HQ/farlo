@@ -16,8 +16,10 @@ import advanced_trading from "./advanced_trading.png";
 import comp_edu from "./comp_edu.png";
 import support_center from "./support_center.png";
 import trading_hero_1 from "./trading-hero-1.png";
+import trading_forex_coins from "./trading-forex-coins.png";
 
 export {
+  trading_forex_coins,
   trading_hero_1,
   advanced_trading,
   comp_edu,
