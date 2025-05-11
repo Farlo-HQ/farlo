@@ -18,11 +18,19 @@ import support_center from "./support_center.png";
 import trading_hero_1 from "./trading-hero-1.png";
 import trading_hero_2 from "./trading-hero-2.png";
 import trading_hero_3 from "./trading-hero-3.png";
+import trading_hero_4 from "./trading-hero-4.png";
+import trading_hero_5 from "./trading-hero-5.png";
 import trading_forex_coins from "./trading-forex-coins.png";
 import trading_crypto_coins from "./trading-crypto-coins.png";
 import trading_indices from "./trading-indices.png";
+import trading_stocks from "./trading-stocks.png";
+import trading_brokers from "./trading-brokers.png";
 
 export {
+  trading_hero_4,
+  trading_hero_5,
+  trading_stocks,
+  trading_brokers,
   trading_hero_3,
   trading_crypto_coins,
   trading_indices,

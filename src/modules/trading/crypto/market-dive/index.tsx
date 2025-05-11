@@ -43,7 +43,7 @@ const MarketDive = () => {
               </li>
              
             </ul>
-            <p className={styles.card__txt}>All times are in server time (GMT+0).</p>
+            <p style={{ marginTop: "1rem" }} className={styles.card__txt}>All times are in server time (GMT+0).</p>
           </div>
         </div>
       </section>

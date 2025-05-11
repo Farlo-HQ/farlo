@@ -76,7 +76,7 @@ const Navbar = () => {
               title: <>STOCKS </>,
               text: "NVDA, AAPL, GOOGL, MSFT",
               icon: <Image src={stocksIcon} alt="" width={32} height={32} />,
-              path: "/",
+              path: ROUTES.stocks_trading,
             },
             {
               title: <>COMMODITIES </>,
@@ -84,7 +84,7 @@ const Navbar = () => {
               icon: (
                 <Image src={commoditiesIcon} alt="" width={32} height={32} />
               ),
-              path: "/",
+              path: ROUTES.commodities_trading,
             },
             {
               title: <>CFDs </>,
