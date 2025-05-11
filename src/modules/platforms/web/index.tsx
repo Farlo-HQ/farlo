@@ -1,32 +1,21 @@
 import { HeroSection2 } from "@/components/heroSection2";
 import styles from "./styles.module.scss";
-import Image from "next/image";
 import { GettingStarted } from "@/components";
 import { BottomBanner } from "@/components/bottom-banner";
-import { mt5_mobile } from "@/assets/images";
 import { WhySection } from "./why";
 
-const PlatformMobileUI = () => {
+const PlatformWebUI = () => {
   return (
     <>
       <HeroSection2
-        tag="MOBILE"
-        title={<>Power your trades with the MT5 Mobile App</>}
+        tag="WEB"
+        title={<>Trade seamlessly from your browser</>}
         text={
-          "Execute trades, analyze markets, and stay connected to real-time price movements, all from the palm of your hand."
+          "Access the world’s financial markets directly from your web browser—whether you’re on Windows, macOS, Linux, iOS, or Android."
         }
         bgClassName={styles.bg}
         sectionClassName={styles.hero}
-        element={
-          <Image
-            className={styles.img}
-            src={mt5_mobile}
-            alt={
-             "Screen showing stock market charts"
-            }
-          />
-        }
-        btn1={{ text: "Download MT5 Mobile", action: console.log }}
+        btn1={{ text: "MT5 Web Terminal", action: console.log }}
         btn2={{ text: "Register", action: console.log }}
       />
       <WhySection />
@@ -41,4 +30,4 @@ const PlatformMobileUI = () => {
   );
 };
 
-export { PlatformMobileUI };
+export { PlatformWebUI };

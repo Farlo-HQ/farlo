@@ -1,0 +1,48 @@
+.bg {
+  padding-top: 105px;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 65px;
+  }
+}
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+.hero {
+  padding-top: 8rem;
+  min-height: unset;
+  max-height: 900px;
+  height: 100dvh;
+
+  > section {
+    align-items: flex-start;
+
+    > div {
+      > p:nth-of-type(2) {
+        max-width: 550px;
+      }
+    }
+
+    > div {
+      > div {
+        @media screen and (max-width: 600px) {
+          flex-direction: column;
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    padding-bottom: 8rem;
+    padding-top: 8rem;
+  }
+}

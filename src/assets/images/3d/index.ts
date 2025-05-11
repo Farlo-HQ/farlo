@@ -30,8 +30,14 @@ import market_analysis from "./market_analysis.png";
 import live_alert from "./live_alert.png";
 import multi_device from "./multi_device.png";
 import one_tap from "./one_tap.png";
+import universal_compatibility from "./universal_compatibility.png";
+import account from "./account.png";
+import professional from "./professional.png";
 
 export {
+  universal_compatibility,
+  account,
+  professional,
   live_alert,
   multi_device,
   one_tap,
