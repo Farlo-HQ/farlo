@@ -14,4 +14,8 @@ export const ROUTES = {
   accounts_comparison: "/accounts/comparison",
   accounts_live: "/accounts/live",
   accounts_demo: "/accounts/demo",
+  tools_deposits: "/tools/deposits-and-withdrawals",
+  tools_calendar: "/tools/economic-calendar",
+  tools_calculator: "/tools/trading-calculator",
+  tools_quotes: "/tools/live-quotes",
 };

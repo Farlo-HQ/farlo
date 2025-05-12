@@ -1,0 +1,146 @@
+.bg {
+  background-color: #fafafa;
+}
+.section {
+  padding-top: 7rem;
+  padding-bottom: 6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (max-width: 800px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+.sec1 {
+  margin-bottom: 5rem;
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 1rem;
+  }
+}
+.tag {
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 150%;
+  margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+.ttl {
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--title);
+  max-width: 600px;
+
+  span {
+    color: var(--primary);
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 32px;
+    margin-bottom: 1rem;
+  }
+}
+.txt {
+  font-size: 24px;
+  line-height: 1.55;
+  max-width: 580px;
+  font-weight: 500;
+  color: var(--text);
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media screen and (max-width: 1024px) {
+    gap: 1.5rem;
+  }
+}
+.card {
+  display: grid;
+  gap: 1.5rem;
+  background-color: #f0f0f0;
+  padding: 1.5rem;
+  border-radius: 4px;
+  max-width: 500px;
+  margin-left: auto;
+width: 100%;
+
+  @media screen and (max-width: 1024px) {
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  img {
+    @media screen and (max-width: 1024px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__num {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 48px;
+    padding: 4px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-bottom: 6px;
+
+    @media screen and (max-width: 1024px) {
+      width: 32px;
+      height: 32px;
+      font-size: 32px;
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  &__ttl {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 140%;
+    letter-spacing: -0.4px;
+    color: var(--title);
+
+    @media screen and (max-width: 1024px) {
+      font-size: 20px;
+    }
+  }
+
+  &__txt {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 140%;
+    letter-spacing: 0px;
+    color: var(--text);
+
+    @media screen and (max-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+}

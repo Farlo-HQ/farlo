@@ -1,0 +1,107 @@
+.bg {
+  padding-top: 105px;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  background: linear-gradient(171.51deg, #191919 46.67%, #CB1A36 149.06%);
+  // height: 640px;
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 65px;
+  }
+}
+.section {
+  padding-top: 10rem;
+  padding-bottom: 8rem;
+
+  @media screen and (max-width: 900px) {
+    padding-top: 8rem;
+    padding-bottom: 12rem;
+  }
+}
+.tag {
+  color: #e07686;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 900px) {
+    margin-bottom: 1rem;
+  }
+}
+.ttl {
+  font-size: 48px;
+  font-weight: 700;
+  color: #FFFFFFCC;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+
+  @media screen and (max-width: 900px) {
+    font-size: 32px;
+    color: #fff;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+  }
+}
+.txt {
+  color: #ffffffcc;
+  font-size: 24px;
+  margin-bottom: 3rem;
+  max-width: 680px;
+  font-weight: 500;
+
+  @media screen and (max-width: 900px) {
+    font-size: 20px;
+  }
+}
+.txtContent {
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+}
+.element {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  @media screen and (max-width: 900px) {
+    bottom: -7rem;
+  }
+}
+.ctas {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  
+  @media screen and (max-width: 1024px) {
+    gap: 1rem;
+  }
+
+  button {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    padding: 0.8rem 2rem;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 18px;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 48%;
+      padding: 0.8rem 1rem;
+      white-space: nowrap;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+
+      @media screen and (max-width: 1024px) {
+        font-size: 20px;
+      }
+    }
+  }
+}

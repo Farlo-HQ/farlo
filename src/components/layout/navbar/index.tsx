@@ -168,22 +168,22 @@ const Navbar = () => {
             {
               title: "Economic Calendar",
               icon: <Calendar width={24} height={24} />,
-              path: "/",
+              path:  ROUTES.tools_calendar
             },
             {
               title: "Deposits & Withdrawals",
               icon: <ConvertCard width={24} height={24} />,
-              path: "/",
+              path: ROUTES.tools_deposits
             },
             {
               title: "Trading Calculator",
               icon: <Calculator width={24} height={24} />,
-              path: "/",
+              path:  ROUTES.tools_calculator
             },
             {
               title: "Live Quotes",
               icon: <VoiceCircle width={24} height={24} />,
-              path: "/",
+              path:  ROUTES.tools_quotes
             },
           ],
         },

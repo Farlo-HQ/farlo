@@ -56,6 +56,13 @@
     background-color: transparent;
   }
 
+  &--grey {
+    border: 1px solid #ffffff;
+    box-shadow: 0px 0px 0px 2px #f0f0f0;
+    background-color: #f0f0f0;
+    color: var(--text);
+  }
+
   &--ghost {
   }
 }

@@ -134,7 +134,7 @@ const Footer = () => {
         },
         {
           title: "Deposits & Withdrawals",
-          path: "",
+          path: ROUTES.tools_deposits,
         },
       ],
     },
@@ -143,15 +143,15 @@ const Footer = () => {
       links: [
         {
           title: "Economic Calender",
-          path: "",
+          path: ROUTES.tools_calendar,
         },
         {
           title: "Trading Calculator",
-          path: "",
+          path: ROUTES.tools_calculator,
         },
         {
           title: "Live Quotes",
-          path: "",
+          path: ROUTES.tools_quotes,
         },
       ],
     },
