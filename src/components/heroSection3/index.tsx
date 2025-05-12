@@ -15,6 +15,7 @@ interface HeroSection3Props {
   element?: ReactNode;
   btn1?: { text: string; action: () => void };
   btn2?: { text: string; action: () => void };
+  noElement?: boolean;
 }
 
 const HeroSection3: React.FC<HeroSection3Props> = (props) => {
@@ -28,10 +29,11 @@ const HeroSection3: React.FC<HeroSection3Props> = (props) => {
     txtClassName,
     btn1,
     btn2,
+    noElement,
   } = props;
   return (
     <>
-      <Section bgClassName={styles.bg} sectionClassName={styles.section}>
+      <Section bgClassName={`${styles.bg} ${noElement ? styles["bg--img"] : ""}`} sectionClassName={`${styles.section} ${sectionClassName || ""}`}>
         <div className={styles.txtContent}>
           {tag ? <p className={styles.tag}>{tag}</p> : null}
           <h1 className={styles.ttl}>{title}</h1>
@@ -49,7 +51,7 @@ const HeroSection3: React.FC<HeroSection3Props> = (props) => {
             ) : null}
           </div>
         </div>
-        <LegalHeroGrid className={styles.element} />
+        {noElement ? null : <LegalHeroGrid className={styles.element} />}
       </Section>
     </>
   );
