@@ -32,8 +32,6 @@ const DepositsAndWithdrawalsUI = () => {
         text={
           "We provide convenient, local, and secure payment methods ensuring a smooth and safe transaction process."
         }
-        bgClassName={styles.bg}
-        sectionClassName={styles.hero}
         btn1={{ text: "Register", action: console.log }}
         btn2={{ text: "Open Demo", action: console.log }}
       />

@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import { MinusIcon } from "@/assets/icons/icon-minus";
 import { PlusIcon } from "@/assets/icons/icon-plus";
 
-export interface SpreadTableProps {
+export interface TableProps {
   header: TableHeaderProps;
   data_groups?: {
     title: string;
@@ -11,27 +11,43 @@ export interface SpreadTableProps {
   }[];
   rows?: TableRowProps[];
   tableClassName?: string;
+  tableRowClassName?: string;
+  dataGroupClassName?: string;
 }
 
-const SpreadTable = ({
+const Table = ({
   header,
   data_groups,
   tableClassName,
   rows,
-}: SpreadTableProps) => {
+  tableRowClassName,
+  dataGroupClassName,
+}: TableProps) => {
   return (
     <>
       <section className={`${styles.table} ${tableClassName || ""}`}>
         <TableHeader {...header} grey={!!rows && !data_groups} />
         {data_groups?.map((group, index) => (
-          <DataGroup key={`group-${index}`} title={group.title}>
+          <DataGroup
+            dataGroupClassName={dataGroupClassName}
+            key={`group-${index}`}
+            title={group.title}
+          >
             {group.rows.map((row, rowIndex) => (
-              <TableRow key={`group-${index}-row-${rowIndex}`} {...row} />
+              <TableRow
+                tableRowClassName={tableRowClassName}
+                key={`group-${index}-row-${rowIndex}`}
+                {...row}
+              />
             ))}
           </DataGroup>
         ))}
         {rows?.map((row, rowIndex) => (
-          <TableRow key={`row-${rowIndex}`} {...row} />
+          <TableRow
+            tableRowClassName={tableRowClassName}
+            key={`row-${rowIndex}`}
+            {...row}
+          />
         ))}
       </section>
     </>
@@ -40,14 +56,24 @@ const SpreadTable = ({
 
 export interface TableHeaderProps {
   title: string;
-  items: { label: string; key: string; unit: string; sup?: string }[];
+  items: { label: string; key: string; unit?: string; sup?: string }[];
   grey?: boolean;
+  tableHeaderClassName?: string;
 }
 
-const TableHeader = ({ title, items, grey }: TableHeaderProps) => {
+const TableHeader = ({
+  title,
+  items,
+  grey,
+  tableHeaderClassName,
+}: TableHeaderProps) => {
   return (
     <>
-      <div className={`${styles.header} ${grey ? styles["header--grey"] : ""}`}>
+      <div
+        className={`${styles.header} ${tableHeaderClassName || ""} ${
+          grey ? styles["header--grey"] : ""
+        }`}
+      >
         <p className={styles.header__ttl}>{title}</p>
         {items.map(({ label, key, unit, sup }) => (
           <div key={`header-${key}`} className={styles.header__item}>
@@ -55,7 +81,7 @@ const TableHeader = ({ title, items, grey }: TableHeaderProps) => {
               {label}
               {sup ? <sup>{sup}</sup> : null}
             </p>
-            <p className={styles.header__item__unit}>{unit}</p>
+            {unit ? <p className={styles.header__item__unit}>{unit}</p> : null}
           </div>
         ))}
       </div>
@@ -71,10 +97,15 @@ export interface TableRowProps {
   };
   items: { label: string; key: string }[];
 }
-const TableRow = ({ label, items }: TableRowProps) => {
+
+export interface TableRowProperties extends TableRowProps {
+  tableRowClassName?: string;
+}
+
+const TableRow = ({ label, items, tableRowClassName }: TableRowProperties) => {
   return (
     <>
-      <div className={`${styles.row}`}>
+      <div className={`${styles.row} ${tableRowClassName || ""}`}>
         <div className={styles.row__label}>
           <p className={styles.row__ttl}>{label.title}</p>
           {label.sub_title ? (
@@ -96,15 +127,17 @@ const TableRow = ({ label, items }: TableRowProps) => {
 const DataGroup = ({
   children,
   title,
+  dataGroupClassName,
 }: {
   children: ReactNode;
   title: string;
+  dataGroupClassName?: string;
 }) => {
   const [show, setShow] = useState(false);
 
   return (
     <>
-      <div className={styles.data_group}>
+      <div className={`${styles.data_group} ${dataGroupClassName || ""}`}>
         <div
           role="accordion"
           onClick={() => setShow((prev) => !prev)}
@@ -119,4 +152,4 @@ const DataGroup = ({
   );
 };
 
-export { SpreadTable };
+export { Table };

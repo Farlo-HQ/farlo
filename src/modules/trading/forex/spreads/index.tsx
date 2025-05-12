@@ -3,10 +3,10 @@ import styles from "./styles.module.scss";
 import { TabData, Tabs } from "@/components/tabs";
 import { useState } from "react";
 import {
-  SpreadTable,
+  Table,
   TableHeaderProps,
   TableRowProps,
-} from "../../_components/table";
+} from "@/components/table";
 
 const Spreads = () => {
   const [tab, setTab] = useState("Standard");
@@ -155,11 +155,11 @@ const Spreads = () => {
     <>
       <Section bgClassName={styles.bg} sectionClassName={styles.section}>
         <h3 className={styles.ttl}>
-          Stay profitable with the best <span>spreads</span> and the best
-         {" "} <span>swaps</span>
+          Stay profitable with the best <span>spreads</span> and the best{" "}
+          <span>swaps</span>
         </h3>
         <Tabs tabs={tabs} activeTab={tab} onClick={(tab) => setTab(tab)} />
-        <SpreadTable
+        <Table
           tableClassName={styles.table}
           header={tableHeader}
           data_groups={dataGroups}

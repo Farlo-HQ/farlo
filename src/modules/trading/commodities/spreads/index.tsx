@@ -4,7 +4,7 @@ import {
   SpreadTable,
   TableHeaderProps,
   TableRowProps,
-} from "../../_components/table";
+} from "../../../../components/table";
 
 const Spreads = () => {
   const tableHeader: TableHeaderProps = {
