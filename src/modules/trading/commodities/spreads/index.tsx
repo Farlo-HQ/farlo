@@ -1,7 +1,7 @@
 import { Section } from "@/components";
 import styles from "./styles.module.scss";
 import {
-  SpreadTable,
+  Table,
   TableHeaderProps,
   TableRowProps,
 } from "../../../../components/table";
@@ -115,7 +115,7 @@ const Spreads = () => {
         <h3 className={styles.ttl}>
           Access The <span>Best</span> Spreads & Market Prices In Real Time
         </h3>
-        <SpreadTable
+        <Table
           tableClassName={styles.table}
           header={tableHeader}
           rows={tableRows}

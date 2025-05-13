@@ -1,7 +1,7 @@
 import { Section } from "@/components";
 import styles from "./styles.module.scss";
 import {
-  SpreadTable,
+  Table,
   TableHeaderProps,
   TableRowProps,
 } from "../../../../components/table";
@@ -110,7 +110,7 @@ const Spreads = () => {
         <h3 className={styles.ttl}>
           Trade With <span>Real-time Quotes</span> & <span>Low Spreads</span>
         </h3>
-        <SpreadTable
+        <Table
           tableClassName={styles.table}
           header={tableHeader}
           rows={tableRows}
