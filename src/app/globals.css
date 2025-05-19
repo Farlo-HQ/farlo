@@ -15,6 +15,10 @@
   --primary: #cb1a36;
   --title: #2d3135;
   --text: #575a5d;
+  --max-width: 1390px;
+  --max-width-1: 1350px;
+  --max-width-2: 1300px;
+
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -93,14 +97,15 @@ input:-webkit-autofill:active {
 }
 
 .container {
-  max-width: 1300px;
+  /* max-width: 1300px; */
+  max-width: var(--max-width-1);
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 .layout-container {
-  max-width: 1390px;
+  max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;

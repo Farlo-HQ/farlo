@@ -1,7 +1,7 @@
 .section {
   padding-top: 8rem;
   padding-bottom: 5rem;
-  max-width: 1350px;
+  max-width: var(--max-width-1);
   
   @media screen and (max-width: 800px) {
     padding-top: 4rem;

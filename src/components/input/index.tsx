@@ -6,13 +6,14 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   type?: "text" | "number" | "email" | "checkbox";
   error?: string;
+  styleType?: "style1" | "style2"
 }
 
 const Input: React.FC<InputProps> = (props) => {
-  const { onChange, value, className, type = "text", label, name, error, ...rest } = props;
+  const { onChange, value, className, type = "text", label, name, error, styleType = "style1", ...rest } = props;
 
   return (
-    <div className={type === "checkbox" ? styles.checkboxWrap : ""}>
+    <div className={type === "checkbox" ? styles.checkboxWrap : styles[styleType]}>
       {label && <label className={styles.label}>{label} </label>}
       <input
         name={name}

@@ -25,7 +25,7 @@
   margin-bottom: 1.5rem;
 
   @media screen and (max-width: 1024px) {
-    margin-bottom: .8rem;
+    margin-bottom: 0.8rem;
     font-size: 20px;
   }
 }
@@ -61,4 +61,107 @@
   // }
 }
 
+.calculator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__form {
+    padding: 2rem;
+    background-color: #fff;
+    margin-right: 4rem;
+
+    @media screen and (max-width: 1024px) {
+      margin-right: 1rem;
+      padding: 1.5rem 1rem;
+    }
+
+    @media screen and (max-width: 800px) {
+      margin-right: 0;
+      margin-bottom: 2rem;
+    }
+
+    &__ttl {
+      color: var(--title);
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 120%;
+      margin-bottom: 1.5rem;
+
+      @media screen and (max-width: 1024px) {
+        font-size: 24px;
+      }
+    }
+
+    form {
+      display: grid;
+      gap: 1.5rem;
+
+      button {
+        height: 54px;
+      }
+    }
+  }
+  &__results_container {
+    border-left: 1px solid #abadae66;
+
+    @media screen and (max-width: 800px) {
+      border-left: 0;
+      border-top: 1px solid #abadae66;
+    }
+  }
+  &__results {
+    background-color: #fff;
+    margin: 2rem 0 2rem 4rem;
+    padding: 2rem;
+    display: grid;
+    gap: 2rem;
+
+    @media screen and (max-width: 1024px) {
+      padding: 1.5rem 1rem;
+      margin: 1rem;
+      gap: 1.2rem;
+    }
+
+    @media screen and (max-width: 800px) {
+     margin: 0;
+     margin-top: 2rem;
+    }
+
+    &__ttl {
+      color: var(--title);
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 120%;
+      margin-bottom: 1.5rem;
+
+      @media screen and (max-width: 1024px) {
+        font-size: 24px;
+      }
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 150%;
+
+      p:first-of-type {
+        color: #abadae;
+      }
+      p:last-of-type {
+        color: var(--title);
+      }
+
+      @media screen and (max-width: 1024px) {
+        font-size: 16px;
+      }
+    }
+  }
+}

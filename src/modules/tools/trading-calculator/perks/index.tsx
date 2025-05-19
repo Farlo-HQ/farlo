@@ -1,42 +1,15 @@
 import { Button, Section } from "@/components";
 import styles from "./styles.module.scss";
 import { ArrowRight } from "@/assets/icons/arrow-right";
-import {
-  money_receive,
-  money_remove,
-  universal_compatibility,
-} from "@/assets/images";
-import Image from "next/image";
-
-const list = [
-  {
-    img: universal_compatibility,
-    alt: "universe icon",
-    title: "Global & Local Payment Methods",
-    text: "Enjoy seamless transactions via bank transfers, e-wallets, and crypto payments.",
-  },
-  {
-    img: money_remove,
-    alt: "money remove",
-    title: "Zero Hidden Fees",
-    text: "We cover third-party transaction fees, so you get full control over your money.",
-  },
-  {
-    img: money_receive,
-    alt: "money receive",
-    title: "Instant Withdrawals",
-    text: "Access your funds anytime with rapid processing speeds.",
-  },
-];
+import { Select } from "@/components/select";
+import { Input } from "@/components/input";
 
 const Perks = () => {
   return (
     <Section bgClassName={styles.bg} sectionClassName={styles.section}>
       <div className={styles.sec1}>
         <p className={styles.tag}>Perks</p>
-        <h3 className={styles.ttl}>
-        Eliminate Guesswork, Use The Calculator
-        </h3>
+        <h3 className={styles.ttl}>Eliminate Guesswork, Use The Calculator</h3>
         <div className={styles.ctas}>
           <Button>
             Setup Live <ArrowRight />
@@ -46,10 +19,57 @@ const Perks = () => {
           </Button>
         </div>
       </div>
-     <div>
-      calculator
-     </div>
+      <TradingCalculator />
     </Section>
+  );
+};
+
+const TradingCalculator = () => {
+  return (
+    <section className={styles.calculator}>
+      <div className={styles.calculator__form}>
+        <p className={styles.calculator__form__ttl}>Your Order</p>
+        <form>
+          <Select label="Account type" />
+          <Select label="Account currency" />
+          <Select label="Instrument" />
+          <Input label="Lot" placeholder="enter lot size" styleType="style2" />
+          <Select label="Leverage" />
+          <Button>Calculate</Button>
+        </form>
+      </div>
+
+      <div className={styles.calculator__results_container}>
+        <div className={styles.calculator__results}>
+          <p className={styles.calculator__results__ttl}>Results</p>
+          <div className={styles.calculator__results__item}>
+            <p>Margin</p> <p>14.58 USD</p>
+          </div>
+          <div className={styles.calculator__results__item}>
+            <p>
+              Spread cost<sup>1</sup>
+            </p>
+            <p>0.16 USD</p>
+          </div>
+          <div className={styles.calculator__results__item}>
+            <p>Commission</p>
+            <p>0 USD</p>
+          </div>
+          <div className={styles.calculator__results__item}>
+            <p>Swap short</p>
+            <p>0 USD</p>
+          </div>
+          <div className={styles.calculator__results__item}>
+            <p>Swap long</p>
+            <p>−0.34 USD</p>
+          </div>
+          <div className={styles.calculator__results__item}>
+            <p>Pip value </p>
+            <p>0.010000 USD</p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
