@@ -22,8 +22,10 @@ import mobile_market_chart from "./mobile_market_chart.png";
 import money_receive from "./money-receive.png";
 import money_remove from "./money-remove.png";
 import partnerships_ib from "./partnerships-ib.png";
+import partnerships_mam_pamm from "./partnerships-mam-pamm.png";
 
 export {
+  partnerships_mam_pamm,
   partnerships_ib,
   money_receive,
   money_remove,
