@@ -18,4 +18,8 @@ export const ROUTES = {
   tools_calendar: "/tools/economic-calendar",
   tools_calculator: "/tools/trading-calculator",
   tools_quotes: "/tools/live-quotes",
+  partnerships_ib: "/partnerships/introducing-brokers",
+  partnerships_mam_pamm: "/partnerships/mam-pamm",
+  partnerships_deposit_bonus: "/partnerships/deposit-bonus",
+  partnerships_referral: "/partnerships/referral",
 };

@@ -103,15 +103,15 @@ const Footer = () => {
           links: [
             {
               title: "MAM Account",
-              path: "",
+              path: ROUTES.partnerships_mam_pamm,
             },
             {
               title: "PAMM Account",
-              path: "",
+              path: ROUTES.partnerships_mam_pamm,
             },
             {
               title: "Introducing Broker",
-              path: "",
+              path: ROUTES.partnerships_ib,
             },
           ],
         },
@@ -172,11 +172,11 @@ const Footer = () => {
         },
         {
           title: "Deposit Bonus",
-          path: "",
+          path: ROUTES.partnerships_deposit_bonus,
         },
         {
           title: "Refer a Friend",
-          path: "",
+          path: ROUTES.partnerships_referral,
         },
       ],
     },
