@@ -12,7 +12,7 @@ interface HeroSection2Props {
   txtClassName?: string;
   tag?: string;
   title: string | ReactNode;
-  text: string;
+  text?: string;
   element?: ReactNode;
   btn1?: { text: string; action: () => void };
   btn2?: { text: string; action: () => void };
@@ -40,7 +40,9 @@ const HeroSection2: React.FC<HeroSection2Props> = (props) => {
           <div className={styles.txtContent}>
             {tag ? <p className={styles.tag}>{tag}</p> : null}
             <h1 className={styles.ttl}>{title}</h1>
-            <p className={`${styles.txt} ${txtClassName}`}>{text}</p>
+            {text ? (
+              <p className={`${styles.txt} ${txtClassName}`}>{text}</p>
+            ) : null}
             <div className={styles.ctas}>
               {btn1 ? (
                 <Button onClick={btn1.action} variant="fill-red">
@@ -56,8 +58,12 @@ const HeroSection2: React.FC<HeroSection2Props> = (props) => {
           </div>
           {element}
         </section>
-        <TradingHeroGrid className={`${styles.grid} ${styles["grid--desktop"]}`} />
-        <TradingHeroGridMobile className={`${styles.grid} ${styles["grid--mobile"]}`}  />
+        <TradingHeroGrid
+          className={`${styles.grid} ${styles["grid--desktop"]}`}
+        />
+        <TradingHeroGridMobile
+          className={`${styles.grid} ${styles["grid--mobile"]}`}
+        />
       </Section>
     </>
   );

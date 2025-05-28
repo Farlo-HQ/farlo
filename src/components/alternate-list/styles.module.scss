@@ -1,0 +1,127 @@
+.light {
+  background-color: #fafafa;
+
+  .tag,
+  .ttl,
+  .card__ttl {
+    color: var(--title);
+  }
+  .txt,
+  .card__txt {
+    color: var(--text);
+  }
+}
+.dark {
+  background-color: #1d1d1d;
+
+  .tag,
+  .ttl,
+  .txt,
+  .card__ttl {
+    color: #fff;
+  }
+  .card__txt {
+    color: #d7d7d7;
+  }
+}
+.section {
+  padding-top: 7rem;
+  padding-bottom: 6rem;
+
+  @media screen and (max-width: 800px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+.sec1 {
+  margin-bottom: 5rem;
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 4rem;
+  }
+}
+.tag {
+  color: var(--primary);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 1rem;
+    font-size: 16px;
+  }
+}
+.ttl {
+  font-size: 48px;
+  line-height: 1.1;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  max-width: 750px;
+
+  span {
+    color: var(--primary);
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 32px;
+    margin-bottom: 1rem;
+  }
+}
+.txt {
+  font-size: 24px;
+  line-height: 1.4;
+  max-width: 750px;
+  font-weight: 500;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.content {
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5rem 2rem;
+
+  @media screen and (max-width: 900px) {
+    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+.card {
+  display: grid;
+  gap: 1rem;
+
+  img {
+    @media screen and (max-width: 1024px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__ttl {
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--title);
+    font-weight: 700;
+    letter-spacing: -0.4px;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 20px;
+    }
+  }
+
+  &__txt {
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--text);
+
+    @media screen and (max-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+}
