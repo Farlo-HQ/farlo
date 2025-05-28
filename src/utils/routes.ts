@@ -21,5 +21,5 @@ export const ROUTES = {
   partnerships_ib: "/partnerships/introducing-brokers",
   partnerships_mam_pamm: "/partnerships/mam-pamm",
   partnerships_deposit_bonus: "/partnerships/deposit-bonus",
-  partnerships_referral: "/partnerships/referral",
+  partnerships_referral: "/partnerships/referrals",
 };

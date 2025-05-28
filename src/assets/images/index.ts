@@ -24,8 +24,10 @@ import money_remove from "./money-remove.png";
 import partnerships_ib from "./partnerships-ib.png";
 import partnerships_mam_pamm from "./partnerships-mam-pamm.png";
 import deposit_bonus_hero from "./deposit-bonus-hero.png";
+import referral_hero from "./referral-hero.png";
 
 export {
+  referral_hero,
   deposit_bonus_hero,
   partnerships_mam_pamm,
   partnerships_ib,

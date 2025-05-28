@@ -1,0 +1,37 @@
+.bg {
+}
+.txt {
+  max-width: 500px;
+}
+.hero {
+  padding-bottom: 4rem !important;
+  padding-top: 4rem !important;
+
+  h1 {
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 900px) {
+    height: auto;
+  }
+
+  > section {
+    align-items: center;
+  }
+
+  @media screen and (max-width: 900px) {
+    padding-bottom: 14rem;
+    padding-top: 8rem;
+  }
+
+  .img {
+    margin-left: auto;
+    width: 100%;
+    height: auto;
+    max-width: 578.5px;
+
+    @media screen and (max-width: 900px) {
+      margin: auto;
+    }
+  }
+}
