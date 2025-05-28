@@ -24,4 +24,6 @@ export const ROUTES = {
   partnerships_referral: "/partnerships/referrals",
   conditions: "/conditions",
   assisted_trading: "/assisted-trading",
+  terms_of_use: "/terms-of-use",
+  privacy_policy: "/privacy-policy",
 };

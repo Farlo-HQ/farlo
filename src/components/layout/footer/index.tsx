@@ -33,11 +33,11 @@ const Footer = () => {
         },
         {
           title: "Privacy Policy",
-          path: "",
+          path: ROUTES.privacy_policy,
         },
         {
           title: "Terms of Use",
-          path: "",
+          path: ROUTES.terms_of_use,
         },
         {
           title: "Legal",

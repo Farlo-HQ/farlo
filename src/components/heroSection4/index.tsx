@@ -3,17 +3,20 @@ import styles from "./styles.module.scss";
 import { LegalHeroGrid } from "@/assets/vectors";
 import { Section } from "@/components";
 
-const HeroSection = () => {
+interface HeroSection4Props {
+  tag?: string;
+  title: string;
+  text: string;
+}
+
+const HeroSection4 = ({ text, title, tag }: HeroSection4Props) => {
   return (
     <>
       <Section bgClassName={styles.bg} sectionClassName={styles.section}>
         <div className={styles.txtContent}>
-          <p className={styles.tag}>Legal</p>
-          <h1 className={styles.ttl}>Our Legal Documents</h1>
-          <p className={styles.txt}>
-            Here is all you need to know about our terms and conditions, our
-            legal structures, and our licenses.
-          </p>
+          {tag ? <p className={styles.tag}>{tag}</p> : null}
+          <h1 className={styles.ttl}>{title}</h1>
+          <p className={styles.txt}>{text}</p>
         </div>
         <LegalHeroGrid className={styles.element} />
       </Section>
@@ -21,4 +24,4 @@ const HeroSection = () => {
   );
 };
 
-export { HeroSection };
+export { HeroSection4 };

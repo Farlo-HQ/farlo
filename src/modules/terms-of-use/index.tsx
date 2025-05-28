@@ -1,18 +1,15 @@
 import { BottomBanner } from "@/components/bottom-banner";
-import { LegalDocuments } from "./legal-documents";
-import { Licenses } from "./licenses";
+import { Body } from "./body";
 import { HeroSection4 } from "@/components/heroSection4";
 
-const LegalUI = () => {
+const TermsOfUseUI = () => {
   return (
     <>
       <HeroSection4
-        tag="Legal"
-        title="Our Legal Documents"
+        title="Terms of Use"
         text="Here is all you need to know about our terms and conditions, our legal structures, and our licenses."
       />
-      <LegalDocuments />
-      <Licenses />
+      <Body />
       <BottomBanner
         title="The Future of Trading Starts Here"
         text="Experience world-class trading conditions, advanced tools, and dedicated support all in one platform."
@@ -23,4 +20,4 @@ const LegalUI = () => {
   );
 };
 
-export { LegalUI };
+export { TermsOfUseUI };
