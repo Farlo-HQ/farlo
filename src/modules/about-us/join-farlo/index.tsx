@@ -6,7 +6,11 @@ import { join_us } from "@/assets/images";
 
 const JoinFarlo = () => {
   return (
-    <Section bgClassName={styles.bg} sectionClassName={styles.section}>
+    <Section
+      id="careers"
+      bgClassName={styles.bg}
+      sectionClassName={styles.section}
+    >
       <div className={styles.content}>
         <h5 className={styles.content__ttl}>Build Your Future With FarloFX</h5>
         <p className={styles.content__txt}>

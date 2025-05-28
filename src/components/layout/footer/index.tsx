@@ -21,7 +21,7 @@ const Footer = () => {
         },
         {
           title: "Farlo Careers",
-          path: "",
+          path: `${ROUTES.about}#careers`,
         },
         {
           title: "Contact us",
@@ -70,11 +70,11 @@ const Footer = () => {
         },
         {
           title: "Conditions",
-          path: "",
+          path: ROUTES.conditions,
         },
         {
           title: "Assisted trading",
-          path: "",
+          path: ROUTES.assisted_trading,
         },
       ],
     },
@@ -159,7 +159,7 @@ const Footer = () => {
       title: "Additional Links",
       links: [
         {
-          title: "EFAQs",
+          title: "FAQs",
           path: "",
         },
         {

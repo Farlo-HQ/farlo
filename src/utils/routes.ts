@@ -22,4 +22,6 @@ export const ROUTES = {
   partnerships_mam_pamm: "/partnerships/mam-pamm",
   partnerships_deposit_bonus: "/partnerships/deposit-bonus",
   partnerships_referral: "/partnerships/referrals",
+  conditions: "/conditions",
+  assisted_trading: "/assisted-trading",
 };
