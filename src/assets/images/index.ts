@@ -23,8 +23,10 @@ import money_receive from "./money-receive.png";
 import money_remove from "./money-remove.png";
 import partnerships_ib from "./partnerships-ib.png";
 import partnerships_mam_pamm from "./partnerships-mam-pamm.png";
+import deposit_bonus_hero from "./deposit-bonus-hero.png";
 
 export {
+  deposit_bonus_hero,
   partnerships_mam_pamm,
   partnerships_ib,
   money_receive,
