@@ -8,6 +8,10 @@ import { Note } from "./note";
 import { OurPromise } from "./promise";
 import { JoinFarlo } from "./join-farlo";
 import { BottomBanner } from "@/components/bottom-banner";
+import dynamic from "next/dynamic";
+import CoinsAnimation from "@/assets/animations/coins3.json";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 const AboutUI = () => {
   return (
@@ -22,15 +26,16 @@ const AboutUI = () => {
         }
         text={`We provide traders across Africa and beyond with cutting-edge technology, and deep market insights.`}
         bgClassName={styles.bg}
+        sectionClassName={styles.section}
         txtClassName={styles.txt}
         element={
           <>
-            {/* <div className={styles.overlay}></div>
+            <div className={styles.overlay}></div>
              <Lottie
                className={styles.animation_wrapper}
                animationData={CoinsAnimation}
               loop={true}
-             /> */}
+             />
           </>
         }
       />

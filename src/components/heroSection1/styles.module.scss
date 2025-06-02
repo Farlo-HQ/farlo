@@ -16,6 +16,10 @@
   color: #ffffffb2;
   font-size: 24px;
   font-weight: 500;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 }
 .ttl {
   font-size: 56px;

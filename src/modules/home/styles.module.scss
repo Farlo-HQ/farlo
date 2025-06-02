@@ -41,10 +41,17 @@
   position: absolute;
   left: 0;
   top: 0;
-  background: linear-gradient(270deg, #cb1a3690, transparent);
+  background: linear-gradient(
+    236.24deg,
+    rgba(203, 26, 54, 0.2) 11.47%,
+    rgba(141, 13, 33, 0.95) 92.59%
+  );
 
   @media screen and (max-width: 800px) {
-    background: linear-gradient(180deg, #cb1a3690, transparent);
-
+    background: linear-gradient(
+      209.48deg,
+      rgba(203, 26, 54, 0.2) 19.62%,
+      rgba(141, 13, 33, 0.95) 76.1%
+    );
   }
 }
