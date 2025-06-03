@@ -1,5 +1,9 @@
 .bg {
   padding-bottom: 7rem;
+
+  @media screen and (max-width: 1024px) {
+    padding-bottom: 2rem;
+  }
 }
 .ttl {
   font-size: 40px;

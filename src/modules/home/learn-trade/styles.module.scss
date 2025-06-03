@@ -1,5 +1,168 @@
 .bg {
-    background-color: #fafafa;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+  background-color: #fafafa;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
+}
+.section {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  gap: 4rem;
+  max-width: 1390px;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr;
+  }
+}
+.cards {
+  position: relative;
+}
+.card {
+  --spacing: 3.4rem;
+  color: #fafafa;
+  background: #cb1a36;
+  padding: 2.8rem 2rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  gap: 2rem;
+  border-radius: 4px;
+  z-index: 1;
+  top: 0;
+  max-width: 500px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  height: 100%;
+
+  svg {
+    width: 100px;
+    height: auto;
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding: 2rem 1.5rem;
+    grid-template-columns: 80px 1fr;
+
+    svg {
+      width: 80px;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 1.5rem 1rem;
+    grid-template-columns: 64px 1fr;
+    gap: 1rem;
+
+    svg {
+      width: 64px;
+    }
+  }
+
+  &__ttl {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 110%;
+    letter-spacing: -0.4px;
+    margin-bottom: 0.8rem;
+
+    @media screen and (max-width: 800px) {
+      font-size: 20px;
+    }
+  }
+  &__txt {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: -0.4px;
+
+    @media screen and (max-width: 800px) {
+      font-size: 16px;
+    }
+  }
+
+  &:nth-child(2) {
+    background: #9d142a;
+    left: calc(var(--spacing) * 3);
+    position: absolute;
+    z-index: 2;
+  }
+
+  &:nth-child(3) {
+    background: #631420;
+    left: calc(var(--spacing) * 6);
+    position: absolute;
+    z-index: 3;
+  }
+
+  @media screen and (max-width: 800px) {
+    position: unset !important;
+    max-width: unset;
+    height: fit-content;
+  }
+}
+
+.content {
+  @media screen and (max-width: 1200px) {
+    grid-row-start: 1;
+    max-width: 400px;
+  }
+  &__ttl {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 120%;
+    color: var(--title);
+    margin-bottom: 2rem;
+
+    span {
+      color: var(--primary);
+    }
+
+    @media screen and (max-width: 1024px) {
+      font-size: 36px;
+    }
+
+    @media screen and (max-width: 900px) {
+      font-size: 32px;
+    }
+  }
+
+  &__txt {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: -0.4px;
+    color: var(--text);
+    margin-bottom: 1rem;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 18px;
+    }
+
+    @media screen and (max-width: 900px) {
+      font-size: 16px;
+    }
+  }
+
+  a {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: -0.4px;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 18px;
+    }
+
+    @media screen and (max-width: 900px) {
+      font-size: 16px;
+    }
+  }
+}
