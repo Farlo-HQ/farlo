@@ -18,13 +18,13 @@
     grid-template-columns: 1fr;
   }
 }
+
 .cards {
   position: relative;
 }
 .card {
   --spacing: 3.4rem;
   color: #fafafa;
-  background: #cb1a36;
   padding: 2.8rem 2rem;
   margin-bottom: 1rem;
   align-items: center;
@@ -37,6 +37,11 @@
   display: grid;
   grid-template-columns: 100px 1fr;
   height: 100%;
+  transition: transform 0.3s ease-in-out;
+
+  &:nth-child(3):hover {
+    scale: 1.05;
+  }
 
   svg {
     width: 100px;
@@ -85,14 +90,12 @@
   }
 
   &:nth-child(2) {
-    background: #9d142a;
     left: calc(var(--spacing) * 3);
     position: absolute;
     z-index: 2;
   }
 
   &:nth-child(3) {
-    background: #631420;
     left: calc(var(--spacing) * 6);
     position: absolute;
     z-index: 3;
@@ -165,4 +168,8 @@
       font-size: 16px;
     }
   }
+}
+.scaleUp {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }
