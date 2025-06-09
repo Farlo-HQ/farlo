@@ -6,6 +6,7 @@ import { BooksGuides } from "@/assets/vectors/books-guides";
 import { TechResearch } from "@/assets/vectors/tech-research";
 import { ArrowRight } from "@/assets/icons/arrow-right";
 import Link from "next/link";
+import { useDeviceSize } from "@/hooks/useDeviceSize";
 
 const baseData = [
   {
@@ -35,10 +36,13 @@ const shuffleOrder = [
 ];
 
 const LearnTrade = () => {
+  const { isMobile } = useDeviceSize(800);
   const [orderIndex, setOrderIndex] = useState(0);
   const [animateIndex, setAnimateIndex] = useState<number | null>(null);
 
   useEffect(() => {
+    if (isMobile) return;
+
     const interval = setInterval(() => {
       setOrderIndex((prev) => (prev + 1) % shuffleOrder.length);
     }, 5000); // Shuffle every 5 seconds
@@ -46,9 +50,12 @@ const LearnTrade = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const data = shuffleOrder[orderIndex].map((i) => baseData[i]);
+  const data = isMobile
+    ? baseData
+    : shuffleOrder[orderIndex].map((i) => baseData[i]);
 
   useEffect(() => {
+    if (isMobile) return;
     setAnimateIndex(2); // Always the last card in the displayed data
 
     const timeout = setTimeout(() => {

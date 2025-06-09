@@ -1,5 +1,9 @@
 .greyBg {
   background: #fafafa;
+  overflow: hidden;
+}
+.bg {
+  overflow: hidden;
 }
 .section {
   padding-top: 3rem;
@@ -8,7 +12,7 @@
   @media screen and (max-width: 1024px) {
     padding-bottom: 4rem;
   }
-   @media screen and (max-width: 900px) {
+  @media screen and (max-width: 900px) {
     padding-bottom: 12rem;
   }
 }
@@ -37,34 +41,64 @@
 }
 .cards {
   position: relative;
+  // height: 500px;
 }
 .card {
   position: relative;
   --spacing: 2rem;
-  z-index: 3;
+  // z-index: 3;
   top: 0;
-  width: 100%;
+  width: 90%;
+  left: 0;
+  max-width: 1122px;
 
   img {
-    width: 90%;
+    width: 100%;
     height: auto;
-    max-width: 1122px;
+  }
+
+  &__count {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    color: #38586a;
+    font-size: 20px;
+    font-weight: 500;
+    width: 32px;
+    height: 32px;
+    bottom: 3.5rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (max-width: 900px) {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
   }
   &__content {
     color: #fff;
-    max-width: 400px;
+    width: 100%;
     position: absolute;
     bottom: 3.5rem;
-    left: 3.5rem;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
 
     @media screen and (max-width: 1024px) {
       bottom: 2rem;
-      left: 2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
 
     @media screen and (max-width: 900px) {
       bottom: 1.5rem;
-      left: 1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
 
     &__ttl {
@@ -82,6 +116,7 @@
       font-weight: 500;
       font-size: 20px;
       line-height: 120%;
+      max-width: 400px;
 
       @media screen and (max-width: 1024px) {
         font-size: 16px;
@@ -91,21 +126,19 @@
   }
 
   &:nth-child(2) {
-    left: calc(var(--spacing) * 3);
+    // left: calc(var(--spacing) * 3);
     position: absolute;
     z-index: 2;
   }
   &:nth-child(3) {
-    left: calc(var(--spacing) * 6);
+    // left: calc(var(--spacing) * 6);
     position: absolute;
-    z-index: 1;
+    z-index: 3;
   }
 
   @media screen and (max-width: 900px) {
     z-index: 1;
-    img {
-      width: 100%;
-    }
+    width: 100%;
 
     &:nth-child(2) {
       left: 0;
