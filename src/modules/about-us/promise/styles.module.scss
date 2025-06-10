@@ -1,5 +1,6 @@
 .bg {
   background-color: #fafafa;
+  position: relative;
 }
 .section {
   padding-top: 6rem;
@@ -8,6 +9,7 @@
   grid-template-columns: 3fr 1.8fr;
   gap: 3rem;
   align-items: flex-start;
+  position: relative;
 
   @media screen and (max-width: 1024px) {
     gap: 1rem;
@@ -66,9 +68,29 @@
     }
   }
 }
+.cards {
+  position: relative;
+  min-height: 240px;
+  right: 0;
+}
 .card {
+  --spacing: 1rem;
   padding: 1.5rem;
   border-radius: 4px;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+
+  &:nth-child(2) {
+    top: calc(var(--spacing) * 1.2);
+    z-index: 1;
+  }
+
+  &:nth-child(3) {
+    animation: cardShuffle3 6s ease-in-out infinite;
+    top: calc(var(--spacing) * 3);
+    z-index: 2;
+  }
 
   @media screen and (max-width: 800px) {
     padding: 1rem;
