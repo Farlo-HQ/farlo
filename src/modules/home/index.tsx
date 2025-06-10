@@ -5,7 +5,7 @@ import { Opportunity } from "./opportunity";
 import { TradeAnywhere } from "./trade-anywhere";
 import { WhyFarlo } from "./why-farlo";
 import { CompletePackage } from "./completePackage";
-import CoinsAnimation from "@/assets/animations/coins.json";
+import CoinsAnimation from "@/assets/animations/coins3.json";
 import { LearnTrade } from "./learn-trade";
 import { GetHelp } from "./get-help";
 import { BottomBanner } from "@/components/bottom-banner";
@@ -20,6 +20,7 @@ const HomeUI = () => {
         title="Take Control Of Your Trading Journey"
         text={`Join a global network of traders who trust FarloFX for a smarter, more seamless way to trade.`}
         bgClassName={styles.bg}
+        sectionClassName={styles.section}
         element={
           <>
             <div className={styles.overlay}></div>

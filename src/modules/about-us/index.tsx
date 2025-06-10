@@ -9,7 +9,7 @@ import { OurPromise } from "./promise";
 import { JoinFarlo } from "./join-farlo";
 import { BottomBanner } from "@/components/bottom-banner";
 import dynamic from "next/dynamic";
-import CoinsAnimation from "@/assets/animations/coins3.json";
+import CoinsAnimation from "@/assets/animations/coins.json";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
@@ -31,11 +31,11 @@ const AboutUI = () => {
         element={
           <>
             <div className={styles.overlay}></div>
-             <Lottie
-               className={styles.animation_wrapper}
-               animationData={CoinsAnimation}
+            <Lottie
+              className={styles.animation_wrapper}
+              animationData={CoinsAnimation}
               loop={true}
-             />
+            />
           </>
         }
       />
