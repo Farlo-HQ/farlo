@@ -25,8 +25,10 @@ import partnerships_ib from "./partnerships-ib.png";
 import partnerships_mam_pamm from "./partnerships-mam-pamm.png";
 import deposit_bonus_hero from "./deposit-bonus-hero.png";
 import referral_hero from "./referral-hero.png";
+import blog_img from "./blog-img.png";
 
 export {
+  blog_img,
   referral_hero,
   deposit_bonus_hero,
   partnerships_mam_pamm,

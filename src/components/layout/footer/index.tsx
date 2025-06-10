@@ -168,7 +168,7 @@ const Footer = () => {
         },
         {
           title: "Blog",
-          path: "",
+          path: ROUTES.blog,
         },
         {
           title: "Deposit Bonus",

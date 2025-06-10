@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { IconCaretDownFilled, IconMenu, IconX } from "@tabler/icons-react";
 import { useDeviceSize } from "@/hooks/useDeviceSize";
 import { ROUTES } from "@/utils/routes";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ArrowRight } from "@/assets/icons/arrow-right";
 import Image from "next/image";
 import {
@@ -246,12 +246,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const pathname = usePathname();
+
+  const dargBg = pathname.startsWith(ROUTES.blog);
+
   return (
     <>
       <header
         className={`${styles.header} ${
           scrolledPastViewport ? styles["header--scroll"] : ""
-        }`}
+        } ${dargBg ? styles["header--dark"] : ""}`}
       >
         <section
           className={`layout-container ${styles.nav} ${

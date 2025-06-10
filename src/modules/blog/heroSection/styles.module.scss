@@ -1,0 +1,123 @@
+.bg {
+  padding-top: 105px;
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 65px;
+  }
+}
+.section {
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+
+  @media screen and (max-width: 1024px) {
+    padding-bottom: 2rem;
+  }
+}
+.ttl {
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 150%;
+  color: var(--title);
+  margin-bottom: 5rem;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 36px;
+  }
+
+  @media screen and (max-width: 800px) {
+    font-size: 32px;
+  }
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1.1fr 2fr;
+  gap: 4rem;
+
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 1.5fr 2fr;
+    gap: 2rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @media screen and (max-width: 1024px) {
+      gap: 1rem;
+    }
+
+    @media screen and (max-width: 800px) {
+      grid-row-start: 2;
+      gap: 1rem;
+    }
+  }
+
+  &__date {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 110%;
+    letter-spacing: -0.4px;
+    text-transform: uppercase;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+  &__ttl {
+    color: var(--title);
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 120%;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 32px;
+    }
+
+    @media screen and (max-width: 80px) {
+      font-size: 24px;
+    }
+  }
+  &__txt {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 140%;
+    letter-spacing: -0.4px;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 18px;
+    }
+
+    @media screen and (max-width: 80px) {
+      font-size: 16px;
+    }
+  }
+  &__link {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 160%;
+    letter-spacing: 0px;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 1.5px;
+    color: var(--primary);
+
+    @media screen and (max-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
