@@ -2,26 +2,49 @@
   background-color: #191919;
   backdrop-filter: blur(24px);
   color: #fff;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-bottom: 14rem;
+  position: relative;
+  overflow: hidden;
 
   @media screen and (max-width: 800px) {
     padding-top: 2rem;
+    padding-bottom: 4rem;
   }
 }
 .section {
   max-width: var(--max-width-1);
+  position: relative;
 }
-
+.cards-container {
+  min-height: 100vh; // Or set enough height to match your scroll distance
+  position: relative;
+}
 .content {
+  --spacing: 3rem;
   padding: 6rem 8.5%;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
   gap: 9%;
   align-items: center;
+  
   > div {
     width: 50%;
+  }
+  position: absolute;
+
+  &:nth-child(1) {
+    top: 0;
+  }
+
+  &:nth-child(2) {
+    top: calc(var(--spacing) * 1);
+    z-index: 1;
+  }
+
+  &:nth-child(3) {
+    top: calc(var(--spacing) * 2);
+    z-index: 2;
   }
 
   @media screen and (max-width: 1200px) {
@@ -34,11 +57,18 @@
   }
 
   @media screen and (max-width: 800px) {
+    position: unset;
     flex-direction: column;
     padding: 1rem;
     margin-bottom: 1.5rem;
     > div {
       width: 100%;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: initial;
+      z-index: initial;
     }
   }
 
@@ -81,6 +111,7 @@
     }
   }
 }
+
 .core_values {
   background-color: #2c2c2c;
 
