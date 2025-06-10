@@ -46,9 +46,9 @@ const OurPromise = () => {
           pin: isMobile,
           // pinSpacing: true,
           start: "top top",
-          end: isMobile ?  "+=400px" :"+=600px",
+          end: isMobile ?  "+=500px" :"+=600px",
           scrub: 1,
-          markers: true,
+          // markers: true,
         },
         delay: 300,
       });

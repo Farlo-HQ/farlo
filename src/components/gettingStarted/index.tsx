@@ -53,9 +53,8 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
           pin: true,
           pinSpacing: true,
           start: "left left",
-          end: isMobile ? "+=3000px" : "+=1500",
+          end: isMobile ? "+=1000px" : "+=1500",
           scrub: 1,
-          markers: true,
         },
         delay: 300,
       });
@@ -124,6 +123,11 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
       <div className={styles.header}>
         <p>What are you waiting for?</p>
         <h3 className="">Get started in three easy steps.</h3>
+      </div>
+      <div className={styles.btnSec}>
+        <Button>
+          Get Started <ArrowRight />
+        </Button>
       </div>
       <div className={` ${styles.cards}`}>
         {data.map(({ title, image, description }, index) => (

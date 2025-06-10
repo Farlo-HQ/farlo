@@ -41,7 +41,7 @@
 }
 .cards {
   position: relative;
-  // height: 500px;
+  min-height: 500px;
 }
 .card {
   position: relative;
@@ -139,6 +139,7 @@
   @media screen and (max-width: 900px) {
     z-index: 1;
     width: 100%;
+    min-height: 400px;
 
     &:nth-child(2) {
       left: 0;
@@ -152,5 +153,16 @@
       position: absolute;
       z-index: 3;
     }
+  }
+}
+.btnSec {
+  display: none;
+
+  @media screen and (max-width: 900px) {
+    margin-top: -1rem;
+    margin-bottom: 3rem;
+    display: flex;
+    // align-items: center;
+    // justify-content: center;
   }
 }
