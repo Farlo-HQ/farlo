@@ -38,7 +38,7 @@ const Navbar = () => {
     setShowNav((prev) => (isMobile ? prev : false));
   }, [isMobile]);
 
-  const navItems: NavItemProps[] = [
+  const navItems: NavItemData[] = [
     {
       title: "About us",
       path: ROUTES.about,
@@ -168,22 +168,22 @@ const Navbar = () => {
             {
               title: "Economic Calendar",
               icon: <Calendar width={24} height={24} />,
-              path:  ROUTES.tools_calendar
+              path: ROUTES.tools_calendar,
             },
             {
               title: "Deposits & Withdrawals",
               icon: <ConvertCard width={24} height={24} />,
-              path: ROUTES.tools_deposits
+              path: ROUTES.tools_deposits,
             },
             {
               title: "Trading Calculator",
               icon: <Calculator width={24} height={24} />,
-              path:  ROUTES.tools_calculator
+              path: ROUTES.tools_calculator,
             },
             {
               title: "Live Quotes",
               icon: <VoiceCircle width={24} height={24} />,
-              path:  ROUTES.tools_quotes
+              path: ROUTES.tools_quotes,
             },
           ],
         },
@@ -277,7 +277,11 @@ const Navbar = () => {
             <>
               <nav>
                 {navItems.map((item) => (
-                  <NavItem key={item.title} {...item} />
+                  <NavItem
+                    key={item.title}
+                    {...item}
+                    callback={() => setShowNav(false)}
+                  />
                 ))}
               </nav>
               <div className={styles.ctaSec}>
@@ -291,7 +295,11 @@ const Navbar = () => {
             <div className={`${styles.mobile_nav} hide-scrollbar`}>
               <nav>
                 {navItems.map((item) => (
-                  <NavItem key={item.title} {...item} />
+                  <NavItem
+                    key={item.title}
+                    {...item}
+                    callback={() => setShowNav(false)}
+                  />
                 ))}
               </nav>
               <div className={styles.ctaSec}>
@@ -308,7 +316,11 @@ const Navbar = () => {
   );
 };
 
-interface NavItemProps {
+interface NavItemProps extends NavItemData {
+  callback: () => void;
+}
+
+interface NavItemData {
   title: string;
   type: "link" | "menu";
   path?: string;
@@ -316,11 +328,13 @@ interface NavItemProps {
 }
 
 const NavItem = (props: NavItemProps) => {
-  const { path, title, type, data } = props;
+  const { path, title, type, data, callback } = props;
   return (
     <>
       {type === "link" ? (
-        <Link href={path ?? ""}>{title}</Link>
+        <Link onClick={callback} href={path ?? ""}>
+          {title}
+        </Link>
       ) : (
         <NavMenu {...props} />
       )}
@@ -331,10 +345,11 @@ const NavItem = (props: NavItemProps) => {
 interface NavMenuProps {
   title: string;
   data?: NavMenuDropdownData[];
+  callback: () => void;
 }
 
 const NavMenu = (props: NavMenuProps) => {
-  const { title, data } = props;
+  const { title, data, callback } = props;
   const [show, setShow] = useState(false);
 
   return (
@@ -346,7 +361,13 @@ const NavMenu = (props: NavMenuProps) => {
         {title} <IconCaretDownFilled />
       </button>
       {show && data ? (
-        <NavMenuDropdown data={data} close={() => setShow(false)} />
+        <NavMenuDropdown
+          data={data}
+          close={() => {
+            setShow(false);
+            callback();
+          }}
+        />
       ) : null}
     </div>
   );
@@ -379,7 +400,10 @@ const NavMenuDropdown = ({ data, close }: NavMenuDropdownProps) => {
           {item.options.map((option) => (
             <NavMenuDropdownItem
               {...option}
-              onClick={() => router.push(option.path)}
+              onClick={() => {
+                router.push(option.path);
+                close();
+              }}
             />
           ))}
         </div>
