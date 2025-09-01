@@ -10,12 +10,14 @@ interface RegisterFormData {
   country: string;
   password: string;
   email: string;
+  phone: string;
 }
 
 interface RegisterFormErrors {
   password?: string;
   country?: string;
   email?: string;
+  phone?: string;
 }
 
 const RegisterForm = () => {
@@ -23,8 +25,9 @@ const RegisterForm = () => {
     password: "",
     country: "",
     email: "",
+    phone: "+234",
   });
-  const { email, password, country } = state;
+  const { email, password, country, phone } = state;
   const [error, setError] = useState<RegisterFormErrors | undefined>();
   const router = useRouter();
 
@@ -44,6 +47,11 @@ const RegisterForm = () => {
     }
     if (email.trim().length === 0) errors.email = "Required";
     if (country.trim().length === 0) errors.country = "Required";
+    if (phone.trim().length === 0) errors.phone = "Required";
+    // Add phone number format validation (simple example)
+    if (phone && !/^\+?[1-9]\d{1,14}$/.test(phone)) {
+      errors.phone = "Invalid phone number format";
+    }
 
     if (Object.keys(errors).length > 0) {
       setError(errors);
@@ -141,6 +149,17 @@ const RegisterForm = () => {
           setState((prev) => ({ ...prev, password: e.target.value }))
         }
         error={error?.password}
+        styleType="style2"
+      />
+      <Input
+        name="phone"
+        label="Phone Number"
+        placeholder="+2348199119191"
+        value={phone}
+        onChange={(e) =>
+          setState((prev) => ({ ...prev, phone: e.target.value }))
+        }
+        error={error?.phone}
         styleType="style2"
       />
       <Button onClick={handleSubmit}>Register</Button>

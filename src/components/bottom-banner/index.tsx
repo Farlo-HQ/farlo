@@ -3,6 +3,8 @@ import { Button } from "../button";
 import { Section } from "../section";
 import styles from "./styles.module.scss";
 import { LogoIconBlack } from "@/assets/vectors";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/utils/routes";
 
 interface BottomBannerProps {
   title?: string;
@@ -17,6 +19,11 @@ const BottomBanner = ({
   fillBtn,
   outlineBtn,
 }: BottomBannerProps) => {
+    const router = useRouter();
+    const register = () => {
+      router.push(ROUTES.signup);
+    };
+
   return (
     <Section bgClassName={styles.bg} sectionClassName={styles.section}>
       <LogoIconBlack />
@@ -31,7 +38,7 @@ const BottomBanner = ({
       </div>
       <div className={styles.ctas}>
         {!fillBtn && !outlineBtn ? (
-          <Button variant="fill-white">
+          <Button onClick={register} variant="fill-white">
             Open Account <ArrowRight />
           </Button>
         ) : null}

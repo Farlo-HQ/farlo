@@ -3,6 +3,8 @@ import { Button } from "../button";
 import { Section } from "../section";
 import styles from "./styles.module.scss";
 import { ArrowRight } from "@/assets/icons/arrow-right";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/utils/routes";
 
 interface HeroSection1Props {
   sectionClassName?: string;
@@ -23,6 +25,11 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
   element,
   txtClassName,
 }) => {
+  const router = useRouter();
+  const register = () => {
+    router.push(ROUTES.signup);
+  };
+
   return (
     <>
       <Section
@@ -33,7 +40,7 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
           {tag ? <p className={styles.tag}>{tag}</p> : null}
           <h1 className={styles.ttl}>{title}</h1>
           <p className={`${styles.txt} ${txtClassName}`}>{text}</p>
-          <Button variant="fill-red">
+          <Button onClick={register} variant="fill-red">
             Open Account <ArrowRight />
           </Button>
         </div>
