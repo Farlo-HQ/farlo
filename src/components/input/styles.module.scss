@@ -28,10 +28,24 @@
     font-family: "Inter";
     font-size: 15px;
     height: 54px;
-  
+
     &::placeholder {
-      color: #575A5D;
-      font-size: 15px;
+      color: #575a5d;
+      font-size: inherit;
+      font-weight: 400;
+    }
+  }
+  .textarea {
+    outline: none;
+    padding: 10px 14px 10px 1rem;
+    width: 100%;
+    color: #ffffff;
+    font-family: "Inter";
+    font-size: 15px;
+
+    &::placeholder {
+      color: #575a5d;
+      font-size: inherit;
       font-weight: 400;
     }
   }
@@ -55,15 +69,29 @@
     font-size: 15px;
     height: 54px;
 
-    background: #F0F0F0;
+    background: #f0f0f0;
     color: var(--text);
     font-size: 16px;
     border-radius: 4px;
     border: none;
-  
+
     &::placeholder {
-      color: #575A5D;
-      font-size: 15px;
+      color: #575a5d;
+      font-size: inherit;
+      font-weight: 400;
+    }
+  }
+  .textarea {
+    outline: none;
+    padding: 10px 14px 10px 1rem;
+    width: 100%;
+    color: #ffffff;
+    font-family: "Inter";
+    font-size: 15px;
+
+    &::placeholder {
+      color: #575a5d;
+      font-size: inherit;
       font-weight: 400;
     }
   }

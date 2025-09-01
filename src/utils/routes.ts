@@ -1,3 +1,5 @@
+import { register } from "module";
+
 export const ROUTES = {
   home: "/",
   about: "/about-us",
@@ -27,4 +29,7 @@ export const ROUTES = {
   terms_of_use: "/terms-of-use",
   privacy_policy: "/privacy-policy",
   blog: "/blog",
+  login: "/login",
+  signup: "/signup",
+  overview: "/overview",
 };

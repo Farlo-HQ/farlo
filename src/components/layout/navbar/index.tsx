@@ -232,6 +232,10 @@ const Navbar = () => {
     router.push(ROUTES.home);
   };
 
+  const register = () => {
+    router.push(ROUTES.signup);
+  };
+
   const [scrolledPastViewport, setScrolledPastViewport] = useState(false);
 
   useEffect(() => {
@@ -289,10 +293,10 @@ const Navbar = () => {
                 ))}
               </nav>
               <div className={styles.ctaSec}>
-                <Link className={styles.loginLink} href={"#"}>
+                <Link className={styles.loginLink} href={ROUTES.login}>
                   Log in
                 </Link>
-                <Button>Open Account</Button>
+                <Button onClick={register}>Open Account</Button>
               </div>
             </>
           ) : showNav ? (
@@ -307,10 +311,10 @@ const Navbar = () => {
                 ))}
               </nav>
               <div className={styles.ctaSec}>
-                <Link className={styles.loginLink} href={"#"}>
+                <Link className={styles.loginLink} href={ROUTES.login}>
                   Log in
                 </Link>
-                <Button>Open Account</Button>
+                <Button onClick={register}>Open Account</Button>
               </div>
             </div>
           ) : null}

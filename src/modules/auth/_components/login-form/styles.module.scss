@@ -1,0 +1,17 @@
+.form {
+  display: grid;
+  gap: 1rem;
+
+  label {
+    font-size: 14px !important;
+  }
+
+  input {
+    font-size: 14px !important;
+    height: 40px !important;
+  }
+
+  button {
+    margin-top: 1rem;
+  }
+}
