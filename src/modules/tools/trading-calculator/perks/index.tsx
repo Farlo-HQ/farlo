@@ -25,16 +25,38 @@ const Perks = () => {
 };
 
 const TradingCalculator = () => {
+  const accountTypes = [
+    { value: "standard", label: "Standard" },
+    { value: "premium", label: "Premium" },
+    { value: "vip", label: "VIP" },
+  ];
+  const accountCurrencies = [
+    { value: "usd", label: "USD" },
+    { value: "eur", label: "EUR" },
+    { value: "gbp", label: "GBP" },
+  ];
+  const instruments = [
+    { value: "eurusd", label: "EUR/USD" },
+    { value: "usdjpy", label: "USD/JPY" },
+    { value: "gbpusd", label: "GBP/USD" },
+  ];
+  const leverages = [
+    { value: "1:50", label: "1:50" },
+    { value: "1:100", label: "1:100" },
+    { value: "1:200", label: "1:200" },
+    { value: "1:500", label: "1:500" },
+  ];
+
   return (
     <section className={styles.calculator}>
       <div className={styles.calculator__form}>
         <p className={styles.calculator__form__ttl}>Your Order</p>
         <form>
-          <Select label="Account type" />
-          <Select label="Account currency" />
-          <Select label="Instrument" />
+          <Select label="Account type" options={accountTypes} />
+          <Select label="Account currency" options={accountCurrencies} />
+          <Select label="Instrument" options={instruments} />
           <Input label="Lot" placeholder="enter lot size" styleType="style2" />
-          <Select label="Leverage" />
+          <Select label="Leverage" options={leverages} />
           <Button>Calculate</Button>
         </form>
       </div>

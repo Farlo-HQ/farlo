@@ -7,27 +7,27 @@ import { ROUTES } from "@/utils/routes";
 
 interface LoginFormData {
   email: string;
-  username: string;
+  password: string;
 }
 
 interface LoginFormErrors {
   email?: string;
-  username?: string;
+  password?: string;
 }
 
 const LoginForm = () => {
   const [state, setState] = useState<LoginFormData>({
-    username: "",
+    password: "",
     email: "",
   });
-  const { username, email } = state;
+  const { password, email } = state;
   const [error, setError] = useState<LoginFormErrors | undefined>();
   const router = useRouter();
 
   const handleSubmit = () => {
     const errors: LoginFormErrors = {};
 
-    if (username.trim().length === 0) errors.username = "Required";
+    if (password.trim().length === 0) errors.password = "Required";
     if (email.trim().length === 0) errors.email = "Required";
 
     if (Object.keys(errors).length > 0) {
@@ -44,7 +44,7 @@ const LoginForm = () => {
         name="email"
         type="email"
         label="Email"
-        placeholder="John @website.com"
+        placeholder="John@website.com"
         value={email}
         onChange={(e) =>
           setState((prev) => ({ ...prev, email: e.target.value }))
@@ -53,14 +53,15 @@ const LoginForm = () => {
         styleType="style2"
       />
       <Input
-        name="username"
-        label="Username"
-        placeholder="John Doe"
-        value={username}
+        name="password"
+        label="Password"
+        type="password"
+        placeholder="********"
+        value={password}
         onChange={(e) =>
-          setState((prev) => ({ ...prev, username: e.target.value }))
+          setState((prev) => ({ ...prev, password: e.target.value }))
         }
-        error={error?.username}
+        error={error?.password}
         styleType="style2"
       />
       <Button onClick={handleSubmit}>Login</Button>

@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   id?: string;
-  type?: "text" | "number" | "email" | "checkbox";
+  // type?: "text" | "number" | "email" | "checkbox";
   error?: string;
   styleType?: "style1" | "style2";
 }

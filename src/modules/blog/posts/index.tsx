@@ -93,6 +93,13 @@ const Posts = () => {
   ];
 
   const [page, setPage] = useState(1);
+
+  const options = [
+    { value: "forex", label: "Forex" },
+    { value: "crypto", label: "Crypto" },
+    { value: "stocks", label: "Stocks" },
+    { value: "commodities", label: "Commodities" },
+  ];
   return (
     <>
       <Section bgClassName={styles.bg} sectionClassName={styles.section}>
@@ -100,6 +107,7 @@ const Posts = () => {
           parentClassName={styles.select}
           label="Category"
           className="ml-auto"
+          options={options}
         />
         <div className={styles.cards}>
           {posts.map((item, index) => (
