@@ -226,7 +226,8 @@
 }
 .table {
   background-color: #fff;
-  max-width: 1000px;
+  width: 100%;
+  min-width: 900px;
 
   td,
   th {
