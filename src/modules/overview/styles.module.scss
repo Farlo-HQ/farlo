@@ -154,6 +154,7 @@
   font-size: 16px;
   font-weight: 500;
   color: #111;
+  margin-bottom: 0.5rem;
 }
 .subtitle {
   font-size: 14px;
@@ -269,5 +270,106 @@
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+// products section
+.products_section {
+  margin-top: 1rem;
+  padding: 2rem 0 0;
+  background: #fafbfc;
+}
+
+.products_title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.5rem;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: #111;
+}
+
+.products_description {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.products_cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.product_card {
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  background: #ffe5ec; // pastel pink for first card
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
+
+  &:nth-child(2) {
+    background: #e0f7fa; // pastel blue for second card
+  }
+  &:nth-child(3) {
+    background: #e6f4ea; // pastel green for third card
+  }
+}
+
+.product_card_title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.product_card_desc {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+}
+
+
+// Coming Soon Modal
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(34, 34, 34, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  padding: 2rem 1.5rem;
+  max-width: 350px;
+  width: 100%;
+  text-align: center;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+
+  p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 2rem;
   }
 }
