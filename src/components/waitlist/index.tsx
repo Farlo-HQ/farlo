@@ -85,12 +85,14 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [clientType, setClientType] = useState<string[]>([]);
+  const [interestedFeatures, setInterestedFeatures] = useState<string[]>([]);
   const [lookingForward, setLookingForward] = useState("");
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     phoneNumber: "",
     clientType: "",
+    interestedFeatures: "",
   });
   const [showToast, setShowToast] = useState({
     type: "",
@@ -105,6 +107,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
       email: "",
       phoneNumber: "",
       clientType: "",
+      interestedFeatures: "",
     };
 
     if (!name) {
@@ -124,6 +127,10 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
     }
     if (clientType.length === 0) {
       newErrors.clientType = "At least one investor type is required";
+      valid = false;
+    }
+    if (interestedFeatures.length === 0) {
+      newErrors.interestedFeatures = "At least interested product is required";
       valid = false;
     }
 
@@ -149,8 +156,16 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
     submit();
   };
 
-  const handleCheckboxChange = (option: string) => {
+  const handleClientTypeChange = (option: string) => {
     setClientType((prev) =>
+      prev.includes(option)
+        ? prev.filter((item) => item !== option)
+        : [...prev, option]
+    );
+  };
+
+  const handleInterestedFeaturesChange = (option: string) => {
+    setInterestedFeatures((prev) =>
       prev.includes(option)
         ? prev.filter((item) => item !== option)
         : [...prev, option]
@@ -163,7 +178,8 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
     formData.append("Name", name);
     formData.append("Email", email);
     formData.append("Phone", phoneNumber);
-    formData.append("Client Type", clientType.join(","));
+    formData.append("Client Type", clientType.join(", "));
+    formData.append("Interested Features", interestedFeatures.join(", "));
     formData.append("Message", lookingForward);
 
     if (SCRIPT_API_URL) {
@@ -178,12 +194,14 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
           setEmail("");
           setPhoneNumber("");
           setClientType([]);
+          setInterestedFeatures([]);
           setLookingForward("");
           setErrors({
             name: "",
             email: "",
             phoneNumber: "",
             clientType: "",
+            interestedFeatures: "",
           });
           onClose();
 
@@ -268,8 +286,20 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
             label="Client Type"
             options={["Institutional Client", "Retail Client"]}
             selectedOptions={clientType}
-            onChange={handleCheckboxChange}
+            onChange={handleClientTypeChange}
             error={errors.clientType}
+            disabled={loading}
+          />
+          <CheckboxField
+            label="Which of these features are you most interested in (Select as many as applies)"
+            options={[
+              "CFDs & Social Trading",
+              "Real U.S. Futures Access",
+              "U.S. Equities & Options Access",
+            ]}
+            selectedOptions={interestedFeatures}
+            onChange={handleInterestedFeaturesChange}
+            error={errors.interestedFeatures}
             disabled={loading}
           />
           <TextAreaField
@@ -286,6 +316,12 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
           >
             {loading ? "Loading..." : "Submit"}
           </button>
+
+          <p style={{
+            color: "#000",
+            textAlign: "center", 
+            fontSize: "12px"
+          }} >Unlocking Global Trading Access for the Next Billion Users</p>
         </form>
       </Modal>
     </>

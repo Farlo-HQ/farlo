@@ -19,6 +19,8 @@
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.3s ease-out;
+  max-height: 90%;
+  overflow: auto;
 }
 
 .modalHeader {
