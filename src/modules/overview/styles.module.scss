@@ -276,7 +276,7 @@
 // products section
 .products_section {
   margin-top: 1rem;
-  padding: 2rem 0 0;
+  // padding: 0 0 0;
   background: #fafbfc;
 }
 
@@ -371,5 +371,19 @@
     font-size: 15px;
     color: #555;
     margin-bottom: 2rem;
+  }
+}
+.back_btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+
+  svg {
+    width: 16px;
   }
 }

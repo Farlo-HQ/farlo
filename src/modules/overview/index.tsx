@@ -5,6 +5,7 @@ import { useDeviceSize } from "@/hooks/useDeviceSize";
 import { useState } from "react";
 import {
   IconAnalyze,
+  IconArrowLeft,
   IconAward,
   IconBusinessplan,
   IconCalendar,
@@ -35,12 +36,14 @@ import {
 const OverviewUI = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [comingSoon, setComingSoon] = useState(false);
+  const [showCFDs, setShowCFDs] = useState(false);
 
   const { isMobile } = useDeviceSize(900);
 
   const handleCFDClick = () => {
     // Logic to navigate to the CFDs & Social Trading section
-    window.location.href = "/overview#accounts";
+    // window.location.href = "/overview#accounts";
+    setShowCFDs(true);
   };
 
   const handleComingSoon = () => {
@@ -177,189 +180,199 @@ const OverviewUI = () => {
         </header>
 
         <section className={styles.body}>
-          <div>
-            <h1 className={styles.title}>Welcome back, John</h1>
-            <p className={styles.subtitle}>
-              Here’s what’s happening with your account today.
-            </p>
-          </div>
-
-          <section className={styles.cards}>
-            <div className={styles.card}>
-              <p className={styles.card_title}>Total balance</p>
-              <h2 className={styles.card_amount}>$12,345.67</h2>
-            </div>
-
-            <div className={styles.card}>
-              <p className={styles.card_title}>Most profitable trade</p>
-              <h2 className={styles.card_amount}>$8,910.11</h2>
-            </div>
-
-            <div className={styles.card}>
-              <p className={styles.card_title}>Number of trades this week</p>
-              <h2 className={styles.card_amount}>50</h2>
-            </div>
-          </section>
-
-          <section className={styles.products_section}>
-            <h2 className={styles.products_title}>Explore Our Products</h2>
-            <p className={styles.products_description}>
-              Discover a range of trading and investment products tailored for
-              every trader.
-            </p>
-            <div className={styles.products_cards}>
-              <div
-                role="button"
-                onClick={handleCFDClick}
-                className={styles.product_card}
+          {showCFDs ? (
+            <>
+              <button
+                className={styles.back_btn}
+                onClick={() => setShowCFDs(false)}
               >
-                <h3 className={styles.product_card_title}>
-                  <IconTrendingUp />
-                  <span> CFDs &amp; Social Trading</span>
-                </h3>
-
-                <p className={styles.product_card_desc}>
-                  Trade forex, gold, indices, and crypto CFDs.
-                  <br />
-                  Copy top traders or manage portfolios with PAMM.
+                <IconArrowLeft /> Back
+              </button>
+              <div>
+                <h1 className={styles.title}>Welcome back, John</h1>
+                <p className={styles.subtitle}>
+                  Here’s what’s happening with your account today.
                 </p>
               </div>
-              <div
-                role="button"
-                onClick={handleComingSoon}
-                className={styles.product_card}
-              >
-                <h3 className={styles.product_card_title}>
-                  <IconCoinBitcoin />
-                  Real U.S. Futures Access
-                </h3>
-                <p className={styles.product_card_desc}>
-                  Access CME micro futures in S&amp;P, Bitcoin, and FX.
-                  <br />
-                  Built for scalable, institutional-grade trading.
-                </p>
+
+              <section className={styles.cards}>
+                <div className={styles.card}>
+                  <p className={styles.card_title}>Total balance</p>
+                  <h2 className={styles.card_amount}>$12,345.67</h2>
+                </div>
+
+                <div className={styles.card}>
+                  <p className={styles.card_title}>Most profitable trade</p>
+                  <h2 className={styles.card_amount}>$8,910.11</h2>
+                </div>
+
+                <div className={styles.card}>
+                  <p className={styles.card_title}>
+                    Number of trades this week
+                  </p>
+                  <h2 className={styles.card_amount}>50</h2>
+                </div>
+              </section>
+              <section id="accounts" className={styles.accounts}>
+                <div className={styles.accounts_header}>
+                  <h2>Live accounts</h2>
+
+                  <Button>Add account</Button>
+                </div>
+                <div className={styles.table_container}>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>Balance</th>
+                        <th>Equity</th>
+                        <th>Available to Withdraw</th>
+                        <th>Leverage</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>MT5</td>
+                        <td>$10,000.00</td>
+                        <td>$10,000.00</td>
+                        <td>$10,000.00</td>
+                        <td>1:100</td>
+                        <td className={styles.status_active}>Active</td>
+                      </tr>
+
+                      <tr>
+                        <td>MT5</td>
+                        <td>$2,345.67</td>
+                        <td>$2,345.67</td>
+                        <td>$2,345.67</td>
+                        <td>1:100</td>
+                        <td className={styles.status_inactive}>Inactive</td>
+                      </tr>
+
+                      <tr>
+                        <td>MT5</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                        <td>1:100</td>
+                        <td className={styles.status_active}>Active</td>
+                      </tr>
+                      <tr>
+                        <td>MT5</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                        <td>1:100</td>
+                        <td className={styles.status_active}>Active</td>
+                      </tr>
+                      <tr>
+                        <td>MT5</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                        <td>1:100</td>
+                        <td className={styles.status_active}>Active</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section className={styles.accounts}>
+                <div className={styles.accounts_header}>
+                  <h2>Demo accounts</h2>
+
+                  <Button variant="outline-red">Add account</Button>
+                </div>
+
+                <div className={styles.empty_state}>
+                  <p>You don't have any demo accounts</p>
+                </div>
+              </section>
+
+              <section className={styles.accounts}>
+                <div className={styles.accounts_header}>
+                  <h2>Invest accounts</h2>
+
+                  <Button variant="outline-red">Add account</Button>
+                </div>
+
+                <div className={styles.empty_state}>
+                  <p>You don't have any invest accounts</p>
+                </div>
+              </section>
+
+              <section className={styles.accounts}>
+                <div className={styles.accounts_header}>
+                  <h2>PAMM accounts</h2>
+
+                  <Button variant="outline-red">Add account</Button>
+                </div>
+
+                <div className={styles.empty_state}>
+                  <p>You don't have any PAMM accounts</p>
+                </div>
+              </section>
+            </>
+          ) : (
+            <section className={styles.products_section}>
+              <h2 className={styles.products_title}>Explore Our Products</h2>
+              <p className={styles.products_description}>
+                Discover a range of trading and investment products tailored for
+                every trader.
+              </p>
+              <div className={styles.products_cards}>
+                <div
+                  role="button"
+                  onClick={handleCFDClick}
+                  className={styles.product_card}
+                >
+                  <h3 className={styles.product_card_title}>
+                    <IconTrendingUp />
+                    <span> CFDs &amp; Social Trading</span>
+                  </h3>
+
+                  <p className={styles.product_card_desc}>
+                    Trade forex, gold, indices, and crypto CFDs.
+                    <br />
+                    Copy top traders or manage portfolios with PAMM.
+                  </p>
+                </div>
+                <div
+                  role="button"
+                  onClick={handleComingSoon}
+                  className={styles.product_card}
+                >
+                  <h3 className={styles.product_card_title}>
+                    <IconCoinBitcoin />
+                    Real U.S. Futures Access
+                  </h3>
+                  <p className={styles.product_card_desc}>
+                    Access CME micro futures in S&amp;P, Bitcoin, and FX.
+                    <br />
+                    Built for scalable, institutional-grade trading.
+                  </p>
+                </div>
+                <div
+                  role="button"
+                  onClick={handleComingSoon}
+                  className={styles.product_card}
+                >
+                  <h3 className={styles.product_card_title}>
+                    <IconBusinessplan />
+                    U.S. Equities &amp; Options Access
+                  </h3>
+                  <p className={styles.product_card_desc}>
+                    Trade U.S. stocks, ETFs, and listed options.
+                    <br />
+                    Fully regulated access to U.S. markets.
+                  </p>
+                </div>
               </div>
-              <div
-                role="button"
-                onClick={handleComingSoon}
-                className={styles.product_card}
-              >
-                <h3 className={styles.product_card_title}>
-                  <IconBusinessplan />
-                  U.S. Equities &amp; Options Access
-                </h3>
-                <p className={styles.product_card_desc}>
-                  Trade U.S. stocks, ETFs, and listed options.
-                  <br />
-                  Fully regulated access to U.S. markets.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section id="accounts" className={styles.accounts}>
-            <div className={styles.accounts_header}>
-              <h2>Live accounts</h2>
-
-              <Button>Add account</Button>
-            </div>
-
-            <div className={styles.table_container}>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Balance</th>
-                    <th>Equity</th>
-                    <th>Available to Withdraw</th>
-                    <th>Leverage</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <tr>
-                    <td>MT5</td>
-                    <td>$10,000.00</td>
-                    <td>$10,000.00</td>
-                    <td>$10,000.00</td>
-                    <td>1:100</td>
-                    <td className={styles.status_active}>Active</td>
-                  </tr>
-
-                  <tr>
-                    <td>MT5</td>
-                    <td>$2,345.67</td>
-                    <td>$2,345.67</td>
-                    <td>$2,345.67</td>
-                    <td>1:100</td>
-                    <td className={styles.status_inactive}>Inactive</td>
-                  </tr>
-
-                  <tr>
-                    <td>MT5</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>1:100</td>
-                    <td className={styles.status_active}>Active</td>
-                  </tr>
-                  <tr>
-                    <td>MT5</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>1:100</td>
-                    <td className={styles.status_active}>Active</td>
-                  </tr>
-                  <tr>
-                    <td>MT5</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>1:100</td>
-                    <td className={styles.status_active}>Active</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section className={styles.accounts}>
-            <div className={styles.accounts_header}>
-              <h2>Demo accounts</h2>
-
-              <Button variant="outline-red">Add account</Button>
-            </div>
-
-            <div className={styles.empty_state}>
-              <p>You don't have any demo accounts</p>
-            </div>
-          </section>
-
-          <section className={styles.accounts}>
-            <div className={styles.accounts_header}>
-              <h2>Invest accounts</h2>
-
-              <Button variant="outline-red">Add account</Button>
-            </div>
-
-            <div className={styles.empty_state}>
-              <p>You don't have any invest accounts</p>
-            </div>
-          </section>
-
-          <section className={styles.accounts}>
-            <div className={styles.accounts_header}>
-              <h2>PAMM accounts</h2>
-
-              <Button variant="outline-red">Add account</Button>
-            </div>
-
-            <div className={styles.empty_state}>
-              <p>You don't have any PAMM accounts</p>
-            </div>
-          </section>
+            </section>
+          )}
         </section>
       </div>
     </>
