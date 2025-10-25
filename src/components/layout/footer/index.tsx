@@ -213,12 +213,24 @@ const Footer = () => {
             <div>
               <div className={styles.sec2__item}>
                 <p>Follow us</p>
-                <div>
-                  <TwitterLogo />
+                <div className={styles.socials} >
+                  <a
+                    href={"https://x.com/farloFx_global"}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <TwitterLogo />
+                  </a>
                   <YoutubeLogo />
                   <LinkedinLogo />
                   <FacebookLogo />
-                  <InstagramLogo />
+                  <a
+                    href="https://www.instagram.com/farlofx_global?igsh=NGsxcjBwZGF2bjZh&utm_source=qr"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <InstagramLogo />
+                  </a>
                 </div>
               </div>
               <div className={styles.sec2__item}>
