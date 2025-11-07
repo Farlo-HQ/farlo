@@ -43,7 +43,8 @@ const OverviewUI = () => {
   const handleCFDClick = () => {
     // Logic to navigate to the CFDs & Social Trading section
     // window.location.href = "/overview#accounts";
-    setShowCFDs(true);
+    // setShowCFDs(true);
+    window.open("https://accounts.farlofx.com/", "_blank");
   };
 
   const handleComingSoon = () => {
