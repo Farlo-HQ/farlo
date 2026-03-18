@@ -45,74 +45,59 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      // all your GSAP animation code here
+      // Set initial states - cards 2 and 3 start off-screen to the right
+      gsap.set(".step-2", {
+        xPercent: 150,
+        x: 0,
+      });
+
+      gsap.set(".step-3", {
+        xPercent: 150,
+        x: 0,
+      });
 
       let timeline = gsap.timeline({
         scrollTrigger: {
           trigger: ".steps-container",
           pin: true,
           pinSpacing: true,
-          start: "left left",
-          end: isMobile ? "+=1000px" : "+=1500",
-          scrub: 1,
+          start: "top 100px",
+          end: isMobile ? "+=1200px" : "+=1800",
+          scrub: 0.5,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
-        delay: 300,
       });
 
+      // Step 1 is already visible, no animation needed for it initially
       timeline.addLabel("step1");
-      timeline.to(".step-1", {
-        opacity: 1,
-        x: 0,
-      });
-
-      timeline.from(".step-2", {
-        xPercent: 60,
+      
+      // Step 2 slides in from right
+      timeline.to(".step-2", {
+        xPercent: 0,
+        x: isMobile ? 0 : 60,
+        ease: "none",
+        duration: 1,
       });
       timeline.addLabel("step2");
 
-      // timeline.to(
-      //   ".step-1",
-      //   {
-      //     // opacity: 1,
-      //     // x: 0,
-      //      scale: 0.95
-      //   },
-      //   "-=0.3"
-      // );
-
-      timeline.to(
-        ".step-2",
-        {
-          xPercent: 0,
-          x: isMobile ? 0 : 60,
-        },
-        "-=0.3"
-      );
-
-      timeline.from(".step-3", {
-        xPercent: 60,
-      });
-      timeline.addLabel("step3");
-
-      // timeline.to(
-      //   ".step-2",
-      //   {
-      //     // xPercent: 0,
-      //     // x: 96,
-      //     scale: 0.98
-      //   },
-      //   "-=0.3"
-      // );
-
+      // Step 3 slides in from right
       timeline.to(
         ".step-3",
         {
+          xPercent: 0,
           x: isMobile ? 0 : 120,
+          ease: "none",
+          duration: 1,
         },
-        "-=0.3"
+        "+=0.3"
       );
+      timeline.addLabel("step3");
+
+      // Add a small hold at the end to prevent jump on unpin
+      timeline.to({}, { duration: 0.5 });
     });
-    return () => ctx.revert(); // <- cleanup!
+    return () => ctx.revert();
   }, [isMobile]);
 
   return (
@@ -129,7 +114,7 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
           Get Started <ArrowRight />
         </Button>
       </div>
-      <div className={` ${styles.cards}`}>
+      <div className={`${styles.cards}`}>
         {data.map(({ title, image, description }, index) => (
           <div
             key={`step-${index}`}
