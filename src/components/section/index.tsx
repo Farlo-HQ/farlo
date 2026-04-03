@@ -5,6 +5,7 @@ interface SectionProps {
   bgClassName?: string;
   children: any;
   ref?: Ref<HTMLElement>;
+  sectionRef?: Ref<HTMLDivElement>;
   id?: string;
 }
 
@@ -14,11 +15,12 @@ const Section: React.FC<SectionProps> = ({
   children,
   ref,
   id,
+  sectionRef
 }) => {
   return (
     <>
       <section id={id} ref={ref} className={`${bgClassName}`}>
-        <div className={`container ${sectionClassName}`}>{children}</div>
+        <div ref={sectionRef} className={`container ${sectionClassName}`}>{children}</div>
       </section>
     </>
   );

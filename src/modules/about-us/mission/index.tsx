@@ -4,11 +4,10 @@ import Image from "next/image";
 import { core_values, mission, vision } from "@/assets/images";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { useDeviceSize } from "@/hooks/useDeviceSize";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 const cards = [
   {
@@ -55,44 +54,97 @@ const cards = [
 
 const Mission = () => {
   const { isMobile } = useDeviceSize(800);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     if (isMobile) return;
+
+    const container = containerRef.current;
+    if (!container) return;
+
     let ctx = gsap.context(() => {
-      // all your GSAP animation code here
+      const cards = gsap.utils.toArray<HTMLElement>(".card-item");
 
-      gsap.set(".card-item", { position: "absolute", left: 0, opacity: 1 });
+      if (cards.length === 0) return;
 
-      gsap.to(".card-item", {
-        ease: "linear",
-        yPercent: -100,
-        stagger: 1,
+      // Initial card positioning
+      gsap.set(cards[0], {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        zIndex: 0,
+      });
+
+      gsap.set(cards[1], {
+        position: "absolute",
+        top: 600,
+        left: 0,
+        zIndex: 1,
+      });
+
+      gsap.set(cards[2], {
+        position: "absolute",
+        top: 1200,
+        left: 0,
+        zIndex: 2,
+      });
+
+      // Create scroll-triggered timeline
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: ".cards-container",
-          markers: false,
-          start: "top 90%",
-          end: "+=700px",
-          scrub: 0.3,
-          pin: true,
-          invalidateOnRefresh: true,
-          
+          trigger: container,
+          pin: container,
+          pinSpacing: true,
+          start: "top top",
+          end: "+=2500",
+          scrub: 0.5,
+          anticipatePin: 1,
+          markers: true,
         },
       });
-    });
-    return () => ctx.revert(); // <- cleanup!
+
+      // Add pause at start
+      tl.to({}, { duration: 0.5 });
+
+      // Slide card 2 up
+      tl.to(
+        cards[1],
+        {
+          top: 48,
+          ease: "none",
+          duration: 2,
+        },
+        0.5
+      );
+
+      // Slide card 3 up
+      tl.to(
+        cards[2],
+        {
+          top: 96,
+          ease: "none",
+          duration: 2,
+        },
+        1.5
+      );
+
+      // Add hold at the end to prevent jump on unpin
+      tl.to({}, { duration: 1 });
+    }, container);
+
+    return () => ctx.revert();
   }, [isMobile]);
-
-
 
   return (
     <>
       <Section
         bgClassName={styles.bg}
-        sectionClassName={`section ${styles.section} `}
+        sectionClassName={`section ${styles.section}`}
+        ref={containerRef}
       >
-        <div className="cards-container">
-          {cards.map((item) => (
-            <div className={`card-item ${styles.content} ${item.className}`}>
+        <div className={styles.cards_container}>
+          {cards.map((item, index) => (
+            <div key={index} className={`card-item ${styles.content} ${item.className}`}>
               <div>
                 <p className={styles.content__ttl}>{item.title}</p>
                 <p className={styles.content__txt}>{item.description} </p>
@@ -107,52 +159,6 @@ const Mission = () => {
             </div>
           ))}
         </div>
-        {/* <div className={`${styles.content} ${styles.mission}`}>
-          <div>
-            <p className={styles.content__ttl}>Our Mission</p>
-            <p className={styles.content__txt}>
-              To provide transparent, reliable, and innovative trading platform
-              that caters to African traders' unique needs, while expanding
-              globally with scalable and sustainable growth.
-            </p>
-          </div>
-          <Image src={mission} width={497} height={547} alt="" />
-        </div>
-        <div className={`${styles.content} ${styles.vision}`}>
-          <div>
-            <p className={styles.content__ttl}>Our Vision</p>
-            <p className={styles.content__txt}>
-              To be the most trusted and accessible forex broker in Africa,
-              delivering world-class trading solutions that empower traders at
-              all levels.
-            </p>
-          </div>
-          <Image src={vision} width={497} height={547} alt="" />
-        </div>
-        <div className={`${styles.content} ${styles.core_values}`}>
-          <div>
-            <p className={styles.content__ttl}>Our Core Values</p>
-            <p className={styles.content__txt}>
-              At the heart of everything we do are our core values:
-            </p>
-
-            <div className={styles.core_values__items}>
-              <p>
-                <span>Trust:</span> Transparency and integrity guide every
-                aspect of our business.
-              </p>
-              <p>
-                <span>Performance:</span> We are committed to providing fast,
-                efficient, and reliable trading solutions.
-              </p>
-              <p>
-                <span>Precision:</span> With every tool, every trade, and every
-                decision, we focus on accuracy and excellence.
-              </p>
-            </div>
-          </div>
-          <Image src={core_values} width={497} height={547} alt="" />
-        </div> */}
       </Section>
     </>
   );

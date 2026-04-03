@@ -4,7 +4,7 @@
   color: #fff;
   padding-bottom: 14rem;
   position: relative;
-  overflow: hidden;
+  padding-top: 4rem;
 
   @media screen and (max-width: 800px) {
     padding-top: 2rem;
@@ -15,9 +15,11 @@
   max-width: var(--max-width-1);
   position: relative;
 }
-.cards-container {
-  min-height: 100vh; // Or set enough height to match your scroll distance
+.cards_container {
+  height: 100vh;
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 .content {
   --spacing: 3rem;
@@ -27,24 +29,11 @@
   justify-content: space-between;
   gap: 9%;
   align-items: center;
-  
+  width: 100%;
+  will-change: top;
+
   > div {
     width: 50%;
-  }
-  position: absolute;
-
-  &:nth-child(1) {
-    top: 0;
-  }
-
-  &:nth-child(2) {
-    top: calc(var(--spacing) * 1);
-    z-index: 1;
-  }
-
-  &:nth-child(3) {
-    top: calc(var(--spacing) * 2);
-    z-index: 2;
   }
 
   @media screen and (max-width: 1200px) {

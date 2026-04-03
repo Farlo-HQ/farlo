@@ -38,75 +38,61 @@ const OurPromise = () => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      // all your GSAP animation code here
+      // Set initial states - cards start off-screen to the right
+      gsap.set(".step-1", {
+        xPercent: 150,
+        opacity: 0,
+      });
+
+      gsap.set(".step-2", {
+        xPercent: 150,
+      });
+
+      gsap.set(".step-3", {
+        xPercent: 150,
+      });
 
       let timeline = gsap.timeline({
         scrollTrigger: {
           trigger: ".promise-container",
           pin: isMobile,
-          // pinSpacing: true,
-          start: "top top",
-          end: isMobile ?  "+=500px" :"+=600px",
+          start: "top 80%", // Start when section is 80% down viewport
+          end: isMobile ? "+=500px" : "+=600px",
           scrub: 1,
-          // markers: true,
         },
-        delay: 300,
       });
 
-      timeline.addLabel("step1");
+      // Card 1 slides in
       timeline.to(".step-1", {
+        xPercent: 0,
         opacity: 1,
-        x: 0,
+        ease: "none",
+        duration: 1,
       });
 
-      timeline.from(".step-2", {
-        xPercent: 150,
-      });
-      timeline.addLabel("step2");
-
-      // timeline.to(
-      //   ".step-1",
-      //   {
-      //     // opacity: 1,
-      //     // x: 0,
-      //      scale: 0.95
-      //   },
-      //   "-=0.3"
-      // );
-
+      // Card 2 slides in with overlap
       timeline.to(
         ".step-2",
         {
-          // xPercent: 0,
-          x: 0,
+          xPercent: 0,
+          ease: "none",
+          duration: 1,
         },
-        ">-75%"
+        ">-0.75"
       );
 
-      timeline.from(".step-3", {
-        xPercent: 150,
-      });
-      timeline.addLabel("step3");
-
-      // timeline.to(
-      //   ".step-2",
-      //   {
-      //     // xPercent: 0,
-      //     // x: 96,
-      //     scale: 0.98
-      //   },
-      //   "-=0.3"
-      // );
-
+      // Card 3 slides in with overlap
       timeline.to(
         ".step-3",
         {
-          x: 0,
+          xPercent: 0,
+          ease: "none",
+          duration: 1,
         },
-        ">-75%"
+        ">-0.75"
       );
     });
-    return () => ctx.revert(); // <- cleanup!
+    return () => ctx.revert();
   }, [isMobile]);
 
   return (
