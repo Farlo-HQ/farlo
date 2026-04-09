@@ -1,0 +1,366 @@
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.modal {
+  background: var(--dash-card);
+  border-radius: 14px;
+  border: 1px solid var(--dash-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+  padding: 1.5rem;
+  max-width: 420px;
+  width: 100%;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dash-text);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 14px;
+    color: var(--dash-text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+}
+
+.modal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
+.modal_close {
+  background: var(--dash-input);
+  border: none;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--dash-text-muted);
+
+  &:hover {
+    background: var(--dash-border);
+  }
+}
+
+.transfer_route {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.2rem;
+}
+
+.route_tag {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: var(--primary);
+}
+
+.route_parent {
+  background: rgba(203, 26, 54, 0.1);
+  color: var(--primary);
+ 
+}
+.route_trading {
+  background: rgba(55, 138, 221, 0.1);
+  color: #378add;
+}
+.route_investing {
+  background: rgba(26, 158, 117, 0.1);
+  color: #1a9e75;
+}
+
+.route_arrow {
+  color: var(--dash-text-muted);
+}
+
+.transfer_info {
+  background: var(--dash-bg);
+  border: 1px solid var(--dash-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 1rem;
+
+  .transfer_label {
+    font-size: 11px;
+    color: var(--dash-text-muted);
+    text-transform: capitalize;
+    letter-spacing: 0.6px;
+    margin-bottom: 4px;
+  }
+  
+  .transfer_balance {
+    font-size: 20px;
+    font-weight: 600;
+    background-color:'red';
+    color: var(--dash-text);
+  }
+}
+
+.input_group {
+  margin-bottom: 1.2rem;
+}
+
+.input_label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dash-text-muted);
+  margin-bottom: 6px;
+}
+
+.transfer_input {
+  width: 100%;
+  padding: 16px 14px;
+  border: 1px solid var(--dash-border);
+  border-radius: 16px;
+  font-size: 16px;
+  font-family: "GeneralSans-Regular";
+  color: var(--dash-text);
+  background: var(--dash-card);
+  outline: none;
+  transition: border-color 0.15s;
+
+  &:focus {
+    border-color: var(--primary);
+  }
+}
+
+.transfer_error {
+  font-size: 12px;
+  color: var(--primary);
+  margin-top: 4px;
+}
+
+.modal_success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.modal_success_icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(26, 158, 117, 0.1);
+  color: #1a9e75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal_success_msg {
+  font-size: 14px;
+  color: var(--dash-text-muted) !important;
+  margin-bottom: 0 !important;
+}
+
+.modal_actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+
+  button {
+    flex: 1;
+    @media screen and (max-width: 900px) {
+     padding: 10px 0;
+    }
+  }
+
+}
+
+.modal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal_header {
+
+  h2{
+    color:var(--dash-text);
+    font-size: 20px;
+  }
+  
+  .close_btn {
+    border: none;
+    background-color: transparent;
+    color: var(--dash-text);
+  }
+}
+
+.modal_container {
+  background: var(--dash-bg);
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 450px;
+  border: 1px solid #333;
+}
+
+.selection_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.selection_card {
+  border: 1px solid var(--dash-border);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+
+  &:hover { border-color: #555; background: transparent; }
+  
+  &.active {
+    border-color: #ff3b3b; 
+    background: rgba(255, 59, 59, 0.05);
+    transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 900px) {
+   padding: 20px 10px;
+  }
+
+  .card_label {
+    color: var(--dash-text);
+    font-size: 16;
+    text-align: center;
+
+    @media screen and (max-width: 900px) {
+      font-size: 12;
+    }
+  }
+
+  .icon_wrapper{
+    color: var(--primary);
+  }
+}
+
+.check_circle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  border: 2px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active .check_circle {
+  border-color: #ff3b3b;
+}
+
+.check_inner {
+  width: 9px;
+  height: 9px;
+  background: #ff3b3b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+
+
+.proceed_btn {
+  width: 100%;
+  padding: 14px;
+  background: #ff3b3b;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+
+  &:disabled {
+    background: #333;
+    color: #777;
+    cursor: not-allowed;
+  }
+}
+
+.transfer_card {
+  background: #1a1a1a;
+  padding: 32px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.balance_glass {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  h3 { font-size: 24px; margin-top: 4px; }
+}
+
+.amount_input_box {
+  display: flex;
+  align-items: center;
+  background: #000;
+  border: 1px solid #333;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-top: 8px;
+  
+  input {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    outline: none;
+    margin-left: 8px;
+  }
+}

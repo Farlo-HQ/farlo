@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "@/assets/icons/arrow-right";
 import { Button } from "../button";
 import { Section } from "../section";
@@ -19,10 +20,10 @@ const BottomBanner = ({
   fillBtn,
   outlineBtn,
 }: BottomBannerProps) => {
-    const router = useRouter();
-    const register = () => {
-      router.push(ROUTES.signup);
-    };
+  const router = useRouter();
+  const register = () => {
+    router.push(ROUTES.signup);
+  };
 
   return (
     <Section bgClassName={styles.bg} sectionClassName={styles.section}>

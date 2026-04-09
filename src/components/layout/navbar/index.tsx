@@ -257,14 +257,12 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`${styles.header} ${
-          scrolledPastViewport ? styles["header--scroll"] : ""
-        } ${dargBg ? styles["header--dark"] : ""}`}
+        className={`${styles.header} ${scrolledPastViewport ? styles["header--scroll"] : ""
+          } ${dargBg ? styles["header--dark"] : ""}`}
       >
         <section
-          className={`layout-container ${styles.nav} ${
-            showNav ? styles["nav--open"] : ""
-          }`}
+          className={`layout-container ${styles.nav} ${showNav ? styles["nav--open"] : ""
+            }`}
         >
           <div className={styles.logoSec}>
             {!showNav ? (

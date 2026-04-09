@@ -1,3 +1,6 @@
+"use client"
+
+
 import { Button, Section } from "@/components";
 import React from "react";
 import styles from "./styles.module.scss";

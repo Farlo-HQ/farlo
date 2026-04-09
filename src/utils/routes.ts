@@ -32,4 +32,8 @@ export const ROUTES = {
   login: "/login",
   signup: "/signup",
   overview: "/overview",
+  transactions: "/transactions",
+  kyc: "/kyc",
+  deposit: "/deposit",
+  withdraw: "/withdraw",
 };

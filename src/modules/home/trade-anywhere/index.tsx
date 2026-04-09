@@ -1,3 +1,6 @@
+"use client"
+
+
 import { qrCodeImg } from "@/assets/images";
 import { AppStore2, PlayStore2 } from "@/assets/vectors";
 import { Section } from "@/components";
@@ -13,12 +16,12 @@ const TradeAnywhere = () => {
           Never miss a market move, FarloFX gives you seamless access to trading
           on desktop, mobile, and tablet.
         </p>
-        <div  className={styles.ctas} >
+        <div className={styles.ctas} >
           <AppStore2 />
           <PlayStore2 />
         </div>
       </div>
-      <div  className={styles.scan} >
+      <div className={styles.scan} >
         <p>OR SCAN TO DOWNLOAD</p>
         <Image
           src={qrCodeImg}

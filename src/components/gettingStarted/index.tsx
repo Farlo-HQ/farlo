@@ -1,3 +1,6 @@
+"use client"
+
+
 import { Section } from "../section";
 import styles from "./styles.module.scss";
 import { Button } from "../button";
@@ -71,7 +74,7 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
 
       // Step 1 is already visible, no animation needed for it initially
       timeline.addLabel("step1");
-      
+
       // Step 2 slides in from right
       timeline.to(".step-2", {
         xPercent: 0,

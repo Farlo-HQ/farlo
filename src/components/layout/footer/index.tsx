@@ -248,3 +248,4 @@ const Footer = () => {
 };
 
 export { Footer };
+

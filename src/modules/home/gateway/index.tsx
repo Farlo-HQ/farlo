@@ -1,3 +1,6 @@
+"use client"
+
+
 import { Section } from "@/components";
 import styles from "./styles.module.scss";
 import Image from "next/image";

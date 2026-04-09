@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react";
 import { Section } from "@/components";
 import styles from "./styles.module.scss";
@@ -71,9 +73,8 @@ const LearnTrade = () => {
         {data.map(({ icon, text, title, backgroundColor }, index) => (
           <div
             style={{ backgroundColor }}
-            className={`${styles.card} ${
-              animateIndex === index ? styles.scaleUp : ""
-            }`}
+            className={`${styles.card} ${animateIndex === index ? styles.scaleUp : ""
+              }`}
             key={`learn-trade-${index}`}
           >
             {icon}

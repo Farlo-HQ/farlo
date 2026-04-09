@@ -1,3 +1,6 @@
+"use client"
+
+
 import { Button, Section } from "@/components";
 import styles from "./styles.module.scss";
 import { ArrowRight } from "@/assets/icons/arrow-right";
@@ -12,21 +15,21 @@ const GetHelp = () => {
       title: "24/5 customer support",
       text: "Assistance across multiple languages and time zones.",
       actionText: "Contact us",
-      action: () => {},
+      action: () => { },
     },
     {
       icon: <MessagesIcon />,
       title: "Live chat & email support",
       text: "Get real-time help for technical or trading-related queries.",
       actionText: "Talk to us",
-      action: () => {},
+      action: () => { },
     },
     {
       icon: <MessageQuestionIcon />,
       title: "FAQs & knowledge base",
       text: "ind quick answers to common questions.",
       actionText: "Learn more",
-      action: () => {},
+      action: () => { },
     },
   ];
   return (
