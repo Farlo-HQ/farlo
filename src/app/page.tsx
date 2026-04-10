@@ -36,6 +36,11 @@ export default function Home() {
             <button onClick={() => setWaitlist(true)} className={styles.btn}>
               Join the waitlist
             </button>
+            <a href="https://app.getfarlo.com" target="_blank" rel="noopener noreferrer">
+              <button className={styles.btn__outline}>
+                View Farlo
+              </button>
+            </a>
           </div>
           <p className={styles.rider}>
             Join a growing global community of traders who trust <b>FarloFX</b>{" "}
