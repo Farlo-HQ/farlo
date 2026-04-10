@@ -253,7 +253,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
         onClose={() => setShowToast({ ...showToast, show: false })}
       />
 
-      <Modal isOpen={isOpen} onClose={onClose} title="Join the Waitlist">
+      <Modal isOpen={isOpen} onClose={onClose} title="Get Early Access">
         <form onSubmit={handleSubmit} className={styles.waitlistForm}>
           <InputField
             label="Name"
@@ -294,8 +294,8 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
             label="Which of these features are you most interested in (Select as many as applies)"
             options={[
               "CFDs & Social Trading",
-              "Real U.S. Futures Access",
               "U.S. Equities & Options Access",
+              "Move Money Globally",
             ]}
             selectedOptions={interestedFeatures}
             onChange={handleInterestedFeaturesChange}
@@ -319,9 +319,9 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
 
           <p style={{
             color: "#000",
-            textAlign: "center", 
+            textAlign: "center",
             fontSize: "12px"
-          }} >Unlocking Global Trading Access for the Next Billion Users</p>
+          }}>Unlocking Global Trading Access for the Next Billion Users</p>
         </form>
       </Modal>
     </>

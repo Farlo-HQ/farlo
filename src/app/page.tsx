@@ -3,6 +3,7 @@ import { Logo } from "@/assets/vectors";
 import styles from "./page.module.css";
 import WaitlistForm from "@/components/waitlist";
 import { useState } from "react";
+import { NewLogo } from "@/assets/vectors/new-logo";
 
 export default function Home() {
   const [waitlist, setWaitlist] = useState(false);
@@ -12,40 +13,26 @@ export default function Home() {
       <WaitlistForm isOpen={waitlist} onClose={() => setWaitlist(false)} />
       <div className={styles.page}>
         <header className={styles.header}>
-          <Logo className={styles.header__logo} />
+          <NewLogo className={styles.header__logo} />
           <button onClick={() => setWaitlist(true)} className={styles.btn}>
-            Join the waitlist
+            Get Early Access
           </button>
         </header>
         <main className={styles.main}>
           <section className={styles.content}>
-            <h1>Trade Smarter. Trade Faster. <br /> Trade with FarloFX.</h1>
+            <h1>The trading and investing platform you have been waiting for.</h1>
             <p className={styles.sub_txt}>
-              Whether you’re a seasoned pro or just starting out, <b>FarloFX</b>{" "}
-              provides the tools, security, and transparency you need to master
-              the forex markets.
-            </p>
-            <p className={styles.sub_txt}>
-              Experience a smarter, more seamless way to trade, where{" "}
-              <b>control</b>, <b>confidence</b>, and <b>clarity</b> define your
-              trading journey.
+              Fx Trading, Copy Trading, US equity investment and Global remittance in one account. One KYC, One wallet, One platform, Built for traders and investors across Africa and Emerging markets.
             </p>
           </section>
 
           <div className={styles.ctas}>
             <button onClick={() => setWaitlist(true)} className={styles.btn}>
-              Join the waitlist
+              Get Early Access
             </button>
-            <a href="https://app.getfarlo.com" target="_blank" rel="noopener noreferrer">
-              <button className={styles.btn__outline}>
-                View Farlo
-              </button>
-            </a>
           </div>
           <p className={styles.rider}>
-            Join a growing global community of traders who trust <b>FarloFX</b>{" "}
-            for a faster, smarter trading experience.{" "}
-            <b>Your financial future, powered by precision and performance.</b>
+            Join 4,200+ traders already on the waitlist. Free to join. No card required.
           </p>
         </main>
       </div>
