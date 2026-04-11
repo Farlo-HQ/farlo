@@ -20,9 +20,12 @@ export default function Home() {
         </header>
         <main className={styles.main}>
           <section className={styles.content}>
-            <h1>The trading and investing platform you have been waiting for.</h1>
+            <h1>Your gateway to global trading, investing, and payments.</h1>
+            <h4> Built to unlock global markets for the next billion users.</h4>
             <p className={styles.sub_txt}>
-              Fx Trading, Copy Trading, US equity investment and Global remittance in one account. One KYC, One wallet, One platform, Built for traders and investors across Africa and Emerging markets.
+              Trade FX, copy top startegies, invest in U.S. stocks, and move money globally — all from a single account.
+              <br />
+              One KYC. One Wallet. Built for users across emerging markets.
             </p>
           </section>
 
@@ -32,7 +35,7 @@ export default function Home() {
             </button>
           </div>
           <p className={styles.rider}>
-            Join 4,200+ traders already on the waitlist. Free to join. No card required.
+            Join 4,200+ early users on the waitlist. Free to join.
           </p>
         </main>
       </div>
