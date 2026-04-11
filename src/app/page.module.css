@@ -68,7 +68,7 @@
   min-height: calc(100dvh - 69.5px);
   justify-content: center;
 }
-.main h1 {
+/* .main h1 {
   font-size: 3.2rem;
   line-height: 3.5rem;
   font-family: "GeneralSans-Bold";
@@ -82,7 +82,29 @@
   line-height: 2.5rem;
   font-family: "GeneralSans-Semibold";
   margin: 0rem 10rem 3rem 10rem;
-  color: #ABADAE;
+  color: rgba(255, 255, 255, 0.45);
+} */
+.main h1 {
+  font-size: 3.2rem;
+  line-height: 3.5rem;
+  font-family: "GeneralSans-Bold";
+  margin: 0rem 10rem 1rem 10rem;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #ffffff 40%,
+    #cb1a36 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main h4 {
+  font-size: 2.2rem;
+  line-height: 2.5rem;
+  font-family: "GeneralSans-Semibold";
+  margin: 0rem 10rem 3rem 10rem;
+  color: rgba(255, 255, 255, 0.65);
 }
 .sub_txt {
   font-size: 1.25rem;
