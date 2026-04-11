@@ -1,5 +1,4 @@
 "use client";
-import { Logo } from "@/assets/vectors";
 import styles from "./page.module.css";
 import WaitlistForm from "@/components/waitlist";
 import { useState } from "react";
