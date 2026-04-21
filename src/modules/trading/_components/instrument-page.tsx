@@ -36,7 +36,7 @@ export interface InstrumentPageProps {
   whatBody: string;
   whyPoints: [string, string, string];
   tableRows: InstrumentRow[];
-  faqs: FAQData[];
+  // faqs: FAQData[];
 }
 
 const SpecStrip = ({
@@ -108,7 +108,7 @@ const InstrumentPage = ({
   whatBody,
   whyPoints,
   tableRows,
-  faqs,
+  // faqs,
 }: InstrumentPageProps) => {
   const router = useRouter();
   const openAccount = () => router.push(ROUTES.signup);
@@ -169,7 +169,7 @@ const InstrumentPage = ({
 
       <GettingStarted greyBg />
 
-      <FAQS title="Frequently asked questions" faqs={faqs} />
+      <FAQS title="Frequently asked questions" />
 
       <BottomBanner
         fillBtn={{ text: "Open Account", action: openAccount }}

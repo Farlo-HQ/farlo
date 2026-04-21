@@ -154,7 +154,7 @@ const IndicesUI = () => (
       { symbol: "DE40", description: "Germany 40", spread: "from 1.2 pts", session: "Mon–Fri, Frankfurt hours" },
       { symbol: "JP225", description: "Japan 225", spread: "from 8.0 pts", session: "Mon–Fri, Tokyo hours" },
     ]}
-    faqs={faqs}
+  // faqs={faqs}
   />
 );
 

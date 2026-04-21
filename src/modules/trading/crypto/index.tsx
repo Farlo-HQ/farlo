@@ -129,7 +129,7 @@ const CryptoUI = () => (
       { symbol: "XRP/USD", description: "Ripple vs Dollar", spread: "from 0.002 pts", session: "24/7" },
       { symbol: "ADA/USD", description: "Cardano vs Dollar", spread: "from 0.001 pts", session: "24/7" },
     ]}
-    faqs={faqs}
+  // faqs={faqs}
   />
 );
 

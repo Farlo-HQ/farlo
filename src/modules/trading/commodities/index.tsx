@@ -128,7 +128,7 @@ const CommoditiesUI = () => (
       { symbol: "XPTUSD", description: "Platinum vs Dollar", spread: "from 2.0 pips", session: "24/5" },
       { symbol: "NATGAS", description: "Natural Gas", spread: "from 4 pts", session: "Mon–Fri, CME hours" },
     ]}
-    faqs={faqs}
+  // faqs={faqs}
   />
 );
 

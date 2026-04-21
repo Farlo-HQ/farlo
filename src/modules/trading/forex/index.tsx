@@ -161,7 +161,7 @@ const ForexUI = () => (
       { symbol: "XAU/USD", description: "Gold vs Dollar", spread: "from 0.4 pips", session: "24/5" },
       { symbol: "GBP/JPY", description: "Pound vs Yen", spread: "from 1.2 pips", session: "24/5" },
     ]}
-    faqs={faqs}
+  // faqs={faqs}
   />
 );
 

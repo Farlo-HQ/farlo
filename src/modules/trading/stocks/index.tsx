@@ -128,7 +128,7 @@ const StocksUI = () => (
       { symbol: "AMZN", description: "Amazon.com Inc.", spread: "from $0.03", session: "NASDAQ, 9:30–16:00 ET" },
       { symbol: "SPY", description: "S&P 500 ETF Trust", spread: "from $0.01", session: "NYSE, 9:30–16:00 ET" },
     ]}
-    faqs={faqs}
+  // faqs={faqs}
   />
 );
 
