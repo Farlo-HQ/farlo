@@ -12,9 +12,10 @@ gsap.registerPlugin(ScrollTrigger);
 const cards = [
   {
     title: "Our Mission",
-    description: ` To provide transparent, reliable, and innovative trading platform
-              that caters to African traders' unique needs, while expanding
-              globally with scalable and sustainable growth.`,
+    // description: ` To provide transparent, reliable, and innovative trading platform
+    //           that caters to African traders' unique needs, while expanding
+    //           globally with scalable and sustainable growth.`,
+    description: `Our mission is simple: make global trading and investing as accessible in Lagos as it is in London.`,
     className: styles.mission,
     image: mission,
   },

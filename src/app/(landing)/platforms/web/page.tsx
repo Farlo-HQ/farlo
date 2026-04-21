@@ -1,11 +1,17 @@
 "use client";
 
-import { PlatformWebUI } from "@/modules/platforms/web";
+import { PlatformsUI } from "@/modules/platforms";
 
-export default function Home() {
-  return (
-    <>
-      <PlatformWebUI />
-    </>
-  );
+// import { PlatformWebUI } from "@/modules/platforms/web";
+
+// export default function Home() {
+//   return (
+//     <>
+//       <PlatformWebUI />
+//     </>
+//   );
+// }
+
+export default function PlatformWebPage() {
+  return <PlatformsUI defaultTab="MT5 Web" />;
 }

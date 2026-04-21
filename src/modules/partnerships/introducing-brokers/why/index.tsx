@@ -14,7 +14,7 @@ const WhySection = () => {
     {
       img: market_analysis,
       title: "Licensed in 100+ Countries",
-      text: "FarloFX is licensed by FSA, CySEC, FCA, FSCA, FSC, FCS, CMA",
+      text: "Farlo is licensed by FSA, CySEC, FCA, FSCA, FSC, FCS, CMA",
     },
     {
       img: tight_spread,

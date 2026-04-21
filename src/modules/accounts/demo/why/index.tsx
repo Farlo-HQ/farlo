@@ -35,7 +35,7 @@ const WhySection = () => {
   return (
     <Section sectionClassName={styles.section}>
       <div className={styles.sec1}>
-        <p className={styles.tag}>Why Choose a FarloFX Demo Account</p>
+        <p className={styles.tag}>Why Choose a Farlo Demo Account</p>
         <h2 className={styles.ttl}>
           Trade With Zero Risk and Real Market Conditions
         </h2>

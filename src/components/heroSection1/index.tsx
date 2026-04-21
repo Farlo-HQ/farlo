@@ -14,6 +14,7 @@ interface HeroSection1Props {
   bgClassName?: string;
   txtClassName?: string;
   tag?: string;
+  label?: string;
   title: string | ReactNode;
   text: string;
   element: ReactNode;
@@ -25,6 +26,7 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
   title,
   text,
   tag,
+  label,
   element,
   txtClassName,
 }) => {
@@ -43,9 +45,17 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
           {tag ? <p className={styles.tag}>{tag}</p> : null}
           <h1 className={styles.ttl}>{title}</h1>
           <p className={`${styles.txt} ${txtClassName}`}>{text}</p>
-          <Button onClick={register} variant="fill-red">
-            Open Account <ArrowRight />
-          </Button>
+          <div className={styles.ctas}>
+            <Button onClick={register} variant="fill-red">
+              Open Account <ArrowRight />
+            </Button>
+            <Button onClick={register} variant="outline-white">
+              Open Demo <ArrowRight />
+            </Button>
+          </div>
+          {label ? <p className={styles.label}>No card required. Verified in under 5 minutes.</p> : null}
+
+
         </div>
         {element}
       </Section>

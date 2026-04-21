@@ -12,12 +12,12 @@ const JoinFarlo = () => {
       sectionClassName={styles.section}
     >
       <div className={styles.content}>
-        <h5 className={styles.content__ttl}>Build Your Future With FarloFX</h5>
+        <h5 className={styles.content__ttl}>We are building the team.</h5>
         <p className={styles.content__txt}>
-          Passionate about fintech and financial markets? Join us!
+          If you want to build financial infrastructure for the most underserved markets in the world, we want to hear from you.
         </p>
         <Button variant={"ghost-red"}>
-          Apply Now <ArrowRight />
+          See Open Roles <ArrowRight />
         </Button>
       </div>
       <Image

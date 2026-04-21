@@ -75,3 +75,17 @@
     display: none;
   }
 }
+
+.bullet {
+  padding-bottom: 1rem;
+  font-size: .9rem;
+  color:#ffffffbb;
+
+  li {
+    padding: 5px 0;
+  }
+  
+  li span {
+    font-weight: 600;
+  }
+}

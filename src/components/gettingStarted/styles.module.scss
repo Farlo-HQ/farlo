@@ -47,7 +47,6 @@
 .card {
   position: relative;
   --spacing: 2rem;
-  // z-index: 3;
   top: 0;
   width: 90%;
   left: 0;
@@ -127,12 +126,10 @@
   }
 
   &:nth-child(2) {
-    // left: calc(var(--spacing) * 3);
     position: absolute;
     z-index: 2;
   }
   &:nth-child(3) {
-    // left: calc(var(--spacing) * 6);
     position: absolute;
     z-index: 3;
   }
@@ -163,7 +160,5 @@
     margin-top: -1rem;
     margin-bottom: 3rem;
     display: flex;
-    // align-items: center;
-    // justify-content: center;
   }
 }

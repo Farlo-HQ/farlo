@@ -1,0 +1,98 @@
+.bg {
+  background: #fff;
+}
+
+.section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+
+  @media screen and (max-width: 800px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.header {
+  margin-bottom: 3.5rem;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+
+  @media screen and (max-width: 640px) {
+    font-size: 11px;
+  }
+}
+
+.ttl {
+  font-size: 46px;
+  font-weight: 700;
+  color: #2d3135;
+  line-height: 1.12;
+
+  @media screen and (max-width: 1024px) { font-size: 36px; }
+  @media screen and (max-width: 640px)  { font-size: 28px; }
+}
+
+/* ── Cards ── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+
+  @media screen and (max-width: 900px) { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+.card {
+  position: relative;
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 2rem 1.75rem 2rem 2.25rem;
+  overflow: hidden;
+}
+
+/* Animated red left border */
+.card__border {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary);
+  border-radius: 4px 0 0 4px;
+}
+
+.card__ttl {
+  font-size: 19px;
+  font-weight: 700;
+  color: #2d3135;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+
+  @media screen and (max-width: 640px) { font-size: 17px; }
+}
+
+.card__body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #575a5d;
+
+  @media screen and (max-width: 640px) { font-size: 14px; }
+}
+
+/* ── Bridge line ── */
+.bridge {
+  font-size: 17px;
+  font-weight: 600;
+  color: #2d3135;
+  border-top: 1px solid #e8e8e8;
+  padding-top: 2rem;
+
+  @media screen and (max-width: 640px) { font-size: 15px; }
+}

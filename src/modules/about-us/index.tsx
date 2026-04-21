@@ -10,6 +10,7 @@ import { JoinFarlo } from "./join-farlo";
 import { BottomBanner } from "@/components/bottom-banner";
 import dynamic from "next/dynamic";
 import CoinsAnimation from "@/assets/animations/coins.json";
+import Believe from "./believe";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
@@ -20,11 +21,11 @@ const AboutUI = () => {
         tag="About us"
         title={
           <>
-            FarloFX Is
-            <br /> Empowering Traders
+            We built what should
+            <br />have existed ten years ago.
           </>
         }
-        text={`We provide traders across Africa and beyond with cutting-edge technology, and deep market insights.`}
+        text={`FARLO exists because hundreds of millions of people across Africa and emerging markets have been locked out of global financial markets by platforms that were not built for them.`}
         bgClassName={styles.bg}
         sectionClassName={styles.section}
         txtClassName={styles.txt}
@@ -39,6 +40,7 @@ const AboutUI = () => {
           </>
         }
       />
+      <Believe />
       <WhoWeAre />
       <Stats />
       <WhyFarlo />

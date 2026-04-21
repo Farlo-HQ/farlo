@@ -12,33 +12,32 @@ const GetHelp = () => {
   const list = [
     {
       icon: <SupportIcon />,
-      title: "24/5 customer support",
-      text: "Assistance across multiple languages and time zones.",
-      actionText: "Contact us",
+      title: "Live chat support",
+      text: "Available 24/5 in English, French, Arabic, and Swahili. Average response: under 2 minutes.",
+      actionText: "Start Live Chat",
       action: () => { },
     },
     {
       icon: <MessagesIcon />,
-      title: "Live chat & email support",
-      text: "Get real-time help for technical or trading-related queries.",
-      actionText: "Talk to us",
+      title: "Email support",
+      text: "hello@farlo.io — Response within 4 hours during trading hours.",
+      actionText: "Email us",
       action: () => { },
     },
     {
       icon: <MessageQuestionIcon />,
-      title: "FAQs & knowledge base",
-      text: "ind quick answers to common questions.",
-      actionText: "Learn more",
+      title: "Whatsapp",
+      text: "For account and funding support in your local language. Number shown after login",
+      actionText: "Send us a message",
       action: () => { },
     },
   ];
   return (
     <Section bgClassName={styles.bg}>
       <div className={styles.header}>
-        <p className={styles.ttl}>Get help when you need it</p>
+        <p className={styles.ttl}>We are here. Talk to us.</p>
         <p className={styles.txt}>
-          Our team is here to ensure your trading experience remains smooth,
-          secure, and stress-free.
+          Real support from people who understand trading. Not bots. Not scripts.
         </p>
       </div>
       <div className={styles.cards}>

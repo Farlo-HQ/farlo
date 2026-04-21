@@ -1,6 +1,5 @@
 "use client"
 
-
 import { Section } from "@/components";
 import styles from "./styles.module.scss";
 import Image from "next/image";
@@ -8,55 +7,37 @@ import { cfdIcon, commoditiesIcon, cryptoIcon, forexIcon, indicesIcon, stocksIco
 
 const Gateway = () => {
   const gateways = [
-    {
-      title: "Forex",
-      text: "EURUSD, GBPUSD, NZDUSD",
-      icon: forexIcon,
-    },
-    {
-      title: "Indices",
-      text: "NASDAQ100, S&P500, FTSE100",
-      icon: indicesIcon,
-    },
-    {
-      title: "Stocks",
-      text: "AAPL, NVDA, MSFT",
-      icon: stocksIcon,
-    },
-    {
-      title: "Commodities",
-      text: "XAU, XAG, USOIL",
-      icon: commoditiesIcon,
-    },
-    {
-      title: "Cryptocurrencies",
-      text: "BTCUSD, ETHUSD, SOLUSD",
-      icon: cryptoIcon,
-    },
-    {
-      title: "CFDs",
-      icon: cfdIcon,
-    },
+    { title: "Forex", text: "EUR/USD, GBP/USD, USD/NGN", icon: forexIcon },
+    { title: "Indices", text: "US30, NAS100, FTSE100", icon: indicesIcon },
+    { title: "US Stocks", text: "AAPL, NVDA, TSLA", icon: stocksIcon },
+    { title: "Commodities", text: "GOLD, SILVER, OIL", icon: commoditiesIcon },
+    { title: "Crypto CFDs", text: "BTC/USD, ETH/USD, SOL/USD", icon: cryptoIcon },
+    { title: "Copy Trading", text: "Follow verified strategies", icon: cfdIcon },
   ];
+
   return (
-    <>
-      <Section bgClassName={styles.bg} sectionClassName={styles.section}>
-        <h2 className={styles.ttl}>Your Gateway To Global Markets</h2>
-        <p className={styles.txt}>
-          FarloFX connects you to the most liquid and sought-after markets in
-          the world, ensuring you can trade the assets that matters most
-        </p>
-        <div className={styles.cards} >
-          {gateways.map(({ icon, title, text }, index) => (
-            <div key={`gateway-${index}`} className={styles.card}>
-              <Image src={icon} alt={title} width={48} height={48} />
-              <p className={styles.card__ttl}>{title}</p>
-              {text ? <p className={styles.card__txt}>{text}</p> : null}
-            </div>
-          ))}
-        </div>
-      </Section>
-    </>
+    <Section bgClassName={styles.bg} sectionClassName={styles.section}>
+      {/* Left */}
+      <div className={styles.left}>
+        <p className={styles.label}>350+ INSTRUMENTS</p>
+        <h2 className={styles.ttl}>Every major market. One account.</h2>
+        {/* <p className={styles.txt}>
+          Forex, indices, US stocks, commodities, crypto CFDs, and copy
+          trading — all in one place, with one KYC.
+        </p> */}
+      </div>
+
+      {/* Right — 2×3 card grid */}
+      <div className={styles.cards}>
+        {gateways.map(({ icon, title, text }, i) => (
+          <div key={i} className={styles.card}>
+            <Image src={icon} alt={title} width={40} height={40} />
+            <p className={styles.card__ttl}>{title}</p>
+            <p className={styles.card__txt}>{text}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
   );
 };
 

@@ -5,7 +5,7 @@ import { ArrowRight } from "@/assets/icons/arrow-right";
 const list = [
   {
     title: "Select Account Type",
-    text: "Choose your FarloFX account type, then specify your leverage and base currency.",
+    text: "Choose your Farlo account type, then specify your leverage and base currency.",
   },
   {
     title: "Choose Your Trading Instrument",
@@ -24,7 +24,7 @@ const HowTo = () => {
         <p className={styles.tag}>How to use the calculator</p>
         <h2 className={styles.ttl}>Calculations Tailored To Your Trading Strategy.</h2>
         <p className={styles.txt}>
-        For a detailed guide, visit our FAQ section.
+          For a detailed guide, visit our FAQ section.
         </p>
         <Button>Visit FAQs <ArrowRight /></Button>
       </div>

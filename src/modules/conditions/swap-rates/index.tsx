@@ -25,7 +25,7 @@ const SwapRates = () => {
         </>
       }
       text={
-        "Swap rates are overnight financing charges, but with FarloFX, you benefit from:"
+        "Swap rates are overnight financing charges, but with Farlo, you benefit from:"
       }
       color="dark"
       list={list}
