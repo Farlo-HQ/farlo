@@ -32,7 +32,7 @@ const faqs: FAQData[] = [
 
 interface FAQSProps {
   title: string;
-  // faqs: FAQData[];
+  // faqs?: FAQData[];
 }
 
 const FAQS = ({ title }: FAQSProps) => {
