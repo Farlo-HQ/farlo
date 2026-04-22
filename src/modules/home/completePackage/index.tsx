@@ -11,9 +11,9 @@ const CompletePackage = () => {
       <div className={styles.text}>
         <p className={styles.ttl}>
           The platform your market has been waiting for.{" "}
-          <span>One account. Every market. Built for Africa.</span>
+          <span>One account. Every market. Built for Emerging markets.</span>
         </p>
-        <h4>Join a community of traders and investors across Africa and emerging markets. Open your account in minutes.</h4>
+        <h4>Join a community of traders and investors across Emerging markets. Open your account in minutes.</h4>
       </div>
 
 

@@ -73,7 +73,7 @@ const InvestingModeUI = () => {
         tag="INVESTING MODE"
         title={
           <>
-            US stocks.<br /> From anywhere in Africa.
+            US stocks.<br /> From anywhere in Emerging markets.
           </>
         }
         text={
@@ -131,7 +131,7 @@ const InvestingModeUI = () => {
       <FAQS title="Frequently asked questions" />
 
       <BottomBanner
-        title="US stocks. From anywhere in Africa."
+        title="US stocks. From anywhere in Emerging markets."
         // text="Open your FARLO account. Complete KYC once. Switch to Investing Mode. Buy Apple from Lagos."
         text="Switch to Investing Mode from your FARLO dashboard. Your Alpaca sub-account was provisioned when you completed KYC. No second sign-up."
         fillBtn={{ text: "Start Investing in US Stocks", action: () => router.push(ROUTES.signup) }}

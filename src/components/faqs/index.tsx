@@ -16,7 +16,7 @@ const faqs: FAQData[] = [
   {
     question: "Can I use FARLO in my country?",
     answer:
-      "FARLO is available across Africa and most emerging markets. A full country list is available in the legal section.",
+      "FARLO is available across most emerging markets. A full country list is available in the legal section.",
   },
   {
     question: "What is the difference between Trading Mode and Investing Mode?",

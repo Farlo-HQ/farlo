@@ -21,11 +21,10 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 const HomeUI = () => {
   return (
     <>
-      {/* ── ORIGINAL: Hero ── */}
       <HeroSection1
-        title="Trade smarter. Invest further. All in one place."
+        title="Trade Smarter. Invest Further. All In One Place."
         text={`FX, copy trading, and US equities under one account. Fund in your local currency. Switch between trading and investing in seconds.`}
-        tag="ONE ACCOUNT   |   EVERY MARKET   |   BUILT FOR AFRICA"
+        tag="ONE ACCOUNT   |   EVERY MARKET   |   BUILT FOR EMERGING MARKETS"
         label="No card required. Verified in under 5 minutes."
         bgClassName={styles.bg}
         sectionClassName={styles.section}

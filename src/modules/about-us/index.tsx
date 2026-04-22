@@ -25,7 +25,7 @@ const AboutUI = () => {
             <br />have existed ten years ago.
           </>
         }
-        text={`FARLO exists because hundreds of millions of people across Africa and emerging markets have been locked out of global financial markets by platforms that were not built for them.`}
+        text={`FARLO exists because hundreds of millions of people across Emerging markets have been locked out of global financial markets by platforms that were not built for them.`}
         bgClassName={styles.bg}
         sectionClassName={styles.section}
         txtClassName={styles.txt}

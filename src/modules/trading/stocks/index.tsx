@@ -89,7 +89,7 @@ const faqs: FAQData[] = [
     answer: "Stock CFDs are derivatives — you trade on price movement without owning the stock. Real shares in Investing Mode are actual equity held in a regulated US brokerage account in your name. Dividends are yours. Ownership is real.",
   },
   {
-    question: "Can I invest in US stocks from Africa?",
+    question: "Can I invest in US stocks from Emerging markets?",
     answer: "Yes. FARLO's Investing Mode gives you real access to US equities via Alpaca, a regulated US brokerage. No US bank account required. Fund in NGN, GHS, KES, or USD via Paystack.",
   },
   {

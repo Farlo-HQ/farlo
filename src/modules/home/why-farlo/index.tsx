@@ -39,7 +39,7 @@ const WhyFarlo = () => {
       img: islamic_acc,
       img_size: 48,
       title: "Regulated rails",
-      text: "US equities via Alpaca. FX via licensed UpTrader infrastructure.",
+      text: "US equities and FX via Licensed Infrastructure.",
     },
     {
       img: live_quotes,
@@ -62,7 +62,7 @@ const WhyFarlo = () => {
     {
       img: prop_trading,
       img_size: 40,
-      title: "US stocks from Africa",
+      title: "US stocks from Emerging markets",
       text: "AAPL, NVDA, SPY from Accra or Cairo. No US bank account needed.",
     },
   ];

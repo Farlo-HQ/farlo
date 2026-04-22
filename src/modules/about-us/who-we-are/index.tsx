@@ -18,7 +18,7 @@ const WhoWeAre = () => {
             <p className={styles.content__ttl}>Client-Centric Approach</p>
             <p className={styles.content__txt}>
               We prioritize localization, tailoring our services to meet the
-              unique needs of traders across Africa.
+              unique needs of traders across Emerging markets.
             </p>
           </div>
         </div>
@@ -27,7 +27,7 @@ const WhoWeAre = () => {
           <div className={styles.content__sec} >
             <p className={styles.content__ttl}>Best in class trading conditions</p>
             <p className={styles.content__txt}>
-            Enjoy ultra-low spreads, deep liquidity, and institutional-grade execution.
+              Enjoy ultra-low spreads, deep liquidity, and institutional-grade execution.
             </p>
           </div>
         </div>
@@ -36,7 +36,7 @@ const WhoWeAre = () => {
           <div className={styles.content__sec} >
             <p className={styles.content__ttl}>Innovation & Security</p>
             <p className={styles.content__txt}>
-            Cutting-edge technology backed by the highest security standards.
+              Cutting-edge technology backed by the highest security standards.
             </p>
           </div>
         </div>

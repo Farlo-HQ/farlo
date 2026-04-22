@@ -89,7 +89,7 @@ const Problem = () => {
     <div ref={sectionRef}>
       <Section bgClassName={styles.bg} sectionClassName={styles.section}>
         <div ref={headingRef} className={styles.header}>
-          <p className={styles.label}>WHY MOST PLATFORMS FAIL TRADERS IN AFRICA</p>
+          <p className={styles.label}>WHY MOST PLATFORMS FAIL TRADERS IN EMERGING MARKETS</p>
           <h2 className={styles.ttl}>Built for New York.<br />Not for Nairobi.</h2>
         </div>
 

@@ -21,7 +21,7 @@ const cards = [
   },
   {
     title: "Our Vision",
-    description: `To be the most trusted and accessible forex broker in Africa,
+    description: `To be the most trusted and accessible forex broker in Emerging markets,
               delivering world-class trading solutions that empower traders at
               all levels.`,
     className: styles.vision,

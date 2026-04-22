@@ -33,7 +33,7 @@ const tracks = [
     title: "Advanced",
     courses: [
       { name: "Options Trading Basics", lessons: 16 },
-      { name: "Building a US Equity Portfolio from Africa", lessons: 10 },
+      { name: "Building a US Equity Portfolio from Emerging markets", lessons: 10 },
       { name: "Advanced FX Strategies", lessons: 12 },
     ],
   },
