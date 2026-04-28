@@ -77,7 +77,6 @@ const CopyTradingUI = () => {
         btn1={{ text: "Browse Strategy Providers", action: () => router.push(ROUTES.signup) }}
       />
 
-      {/* How It Works */}
       <Section bgClassName={styles.howBg} sectionClassName={styles.howSection}>
         <div className={styles.howHeader}>
           <p className={styles.label}>HOW IT WORKS</p>

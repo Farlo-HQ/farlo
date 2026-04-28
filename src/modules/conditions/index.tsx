@@ -34,7 +34,7 @@ const ConditionsUI = () => {
     <>
       <HeroSection2
         tag="CONDITIONS"
-        title={<>Farlo trading conditions are designed for your success</>}
+        title={<>FarloFX trading conditions are designed for your success</>}
         bgClassName={styles.bg}
         sectionClassName={styles.hero}
         txtClassName={styles.txt}
@@ -46,10 +46,10 @@ const ConditionsUI = () => {
       <TradingAdvantages />
       <LowLatency />
       <GettingStarted />
-      <FAQS title="Farlo Index Trading FAQs" />
+      <FAQS title="FarloFX Index Trading FAQs" faqs={faqs} />
       <BottomBanner
         title="Start trading the world's most popular currency pairs today"
-        text="Don’t miss another market opportunity. Farlo provides the tools, pricing, and execution speed to elevate your forex trading experience."
+        text="Don’t miss another market opportunity. FarloFX provides the tools, pricing, and execution speed to elevate your forex trading experience."
         fillBtn={{ text: "Blog", action: console.log }}
         outlineBtn={{ text: "Education", action: console.log }}
       />

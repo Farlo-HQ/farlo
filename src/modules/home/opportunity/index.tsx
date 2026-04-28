@@ -1,6 +1,3 @@
-"use client"
-
-
 import { Button, Section } from "@/components";
 import React from "react";
 import styles from "./styles.module.scss";
@@ -14,9 +11,10 @@ const Opportunity: React.FC = () => {
   return (
     <Section bgClassName={styles.bg} sectionClassName={styles.section}>
       <div>
-        <h3 className={styles.ttl}>Trade when you want. Invest when you want. Never choose.</h3>
+        <h3 className={styles.ttl}>A world of opportunity, on one platform</h3>
         <p className={styles.txt}>
-          One platform. Two modes. Every market. Switch between FX trading and US stock investing in seconds.
+          With over 350 instruments at your fingertips, you can build a trading
+          strategy that aligns with your financial goals.
         </p>
         <div className={styles.btns}>
           <Button>

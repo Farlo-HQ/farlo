@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./styles.module.scss";
+import { LogoText } from "@/assets/vectors/logo-text";
 import { AppStore } from "@/assets/vectors/app-store";
 import { PlayStore } from "@/assets/vectors/play-store";
 import { TwitterLogo } from "@/assets/icons/twitter";
@@ -8,41 +9,40 @@ import { LinkedinLogo } from "@/assets/icons/linkedin";
 import { FacebookLogo } from "@/assets/icons/facebook";
 import { InstagramLogo } from "@/assets/icons/instagram";
 import { ROUTES } from "@/utils/routes";
-import { NewLogoText } from "@/assets/vectors/new-logo-text";
 
 const Footer = () => {
   const links = [
     {
-      title: "Farlo",
+      title: "Company",
       links: [
         {
-          title: "About Us",
+          title: "About Farlo",
           path: ROUTES.about,
         },
         {
-          title: "Careers",
+          title: "Farlo Careers",
           path: `${ROUTES.about}#careers`,
         },
         {
-          title: "Contact",
+          title: "Contact us",
           path: ROUTES.contact,
         },
         {
-          title: "Blog",
+          title: "Support",
           path: "",
         },
         {
-          title: "hello@farlo.io",
-          path: "mailto:hello@farlo.io",
+          title: "Privacy Policy",
+          path: ROUTES.privacy_policy,
         },
-        // {
-        //   title: "Terms of Use",
-        //   path: ROUTES.terms_of_use,
-        // },
-        // {
-        //   title: "Legal",
-        //   path: ROUTES.legal,
-        // },
+        {
+          title: "Terms of Use",
+          path: ROUTES.terms_of_use,
+        },
+        {
+          title: "Legal",
+          path: ROUTES.legal,
+        },
       ],
     },
     {
@@ -73,7 +73,7 @@ const Footer = () => {
           path: ROUTES.conditions,
         },
         {
-          title: "Copy trading",
+          title: "Assisted trading",
           path: ROUTES.assisted_trading,
         },
       ],
@@ -81,45 +81,6 @@ const Footer = () => {
     {
       type: "dual",
       sublinks: [
-
-        // {
-        //   title: "Partnerships",
-        //   links: [
-        //     {
-        //       title: "MAM Account",
-        //       path: ROUTES.partnerships_mam_pamm,
-        //     },
-        //     {
-        //       title: "PAMM Account",
-        //       path: ROUTES.partnerships_mam_pamm,
-        //     },
-        //     {
-        //       title: "Introducing Broker",
-        //       path: ROUTES.partnerships_ib,
-        //     },
-        //   ],
-        // },
-        {
-          title: "Investing",
-          links: [
-            {
-              title: "Investing Mode",
-              path: "",
-            },
-            {
-              title: "US Stocks",
-              path: "",
-            },
-            {
-              title: "ETFs",
-              path: "",
-            },
-            {
-              title: "Fractional Shares",
-              path: "",
-            },
-          ],
-        },
         {
           title: "Platforms",
           links: [
@@ -134,6 +95,23 @@ const Footer = () => {
             {
               title: "MT5 Web",
               path: ROUTES.platforms_web,
+            },
+          ],
+        },
+        {
+          title: "Partnerships",
+          links: [
+            {
+              title: "MAM Account",
+              path: ROUTES.partnerships_mam_pamm,
+            },
+            {
+              title: "PAMM Account",
+              path: ROUTES.partnerships_mam_pamm,
+            },
+            {
+              title: "Introducing Broker",
+              path: ROUTES.partnerships_ib,
             },
           ],
         },
@@ -164,10 +142,6 @@ const Footer = () => {
       title: "Resources",
       links: [
         {
-          title: "Educate a friend",
-          path: "",
-        },
-        {
           title: "Economic Calender",
           path: ROUTES.tools_calendar,
         },
@@ -179,43 +153,38 @@ const Footer = () => {
           title: "Live Quotes",
           path: ROUTES.tools_quotes,
         },
+      ],
+    },
+    {
+      title: "Additional Links",
+      links: [
         {
-          title: "Refer a friend",
+          title: "FAQs",
           path: "",
+        },
+        {
+          title: "Education",
+          path: "",
+        },
+        {
+          title: "Blog",
+          path: ROUTES.blog,
+        },
+        {
+          title: "Deposit Bonus",
+          path: ROUTES.partnerships_deposit_bonus,
+        },
+        {
+          title: "Refer a Friend",
+          path: ROUTES.partnerships_referral,
         },
       ],
     },
-    // {
-    //   title: "Additional Links",
-    //   links: [
-    //     {
-    //       title: "FAQs",
-    //       path: "",
-    //     },
-    //     {
-    //       title: "Education",
-    //       path: "",
-    //     },
-    //     {
-    //       title: "Blog",
-    //       path: ROUTES.blog,
-    //     },
-    //     {
-    //       title: "Deposit Bonus",
-    //       path: ROUTES.partnerships_deposit_bonus,
-    //     },
-    //     {
-    //       title: "Refer a Friend",
-    //       path: ROUTES.partnerships_referral,
-    //     },
-    //   ],
-    // },
   ];
   return (
     <>
       <footer className={styles.footerBg}>
         <section className={`layout-container ${styles.footer}`}>
-          <div className={styles.label}>Building the platform emerging markets deserve.</div>
           <div className={styles.sec1}>
             {links.map((item) =>
               item.type === "dual" ? (
@@ -240,7 +209,7 @@ const Footer = () => {
             )}
           </div>
           <div className={styles.sec2}>
-            <NewLogoText />
+            <LogoText />
             <div>
               <div className={styles.sec2__item}>
                 <p>Follow us</p>
@@ -254,7 +223,7 @@ const Footer = () => {
                   </a>
                   <YoutubeLogo />
                   <LinkedinLogo />
-                  {/* <FacebookLogo /> */}
+                  <FacebookLogo />
                   <a
                     href="https://www.instagram.com/farlofx_global?igsh=NGsxcjBwZGF2bjZh&utm_source=qr"
                     target="_blank"
@@ -279,4 +248,3 @@ const Footer = () => {
 };
 
 export { Footer };
-

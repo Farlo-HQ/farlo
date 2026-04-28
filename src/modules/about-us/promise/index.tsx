@@ -38,7 +38,6 @@ const OurPromise = () => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      // Set initial states - cards start off-screen to the right
       gsap.set(".step-1", {
         xPercent: 150,
         opacity: 0,
@@ -56,13 +55,12 @@ const OurPromise = () => {
         scrollTrigger: {
           trigger: ".promise-container",
           pin: isMobile,
-          start: "top 80%", // Start when section is 80% down viewport
+          start: "top 80%",
           end: isMobile ? "+=500px" : "+=600px",
           scrub: 1,
         },
       });
 
-      // Card 1 slides in
       timeline.to(".step-1", {
         xPercent: 0,
         opacity: 1,
@@ -70,7 +68,6 @@ const OurPromise = () => {
         duration: 1,
       });
 
-      // Card 2 slides in with overlap
       timeline.to(
         ".step-2",
         {
@@ -81,7 +78,6 @@ const OurPromise = () => {
         ">-0.75"
       );
 
-      // Card 3 slides in with overlap
       timeline.to(
         ".step-3",
         {

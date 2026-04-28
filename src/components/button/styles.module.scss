@@ -5,22 +5,11 @@
   justify-content: center;
   gap: 8px;
   border: none;
-  border-radius: 10px;
+  border-radius: 4px;
   font-weight: 500;
   font-family: "GeneralSans";
   font-size: 1rem;
   cursor: pointer;
-
-  &--fullWidth {
-    display: flex;
-    width: 100%;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    filter: grayscale(1); 
-  }
 
   &--fill-red {
     border: 2px solid;

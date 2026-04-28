@@ -13,16 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Farlo",
+  title: "FarloFx",
   description:
-    "Farlo puts you in the driver’s seat of your financial future.",
+    "FarloFX puts you in the driver’s seat of your financial future.",
   keywords: [
     "trading",
     "financial",
     "future",
     "trade",
     "securities",
-    "farlo",
+    "farlofx",
   ],
 };
 

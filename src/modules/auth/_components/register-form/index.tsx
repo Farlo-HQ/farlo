@@ -35,7 +35,6 @@ const RegisterForm = () => {
     const errors: RegisterFormErrors = {};
 
     if (password.trim().length === 0) errors.password = "Required";
-    // Add password strength validation
     if (password && password.length < 8) {
       errors.password = "Password must be at least 8 characters";
     } else if (
@@ -48,7 +47,6 @@ const RegisterForm = () => {
     if (email.trim().length === 0) errors.email = "Required";
     if (country.trim().length === 0) errors.country = "Required";
     if (phone.trim().length === 0) errors.phone = "Required";
-    // Add phone number format validation (simple example)
     if (phone && !/^\+?[1-9]\d{1,14}$/.test(phone)) {
       errors.phone = "Invalid phone number format";
     }

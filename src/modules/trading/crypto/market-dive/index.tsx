@@ -21,7 +21,7 @@ const MarketDive = () => {
               intermediaries.
               <br />
               <br />
-              With Farlo, you can explore the potential of digital assets and
+              With FarloFX, you can explore the potential of digital assets and
               enhance your trading strategy.
             </p>
           </div>
@@ -41,7 +41,7 @@ const MarketDive = () => {
                 <br />
                 <span>Monday to Thursday from 21:58 to 23:01</span>
               </li>
-
+             
             </ul>
             <p style={{ marginTop: "1rem" }} className={styles.card__txt}>All times are in server time (GMT+0).</p>
           </div>

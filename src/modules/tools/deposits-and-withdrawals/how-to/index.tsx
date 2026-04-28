@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 const list = [
   {
     title: "Register & Verify",
-    text: "Sign up for a Farlo live account and complete the verification process.",
+    text: "Sign up for a FarloFX live account and complete the verification process.",
   },
   {
     title: "Select a Payment Method",

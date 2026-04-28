@@ -12,16 +12,15 @@ gsap.registerPlugin(ScrollTrigger);
 const cards = [
   {
     title: "Our Mission",
-    // description: ` To provide transparent, reliable, and innovative trading platform
-    //           that caters to African traders' unique needs, while expanding
-    //           globally with scalable and sustainable growth.`,
-    description: `Our mission is simple: make global trading and investing as accessible in Lagos as it is in London.`,
+    description: ` To provide transparent, reliable, and innovative trading platform
+              that caters to African traders' unique needs, while expanding
+              globally with scalable and sustainable growth.`,
     className: styles.mission,
     image: mission,
   },
   {
     title: "Our Vision",
-    description: `To be the most trusted and accessible forex broker in Emerging markets,
+    description: `To be the most trusted and accessible forex broker in Africa,
               delivering world-class trading solutions that empower traders at
               all levels.`,
     className: styles.vision,
@@ -68,7 +67,6 @@ const Mission = () => {
 
       if (cards.length === 0) return;
 
-      // Initial card positioning
       gsap.set(cards[0], {
         position: "absolute",
         top: 0,
@@ -90,7 +88,6 @@ const Mission = () => {
         zIndex: 2,
       });
 
-      // Create scroll-triggered timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
@@ -104,10 +101,8 @@ const Mission = () => {
         },
       });
 
-      // Add pause at start
       tl.to({}, { duration: 0.5 });
 
-      // Slide card 2 up
       tl.to(
         cards[1],
         {
@@ -118,7 +113,6 @@ const Mission = () => {
         0.5
       );
 
-      // Slide card 3 up
       tl.to(
         cards[2],
         {
@@ -129,7 +123,6 @@ const Mission = () => {
         1.5
       );
 
-      // Add hold at the end to prevent jump on unpin
       tl.to({}, { duration: 1 });
     }, container);
 

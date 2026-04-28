@@ -9,7 +9,7 @@ const LiveQuotesUI = () => {
       <HeroSection3
         title={<>Live Quotes For All Markets</>}
         text={
-          "Farlo’s investment calculator helps you instantly compute pips, margin, spread, commission, and more."
+          "FarloFX’s investment calculator helps you instantly compute pips, margin, spread, commission, and more."
         }
         sectionClassName={styles.hero}
         noElement

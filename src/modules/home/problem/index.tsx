@@ -31,7 +31,6 @@ const Problem = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Heading slides up
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
@@ -43,7 +42,6 @@ const Problem = () => {
         ease: "power3.out",
       });
 
-      // Cards stagger in from bottom
       gsap.from(".problem-card", {
         scrollTrigger: {
           trigger: cardsRef.current,
@@ -56,7 +54,6 @@ const Problem = () => {
         ease: "power3.out",
       });
 
-      // Bridge line
       gsap.from(bridgeRef.current, {
         scrollTrigger: {
           trigger: bridgeRef.current,
@@ -68,7 +65,6 @@ const Problem = () => {
         ease: "power3.out",
       });
 
-      // Red border grows in on each card
       gsap.from(".problem-card-border", {
         scrollTrigger: {
           trigger: cardsRef.current,

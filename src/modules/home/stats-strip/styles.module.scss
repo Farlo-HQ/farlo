@@ -1,6 +1,5 @@
 .bg {
   background: var(--primary);
-  /* Gap from section above */
   margin-top: 0;
   margin-bottom: 4rem;
 }
@@ -34,7 +33,6 @@
   text-align: center;
   position: relative;
 
-  /* Vertical separator lines between stats */
   & + & {
     &::before {
       content: "";

@@ -33,7 +33,7 @@ const ReferralBenefits = () => {
     <Section bgClassName={styles.bg} sectionClassName={styles.section}>
       <div className={styles.sec1}>
         {/* <p className={styles.tag}>More info on Deposit Bonus</p> */}
-        <h2 className={styles.ttl}>Benefits of Farlo Referral Program</h2>
+        <h2 className={styles.ttl}>Benefits of FarloFX Referral Program</h2>
       </div>
       <div className={styles.content}>
         <div className={styles.cards}>

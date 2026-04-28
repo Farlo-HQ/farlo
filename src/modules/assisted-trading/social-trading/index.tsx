@@ -20,7 +20,7 @@ const SocialTrading = () => {
     <AlternateList
       title={<>Social Trading</>}
       text={
-        "Get real-time insights, market trends, and strategies from top traders. With Farlo Social Trading you can:"
+        "Get real-time insights, market trends, and strategies from top traders. With FarloFX Social Trading you can:"
       }
       color="dark"
       list={list}

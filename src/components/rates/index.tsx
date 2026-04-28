@@ -4,49 +4,34 @@ import { IconCaretDownFilled } from "@tabler/icons-react";
 const Rates = () => {
   const rates = [
     {
-      title: "EUR/USD",
-      value: 1.0842,
-      rate: 0.21,
+      title: "Gold",
+      value: 200.63,
+      rate: 0.5,
     },
     {
-      title: "GBP/USD",
-      value: 1.2635,
-      rate: +0.14,
+      title: "Silver",
+      value: 200,
+      rate: -0.5,
     },
     {
-      title: "BTC/USD",
-      value: 67.420,
-      rate: +1.42,
+      title: "Mercury",
+      value: 200,
+      rate: -0.5,
     },
     {
       title: "Gold",
-      value: 2316.80,
-      rate: +0.72,
+      value: 200.63,
+      rate: -0.5,
     },
     {
-      title: "AAPL",
-      value: 191.20,
-      rate: +0.84,
+      title: "Mercury",
+      value: 200,
+      rate: -0.5,
     },
     {
-      title: "NVDA",
-      value: 878.40,
-      rate: +2.31,
-    },
-    {
-      title: "SPY",
-      value: 512.10,
-      rate: +0.28,
-    },
-    {
-      title: "US30",
-      value: 38.450,
-      rate: +0.32,
-    },
-    {
-      title: "ETH/USD",
-      value: 3.480,
-      rate: +0.88,
+      title: "Gold",
+      value: 200.63,
+      rate: -0.5,
     },
   ];
   return (
@@ -57,10 +42,11 @@ const Rates = () => {
             <span className={styles.rate__ttl}>{title}</span>
             <span className={styles.rate__value}>{value}</span>
             <span
-              className={`${styles.rate__rate} ${rate > 0
-                ? styles["rate__rate--increase"]
-                : styles["rate__rate--decrease"]
-                }`}
+              className={`${styles.rate__rate} ${
+                rate > 0
+                  ? styles["rate__rate--increase"]
+                  : styles["rate__rate--decrease"]
+              }`}
             >
               <IconCaretDownFilled size={20} /> {rate}%
             </span>

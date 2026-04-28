@@ -1,6 +1,3 @@
-"use client"
-
-
 import { Section } from "@/components";
 import styles from "./styles.module.scss";
 import {
@@ -20,60 +17,64 @@ const WhyFarlo = () => {
     {
       img: ultrafast_execution,
       img_size: 48,
-      title: "30ms execution",
-      text: "Orders fill via MT5 infrastructure at institutional speed. No requotes.",
+      title: "Ultrafast execution",
+      text: "Execute with speeds up to 30 milliseconds.",
     },
     {
       img: tight_spread,
       img_size: 48,
-      title: "Local deposits",
-      text: "Fund via Paystack, USDT, or bank transfer. No wire. No delays.",
+      title: "Tight spreads",
+      text: "Starting at 0.6 pips, benefit from raw spreads.",
     },
     {
       img: one_to_1000,
       img_size: 48,
-      title: "Instant transfers",
-      text: "Move profits between Trading and Investing in seconds. No fee.",
+      title: "Up to 1:1000 in leverage",
+      text: "Take on as much risk as you can handle.",
     },
     {
       img: islamic_acc,
       img_size: 48,
-      title: "Regulated rails",
-      text: "US equities and FX via Licensed Infrastructure.",
+      title: "Islamic accounts",
+      text: "Enjoy halal and interest-free trades.",
     },
     {
       img: live_quotes,
       img_size: 48,
-      title: "Live quotes always",
-      text: "Real-time pricing across all 350+ instruments. No refresh needed.",
+
+      title: "Live quotes",
+      text: "Move with the market, no matter the asset.",
     },
     {
       img: low_latency,
       img_size: 48,
-      title: "One KYC. All access.",
-      text: "Verify once. Unlock FX, copy trading, and US equities simultaneously.",
+
+      title: "Low latency",
+      text: "Never experience lags on entry or exit.",
     },
     {
       img: copy_social,
       img_size: 40,
-      title: "Copy top traders",
-      text: "Audited returns. Real drawdown data. Follow and allocate in one click.",
+
+      title: "Copy trading & Social trading",
+      text: "Get real-time insights, and strategies from top traders.",
     },
     {
       img: prop_trading,
       img_size: 40,
-      title: "US stocks from Emerging markets",
-      text: "AAPL, NVDA, SPY from Accra or Cairo. No US bank account needed.",
+      title: "Prop trading",
+      text: "Trade with funds from FarloFX, and maximize your earning.",
     },
   ];
   return (
     <Section sectionClassName={styles.section}>
       <div className={styles.sec1}>
-        <p className={styles.tag}>Why FARLO</p>
-        <h5 className={styles.ttl}>The platform built for your market.</h5>
-        {/* <p className={styles.txt}>
-          Built for Africa and emerging markets. Real specs, not marketing claims.
-        </p> */}
+        <p className={styles.tag}>Why FarloFX</p>
+        <h5 className={styles.ttl}>Unlock elite trading benefits</h5>
+        <p className={styles.txt}>
+          Enjoy an enhanced trading experience with exclusive features designed
+          for performance.
+        </p>
       </div>
       <div className={styles.cards}>
         {list.map(({ text, title, img, img_size }, index) => (

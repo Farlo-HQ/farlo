@@ -4,24 +4,10 @@
 }
 .footer {
 }
-
-.label {
-  text-transform: uppercase;
-  padding-top: 5rem;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.4;
-    color: #ffffff69;
-    @media screen and (max-width: 800px) {
-      font-size: 16px;
-      line-height: 1.2;
-      font-weight: 500;
-    }
-}
 .sec1 {
   display: flex;
   justify-content: space-between;
-  padding-top: 3rem;
+  padding-top: 5rem;
   padding-bottom: 5rem;
   gap: 4rem;
 

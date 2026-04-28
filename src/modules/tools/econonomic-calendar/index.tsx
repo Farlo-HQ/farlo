@@ -6,9 +6,9 @@ const EconomicCalendarUI = () => {
   return (
     <>
       <HeroSection3
-        title={<>Farlo Economic Calendar</>}
+        title={<>FarloFX Economic Calendar</>}
         text={
-          "Keep track of high-impact news, key market-moving economic events, and data releases with the Farlo economic calendar."
+          "Keep track of high-impact news, key market-moving economic events, and data releases with the FarloFX economic calendar."
         }
         btn1={{ text: "Register", action: console.log }}
         btn2={{ text: "Open Demo", action: console.log }}

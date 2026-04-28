@@ -37,7 +37,7 @@ const DepositsAndWithdrawalsUI = () => {
       />
       <HowTo />
       <Perks />
-      <FAQS title="Frequently asked questions" />
+      <FAQS title="Frequently asked questions" faqs={faqs} />
       <BottomBanner
         title="The Future of Trading Starts Here"
         text="Experience world-class trading conditions, advanced tools, and dedicated support all in one platform."

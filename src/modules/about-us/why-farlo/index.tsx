@@ -14,7 +14,7 @@ const WhyFarlo = () => {
     {
       img: advanced_trading,
       title: "Advanced Trading Platforms",
-      text: "Farlo is available via the MT5 platform on Android, iOS, Windows, and macOS devices.",
+      text: "FarloFX is available via the MT5 platform on Android, iOS, Windows, and macOS devices.",
     },
     {
       img: tight_spread,
@@ -41,14 +41,14 @@ const WhyFarlo = () => {
     <>
       <Section bgClassName={styles.bg} sectionClassName={styles.section}>
         <div className={styles.sec1}>
-          <p className={styles.tag}>Why Farlo</p>
+          <p className={styles.tag}>Why FarloFX</p>
           <h3 className={styles.ttl}>A Trading Experience Like No Other</h3>
           <p className={styles.txt}>
             Choosing the right broker can make all the difference. Choose
-            Farlo.
+            FarloFX.
           </p>
         </div>
-        {reasons.map(({ img, text, title }, index) => (
+        {reasons.map(({ img, text, title },index) => (
           <div className={styles.reason} key={`reason-${index}`} >
             <Image src={img} width={80} height={80} alt="" />
             <div>

@@ -5,236 +5,288 @@ import { Button } from "@/components";
 import { useDashboard } from "@/context/DashboardContext";
 import {
   IconBuildingBank,
+  IconCreditCard,
   IconCurrencyBitcoin,
   IconDeviceMobile,
-  IconCheck,
-  IconChevronLeft,
+  IconCircleCheck,
   IconChevronRight,
-  IconCircleCheckFilled,
-  IconCreditCard,
-  IconLock
+  IconArrowLeft,
+  IconLock,
 } from "@tabler/icons-react";
 
-type Step = "method" | "amount" | "review" | "success";
+type DepositStep = "method" | "amount" | "confirm" | "success";
 
-const METHODS = [
-  { id: 'bank', title: 'Bank Transfer', desc: '1-3 Business Days', icon: <IconBuildingBank size={22} /> },
-  { id: 'crypto', title: 'Crypto Wallet', desc: 'Instant Settlement', icon: <IconCurrencyBitcoin size={22} /> },
-  { id: 'mobile', title: 'Mobile Money', desc: 'Instant · 1% Fee', icon: <IconDeviceMobile size={22} /> },
-  { id: "card", title: "Debit / Credit Card", desc: "Instant · 1.5% fee", icon: <IconCreditCard size={22} strokeWidth={1.5} /> },
+const PAYMENT_METHODS = [
+  {
+    id: "bank",
+    label: "Bank Transfer",
+    sub: "1–3 business days · No fee",
+    icon: <IconBuildingBank size={22} strokeWidth={1.5} />,
+    color: "blue",
+  },
+  {
+    id: "card",
+    label: "Debit / Credit Card",
+    sub: "Instant · 1.5% fee",
+    icon: <IconCreditCard size={22} strokeWidth={1.5} />,
+    color: "red",
+  },
+  {
+    id: "crypto",
+    label: "Crypto (USDT / BTC)",
+    sub: "15 min · No fee",
+    icon: <IconCurrencyBitcoin size={22} strokeWidth={1.5} />,
+    color: "amber",
+  },
+  {
+    id: "mobile",
+    label: "Mobile Money",
+    sub: "Instant · 1% fee",
+    icon: <IconDeviceMobile size={22} strokeWidth={1.5} />,
+    color: "green",
+  },
 ];
 
-const QUICK_AMOUNTS = ["50", "100", "250", "500", "1000", "2000"];
+const QUICK_AMOUNTS = [50, 100, 250, 500, 1000];
 
 const DepositUI = () => {
-  const [step, setStep] = useState<Step>("method");
+  const [step, setStep] = useState<DepositStep>("method");
   const [method, setMethod] = useState("");
   const [amount, setAmount] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const activeMethod = METHODS.find(m => m.id === method);
-  const { wallets } = useDashboard();
+  const { deposit, wallets } = useDashboard();
 
-  const handleNext = () => {
-    if (step === "method") setStep("amount");
-    else if (step === "amount") setStep("review");
-  };
+  const parsedAmount = parseFloat(amount);
+  const isValidAmount = !isNaN(parsedAmount) && parsedAmount >= 10;
 
-  const handleFinalSubmit = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
+  const selectedMethod = PAYMENT_METHODS.find((m) => m.id === method);
+
+  const handleConfirm = () => {
+    if (isValidAmount) {
+      deposit(parsedAmount);
       setStep("success");
-    }, 1500);
+    }
   };
-
-  if (step === "success") {
-    return (
-      <div className={styles.page_wrapper}>
-        <div className={styles.container}>
-          <div className={styles.success_view}>
-            <div style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>
-              <IconCircleCheckFilled size={64} />
-            </div>
-            <h1 className={styles.page_title}>Deposit Successful</h1>
-            <p className={styles.page_subtitle}>
-              Your deposit of <b>${parseFloat(amount).toLocaleString()}</b> has been credited to your Main Wallet.
-            </p>
-            <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <Button variant="fill-red" fullWidth onClick={() => window.location.href = "/overview"}>
-                Return to Dashboard
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
-    <div className={styles.page_wrapper}>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      {step !== "success" && (
         <div className={styles.page_header}>
           {step !== "method" && (
-            <IconChevronLeft
+            <button
               className={styles.back_btn}
-              size={24}
-              onClick={() => setStep(step === "review" ? "amount" : "method")}
-            />
+              onClick={() =>
+                setStep(
+                  step === "confirm"
+                    ? "amount"
+                    : step === "amount"
+                      ? "method"
+                      : "method"
+                )
+              }
+            >
+              <IconArrowLeft size={16} /> Back
+            </button>
           )}
-          <h1 className={styles.page_title}>
-            {step === "method" ? "Deposit Funds" : step === "amount" ? "How much?" : "Confirm"}
-          </h1>
-          <p className={styles.page_subtitle}>
-            {step === "method" && "Select your preferred payment method."}
-            {step === "amount" && "Enter the amount you wish to add."}
-            {step === "review" && "Check the details below before confirming."}
-          </p>
+          <div>
+            <h1 className={styles.page_title}>Deposit Funds</h1>
+            <p className={styles.page_sub}>
+              Add funds to your Main Wallet
+            </p>
+          </div>
         </div>
+      )}
 
-        <div className={styles.main_content}>
-          {step === "method" && (
-            <div className={styles.selection_list}>
-              <span className={styles.label}>Available Methods</span>
-              {METHODS.map((item) => (
-                <div
-                  key={item.id}
-                  className={`${styles.selection_row} ${method === item.id ? styles.active : ""}`}
-                  onClick={() => setMethod(item.id)}
-                >
-                  <div className={styles.icon_box}>{item.icon}</div>
-                  <div className={styles.content}>
-                    <p className={styles.title}>{item.title}</p>
-                    <p className={styles.desc}>{item.desc}</p>
-                  </div>
-                  {method === item.id && <IconCheck size={20} color="var(--primary)" />}
+      {step === "method" && (
+        <div className={styles.section}>
+          <p className={styles.section_label}>Select payment method</p>
+          <div className={styles.methods_grid}>
+            {PAYMENT_METHODS.map((m) => (
+              <div
+                key={m.id}
+                role="button"
+                className={`${styles.method_card} ${method === m.id ? styles.method_card_active : ""
+                  }`}
+                onClick={() => setMethod(m.id)}
+              >
+                <div className={`${styles.method_icon} ${styles[`icon_${m.color}`]}`}>
+                  {m.icon}
                 </div>
-              ))}
-            </div>
-          )}
-
-          {step === "amount" && (
-            <div className={styles.amount_stage}>
-              <div className={styles.method_badge}>
-                <div className={styles.badge_icon}>{activeMethod?.icon}</div>
-                <span>{activeMethod?.title}</span>
-              </div>
-              <div className={styles.input_container}>
-                <span>$</span>
-                <input
-                  autoFocus
-                  type="text"
-                  inputMode="decimal"
-                  placeholder="0.00"
-                  value={amount}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    if (val === "" || /^[0-9]*\.?[0-9]*$/.test(val)) setAmount(val);
-                  }}
-                  style={{ width: `${Math.max(amount.length * 25, 140)}px` }}
-                />
-              </div>
-              <div className={styles.balance_chip}>
-                Main Wallet: &nbsp; <span>${wallets.main.toLocaleString()}</span>
-              </div>
-
-              <div className={styles.quick_amounts}>
-                {QUICK_AMOUNTS.map((q) => (
-                  <button
-                    key={q}
-                    className={`${styles.q_btn} ${amount === q ? styles.q_active : ""}`}
-                    onClick={() => setAmount(q)}
-                  >
-                    {q}
-                  </button>
-                ))}
-              </div>
-
-
-            </div>
-          )}
-
-          {/* {step === "review" && (
-            <div className={styles.receipt_wrap}>
-              <div className={styles.receipt_item}>
-                <span className={styles.key}>Payment Method</span>
-                <span className={styles.val}>{method.toUpperCase()}</span>
-              </div>
-              <div className={styles.receipt_item}>
-                <span className={styles.key}>Fee</span>
-                <span className={styles.val}>$0.00</span>
-              </div>
-              <div className={styles.grand_total}>
-                <p className={styles.total_label}>Total to Deposit</p>
-                <h2 className={styles.total_value}>
-                  ${amount ? parseFloat(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }) : "0.00"}
-                </h2>
-              </div>
-              <div className={styles.lock_note}>
-                <IconLock size={14} />
-                <p>Your transaction is secured with 256-bit SSL encryption.</p>
-              </div>
-            </div>
-          )} */}
-
-          {step === "review" && (
-            <div className={styles.step_content}>
-              <span className={styles.section_tag}>Review Your Deposit</span>
-
-              <div className={styles.receipt_wrap}>
-                <div className={styles.receipt_item}>
-                  <span className={styles.key}>Payment Method</span>
-                  <span className={styles.val}>{activeMethod?.title}</span>
+                <div className={styles.method_text}>
+                  <p className={styles.method_label}>{m.label}</p>
+                  <p className={styles.method_sub}>{m.sub}</p>
                 </div>
-                <div className={styles.receipt_item}>
-                  <span className={styles.key}>Deposit Amount</span>
-                  <span className={styles.val}>${amount ? parseFloat(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }) : "0.00"}</span>
-                </div>
-                <div className={styles.receipt_item}>
-                  <span className={styles.key}>Processing Time</span>
-                  <span className={styles.val}>{activeMethod?.desc}</span>
-                </div>
-                <div className={styles.receipt_item}>
-                  <span className={styles.key}>Fee</span>
-                  <span className={styles.val}>No fee</span>
-                </div>
-                <div className={`${styles.receipt_item} ${styles.total_row}`}>
-                  <span className={styles.key}>Total to Wallet</span>
-                  <span className={styles.total_val}>${amount ? parseFloat(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }) : "0.00"}</span>
-                </div>
+                {method === m.id && (
+                  <IconCircleCheck
+                    size={20}
+                    className={styles.method_check}
+                  />
+                )}
               </div>
-
-              <div className={styles.lock_note}>
-                <IconLock size={14} color="green" />
-                <p>Your transaction is secured with 256-bit SSL encryption.</p>
-              </div>
-
-              <div className={styles.action_split}>
-                <Button variant="outline-red" onClick={() => setStep("amount")}>Edit</Button>
-                <Button variant="fill-red" onClick={handleFinalSubmit}>{isLoading ? "Processing..." : "Confirm Deposit"}</Button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {step !== "review" && (
-          <div style={{ marginTop: '3rem' }}>
+            ))}
+          </div>
+          <div className={styles.step_actions}>
             <Button
               variant="fill-red"
-              fullWidth
-              disabled={
-                step === "method"
-                  ? !method
-                  : step === "amount"
-                    ? (!amount || parseFloat(amount) <= 0)
-                    : isLoading
-              }
-              onClick={handleNext}
+              disabled={!method}
+              onClick={() => setStep("amount")}
             >
-              Continue
+              Continue <IconChevronRight size={16} />
             </Button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {step === "amount" && (
+        <div className={styles.section}>
+          <div className={styles.selected_method_badge}>
+            <div className={`${styles.method_icon_sm} ${styles[`icon_${selectedMethod?.color}`]}`}>
+              {selectedMethod?.icon}
+            </div>
+            {selectedMethod?.label}
+          </div>
+
+          <p className={styles.section_label}>Enter amount</p>
+
+          <div className={styles.amount_input_wrap}>
+            <span className={styles.currency_symbol}>$</span>
+            <input
+              type="number"
+              className={styles.amount_input}
+              placeholder="0.00"
+              value={amount}
+              min={10}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+            <span className={styles.currency_label}>USD</span>
+          </div>
+
+          {!isValidAmount && amount !== "" && (
+            <p className={styles.amount_error}>Minimum deposit is $10.00</p>
+          )}
+
+          <div className={styles.quick_amounts}>
+            {QUICK_AMOUNTS.map((q) => (
+              <button
+                key={q}
+                className={`${styles.quick_btn} ${amount === String(q) ? styles.quick_btn_active : ""
+                  }`}
+                onClick={() => setAmount(String(q))}
+              >
+                ${q}
+              </button>
+            ))}
+          </div>
+
+          <div className={styles.balance_note}>
+            <p>Current Main Wallet Balance</p>
+            <p className={styles.balance_val}>
+              ${wallets.main.toLocaleString("en-US", { minimumFractionDigits: 2 })} USD
+            </p>
+          </div>
+
+          <div className={styles.step_actions}>
+            <Button
+              variant="fill-red"
+              disabled={!isValidAmount}
+              onClick={() => setStep("confirm")}
+            >
+              Review Deposit <IconChevronRight size={16} />
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {step === "confirm" && (
+        <div className={styles.section}>
+          <p className={styles.section_label}>Review your deposit</p>
+
+          <div className={styles.confirm_card}>
+            <div className={styles.confirm_row}>
+              <span className={styles.confirm_label}>Payment Method</span>
+              <span className={styles.confirm_value}>{selectedMethod?.label}</span>
+            </div>
+            <div className={styles.confirm_divider} />
+            <div className={styles.confirm_row}>
+              <span className={styles.confirm_label}>Deposit Amount</span>
+              <span className={styles.confirm_value}>
+                ${parsedAmount.toFixed(2)} USD
+              </span>
+            </div>
+            <div className={styles.confirm_row}>
+              <span className={styles.confirm_label}>Processing Time</span>
+              <span className={styles.confirm_value}>
+                {selectedMethod?.sub.split("·")[0].trim()}
+              </span>
+            </div>
+            <div className={styles.confirm_row}>
+              <span className={styles.confirm_label}>Fee</span>
+              <span className={styles.confirm_value}>
+                {selectedMethod?.sub.split("·")[1].trim()}
+              </span>
+            </div>
+            <div className={styles.confirm_divider} />
+            <div className={`${styles.confirm_row} ${styles.confirm_total}`}>
+              <span>Total to Wallet</span>
+              <span>${parsedAmount.toFixed(2)} USD</span>
+            </div>
+          </div>
+
+          <div className={styles.security_note}>
+            <IconLock size={14} />
+            <p>
+              Your transaction is secured with 256-bit SSL encryption.
+            </p>
+          </div>
+
+          <div className={styles.step_actions}>
+            <Button variant="outline-red" onClick={() => setStep("amount")}>
+              Edit
+            </Button>
+            <Button variant="fill-red" onClick={handleConfirm}>
+              Confirm Deposit
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {step === "success" && (
+        <div className={styles.success}>
+          <div className={styles.success_icon}>
+            <IconCircleCheck size={52} strokeWidth={1.2} />
+          </div>
+          <h1 className={styles.success_title}>Deposit Successful!</h1>
+          <p className={styles.success_sub}>
+            ${parsedAmount.toFixed(2)} USD has been added to your Main
+            Wallet.
+          </p>
+          <div className={styles.success_card}>
+            <div className={styles.confirm_row}>
+              <span className={styles.confirm_label}>New Balance</span>
+              <span className={styles.confirm_value}>
+                ${wallets.main.toLocaleString("en-US", { minimumFractionDigits: 2 })} USD
+              </span>
+            </div>
+          </div>
+          <div className={styles.success_actions}>
+            <Button
+              variant="outline-red"
+              onClick={() => {
+                setStep("method");
+                setAmount("");
+                setMethod("");
+              }}
+            >
+              Make Another Deposit
+            </Button>
+            <Button
+              variant="fill-red"
+              onClick={() => (window.location.href = "/overview")}
+            >
+              Back to Dashboard
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

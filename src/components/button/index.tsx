@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import styles from "./styles.module.scss";
 
@@ -10,15 +9,14 @@ interface ButtonProps
   children: any;
   className?: string;
   variant?:
-  | "fill-red"
-  | "fill-white"
-  | "ghost-red"
-  | "ghost-white"
-  | "outline-white"
-  | "outline-red"
-  | "grey";
+    | "fill-red"
+    | "fill-white"
+    | "ghost-red"
+    | "ghost-white"
+    | "outline-white"
+    | "outline-red"
+    | "grey";
   disabled?: boolean;
-  fullWidth?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -28,23 +26,17 @@ const Button: React.FC<ButtonProps> = (props) => {
     className,
     onClick,
     disabled,
-    fullWidth,
     ...rest
   } = props;
-
   return (
     <button
       {...rest}
       disabled={disabled}
       onClick={(e) => {
+        e.preventDefault();
         onClick?.(e);
       }}
-      className={`
-        ${styles.btn} 
-        ${styles[`btn--${variant}`]} 
-        ${fullWidth ? styles["btn--fullWidth"] : ""} 
-        ${className || ""}
-      `}
+      className={`${styles.btn} ${styles[`btn--${variant}`]} ${className}`}
     >
       {children}
     </button>

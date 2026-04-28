@@ -17,21 +17,17 @@ const Pagination: React.FC<PaginationProps> = (props) => {
   const isLastPage = currentPage === totalPages;
 
   const paginationRange = useMemo(() => {
-    const delta = 1; // Number of pages to show on either side of the current page
+    const delta = 1;
     const range: number[] = [];
     const rangeWithDots: (number | string)[] = [];
 
-    // Calculate the range
     if (totalPages <= 5) {
-      // If total pages is 5 or less, show all pages
       for (let i = 1; i <= totalPages; i++) {
         range.push(i);
       }
     } else {
-      // Always include first page
       range.push(1);
 
-      // Calculate middle range
       const startPage = Math.max(2, currentPage - delta);
       const endPage = Math.min(totalPages - 1, currentPage + delta);
 
@@ -39,10 +35,8 @@ const Pagination: React.FC<PaginationProps> = (props) => {
         range.push(i);
       }
 
-      // Always include last page
       range.push(totalPages);
     }
-    // Add ellipsis where needed
     let prev: number | null = null;
     for (const i of range) {
       if (prev) {
@@ -83,9 +77,8 @@ const Pagination: React.FC<PaginationProps> = (props) => {
                   data-testid={`pagination-link-${item}`}
                   // isActive={}
                   onClick={() => onPageChange(item as number)}
-                  className={`${
-                    currentPage === item ? styles.currentPage : ""
-                  }`}
+                  className={`${currentPage === item ? styles.currentPage : ""
+                    }`}
                 >
                   {item}
                 </button>

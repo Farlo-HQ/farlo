@@ -72,7 +72,6 @@ const EducationUI = () => {
         btn1={{ text: "Start Learning", action: () => router.push(ROUTES.signup) }}
       />
 
-      {/* Learning Tracks */}
       <Section bgClassName={styles.tracksBg} sectionClassName={styles.tracksSection}>
         <div className={styles.tracksHeader}>
           <p className={styles.label}>STRUCTURED LEARNING</p>
@@ -104,7 +103,6 @@ const EducationUI = () => {
         </div>
       </Section>
 
-      {/* Webinars + Research */}
       <Section bgClassName={styles.resourcesBg} sectionClassName={styles.resourcesSection}>
         <div className={styles.resourcesHeader}>
           <p className={styles.label}>BEYOND THE COURSES</p>

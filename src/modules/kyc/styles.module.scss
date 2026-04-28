@@ -89,7 +89,6 @@
   gap: 6px;
 }
 
-
 .progress_bar {
   display: flex;
   align-items: flex-start;
@@ -219,6 +218,7 @@
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
+  font-family: "GeneralSans-Regular";
   transition: all 0.15s;
 
   &:hover {
@@ -252,7 +252,7 @@
   }
 }
 
-.upload_zone_facial {
+.upload_zone_selfie {
   padding: 3rem 1rem;
 }
 
@@ -312,7 +312,8 @@
   }
 }
 
-.facial_tips {
+
+.selfie_tips {
   background: var(--dash-bg);
   border: 1px solid var(--dash-border);
   border-radius: 10px;
@@ -353,10 +354,6 @@
   justify-content: flex-end;
   gap: 10px;
   margin-top: 0.5rem;
-
-  button {
-    flex:1
-  }
 }
 
 

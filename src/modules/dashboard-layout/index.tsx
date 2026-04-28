@@ -30,6 +30,23 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     if (isMobile) setShowSidebar(false);
   }, [pathname, isMobile]);
 
+  useEffect(() => {
+    if (!isMobile || !showSidebar) return;
+    const handleOutside = (e: MouseEvent | TouchEvent) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(e.target as Node)) {
+        setShowSidebar(false);
+      }
+    };
+    const t = setTimeout(() => {
+      document.addEventListener("mousedown", handleOutside);
+      document.addEventListener("touchstart", handleOutside);
+    }, 10);
+    return () => {
+      clearTimeout(t);
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
+    };
+  }, [isMobile, showSidebar]);
 
   const handleModeChange = (m: "trading" | "investing") => {
     setMode(m);
@@ -68,6 +85,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             >Investing</button>
           </div>
 
+          {isMobile && (
+            <div className={styles.sidebar_theme_row}>
+              <span className={styles.sidebar_theme_label}>
+                {theme === "light" ? "Light mode" : "Dark mode"}
+              </span>
+              <button className={styles.sidebar_theme_btn} onClick={toggleTheme}>
+                {theme === "light" ? <IconMoon size={18} strokeWidth={1.5} /> : <IconSun size={18} strokeWidth={1.5} />}
+              </button>
+            </div>
+          )}
 
           <nav className={styles.nav}>
             <p>OVERVIEW</p>
@@ -96,7 +123,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
               <IconTransfer size={20} strokeWidth={1.5} /> Internal transfer
             </SidebarLink>
-            <SidebarLink href="/withdraw" active={false} onNav={() => isMobile && setShowSidebar(false)}>
+            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
               <IconMoneybagMoveBack size={20} strokeWidth={1.5} /> Withdraw
             </SidebarLink>
             <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
@@ -170,94 +197,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
       <div className={styles.main}>
         <header className={styles.header}>
-
-
-
           <div className={styles.mobile_header}>
             <LogoBlack className={styles.logo} />
-
-            <div className={styles.mobile_header_actions}>
-              <button className={styles.mobile_icon_btn} onClick={() => {
-                if (isMobile) {
-                  setShowSidebar(false);
-                }
-                toggleTheme();
-              }}>
-                {theme === "light" ? (
-                  <IconMoon size={18} strokeWidth={1.5} />
-                ) : (
-                  <IconSun size={18} strokeWidth={1.5} />
-                )}
-              </button>
-
-              <div className={styles.notif_wrap}>
-                <button
-                  className={styles.mobile_icon_btn}
-                  onClick={() => {
-                    if (isMobile) {
-                      setShowSidebar(false);
-                    }
-
-                    setShowNotifications((prev) => {
-                      const next = !prev;
-                      if (next) markAllRead();
-                      return next;
-                    });
-                  }}
-                >
-                  <IconBell size={18} strokeWidth={1.5} />
-                  {unreadCount > 0 && (
-                    <span className={styles.notif_badge}>{unreadCount}</span>
-                  )}
-                </button>
-
-                {showNotifications && (
-                  <div className={`${styles.notif_dropdown} ${styles.notif_dropdown_mobile}`}>
-                    <div className={styles.notif_header}>
-                      <p className={styles.notif_title}>Notifications</p>
-                      <button
-                        className={styles.notif_close}
-                        onClick={() => setShowNotifications(false)}
-                      >
-                        <IconX size={14} />
-                      </button>
-                    </div>
-                    {notifications.length === 0 ? (
-                      <div className={styles.notif_empty}>No notifications yet</div>
-                    ) : (
-                      notifications.map((n) => (
-                        <div
-                          key={n.id}
-                          className={`${styles.notif_item} ${!n.read ? styles.notif_unread : ""}`}
-                        >
-                          <div
-                            className={`${styles.notif_dot} ${n.type === "success"
-                              ? styles.dot_success
-                              : n.type === "warning"
-                                ? styles.dot_warning
-                                : styles.dot_info
-                              }`}
-                          />
-                          <div className={styles.notif_text}>
-                            <p className={styles.notif_item_title}>{n.title}</p>
-                            <p className={styles.notif_item_msg}>{n.message}</p>
-                            <p className={styles.notif_time}>{n.time}</p>
-                          </div>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                )}
-              </div>
-
-              <button className={styles.mobile_menu}
-                onMouseDown={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
-                onClick={() => setShowSidebar((prev) => !prev)}
-              >
-                {!showSidebar ? <IconMenu /> : <IconX />}
-              </button>
-            </div>
+            <button onClick={() => setShowSidebar((prev) => !prev)}>
+              {!showSidebar ? <IconMenu /> : <IconX />}
+            </button>
           </div>
           <div className={styles.header_content}>
             <div className={styles.header_actions}>

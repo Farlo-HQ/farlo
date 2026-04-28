@@ -81,10 +81,8 @@ const InvestingModeUI = () => {
         }
         bgClassName={styles.heroBg}
         btn1={{ text: "Start Investing in US Stocks", action: () => router.push(ROUTES.signup) }}
-      // btn2={{ text: "Open Account", action: () => router.push(ROUTES.signup) }}
       />
 
-      {/* What Is Different */}
       <Section bgClassName={styles.diffBg} sectionClassName={styles.diffSection}>
         <div className={styles.diffHeader}>
           <p className={styles.label}>WHAT MAKES THIS DIFFERENT</p>
@@ -102,7 +100,6 @@ const InvestingModeUI = () => {
         </div>
       </Section>
 
-      {/* Available Instruments */}
       <Section bgClassName={styles.instrBg} sectionClassName={styles.instrSection}>
         <div className={styles.instrContent}>
           <div className={styles.instrText}>
@@ -132,7 +129,6 @@ const InvestingModeUI = () => {
 
       <BottomBanner
         title="US stocks. From anywhere in Emerging markets."
-        // text="Open your FARLO account. Complete KYC once. Switch to Investing Mode. Buy Apple from Lagos."
         text="Switch to Investing Mode from your FARLO dashboard. Your Alpaca sub-account was provisioned when you completed KYC. No second sign-up."
         fillBtn={{ text: "Start Investing in US Stocks", action: () => router.push(ROUTES.signup) }}
       // outlineBtn={{ text: "Open Demo", action: () => router.push(ROUTES.signup) }}

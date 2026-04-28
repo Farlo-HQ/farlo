@@ -18,20 +18,6 @@
     font-size: 32px;
   }
 }
-
-.text h4 {
-  margin-top: 1rem;
-    font-size: 19px;
-    line-height: 1.4;
-    max-width: 500px;
-    color: var(--primary);
-  
-    @media screen and (max-width: 800px) {
-      font-size: 16px;
-      line-height: 1.2;
-      font-weight: 500;
-  }
-}
 .section {
   background-image: url(../../../../public/cutout-bg.svg);
   background-repeat: no-repeat;

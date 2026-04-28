@@ -136,7 +136,6 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ isOpen, onClose }) => {
     if (!validateForm()) {
       return;
     }
-    // Handle form submission
 
     console.log({
       name,

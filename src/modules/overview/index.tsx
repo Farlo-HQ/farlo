@@ -7,6 +7,7 @@ import { useDashboard } from "@/context/DashboardContext";
 import {
   IconArrowDownLeft,
   IconArrowRight,
+  IconArrowUpRight,
   IconBusinessplan,
   IconChartBar,
   IconChevronRight,
@@ -16,9 +17,6 @@ import {
   IconTrendingUp,
   IconX,
 } from "@tabler/icons-react";
-import { ComingSoonModal, DestinationModal, TransferModal } from "@/components/modal/overview";
-
-
 
 const OverviewUI = () => {
   const [showTransferModal, setShowTransferModal] = useState(false);
@@ -27,8 +25,6 @@ const OverviewUI = () => {
     to: "main" | "trading" | "investing";
   }>({ from: "main", to: "trading" });
   const [comingSoon, setComingSoon] = useState(false);
-  const [showDestinationModal, setShowDestinationModal] = useState(false);
-  const [activeSource, setActiveSource] = useState<"main" | "trading" | "investing" | null>(null);
 
   const {
     mode,
@@ -48,33 +44,11 @@ const OverviewUI = () => {
     setShowTransferModal(true);
   };
 
-  const handleActionClick = (source: "main" | "trading" | "investing") => {
-    setActiveSource(source);
-    setShowDestinationModal(true);
-  };
-
-  const selectDestination = (to: "main" | "trading" | "investing") => {
-    if (activeSource) {
-      setTransferConfig({ from: activeSource, to });
-      setShowDestinationModal(false);
-      setShowTransferModal(true);
-    }
-  };
-
-
-
   return (
     <>
       <ComingSoonModal
         isOpen={comingSoon}
         onClose={() => setComingSoon(false)}
-      />
-
-      <DestinationModal
-        isOpen={showDestinationModal}
-        onClose={() => setShowDestinationModal(false)}
-        source={activeSource}
-        onSelect={selectDestination}
       />
       <TransferModal
         isOpen={showTransferModal}
@@ -154,10 +128,10 @@ const OverviewUI = () => {
               >
                 Deposit
               </button>
-              <button className={styles.wallet_btn_light} onClick={() => (window.location.href = "/withdraw")}>Withdraw</button>
+              <button className={styles.wallet_btn_light}>Withdraw</button>
               <button
                 className={styles.wallet_btn_light}
-                onClick={() => handleActionClick("main")}
+                onClick={() => openTransfer("main", "trading")}
               >
                 Transfer
               </button>
@@ -182,16 +156,15 @@ const OverviewUI = () => {
             <div className={styles.wallet_actions}>
               <button
                 className={styles.wallet_btn_outline}
-                onClick={() => (window.location.href = "/deposit")}
+                onClick={() => openTransfer("main", "trading")}
               >
-                Deposit
+                Move In
               </button>
-
               <button
                 className={styles.wallet_btn_outline}
-                onClick={() => handleActionClick("trading")}
+                onClick={() => openTransfer("trading", "main")}
               >
-                Move Funds
+                Move Out
               </button>
             </div>
           </div>
@@ -216,15 +189,15 @@ const OverviewUI = () => {
             <div className={styles.wallet_actions}>
               <button
                 className={styles.wallet_btn_outline}
-                onClick={() => (window.location.href = "/deposit")}
+                onClick={() => openTransfer("main", "investing")}
               >
-                Deposit
+                Move In
               </button>
               <button
                 className={styles.wallet_btn_outline}
-                onClick={() => handleActionClick("investing")}
+                onClick={() => openTransfer("investing", "main")}
               >
-                Move Funds
+                Move Out
               </button>
             </div>
           </div>
@@ -386,6 +359,7 @@ const OverviewUI = () => {
     </>
   );
 };
+
 
 const TradingModeSection = ({
   onComingSoon,
@@ -624,5 +598,151 @@ const EmptyState = ({
   </div>
 );
 
+
+const TransferModal = ({
+  isOpen,
+  onClose,
+  from,
+  to,
+  transfer,
+  wallets,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  from: "main" | "trading" | "investing";
+  to: "main" | "trading" | "investing";
+  transfer: (from: any, to: any, amount: number) => boolean;
+  wallets: { main: number; trading: number; investing: number };
+}) => {
+  const [amount, setAmount] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const fromLabel = from.charAt(0).toUpperCase() + from.slice(1);
+  const toLabel = to.charAt(0).toUpperCase() + to.slice(1);
+  const available = wallets[from];
+  const parsedAmount = parseFloat(amount);
+
+  const handleTransfer = () => {
+    setError("");
+    if (!amount || isNaN(parsedAmount) || parsedAmount <= 0) {
+      setError("Please enter a valid amount.");
+      return;
+    }
+    if (parsedAmount > available) {
+      setError("Insufficient balance.");
+      return;
+    }
+    const ok = transfer(from, to, parsedAmount);
+    if (ok) setSuccess(true);
+    else setError("Transfer failed. Please try again.");
+  };
+
+  const handleClose = () => {
+    setAmount("");
+    setError("");
+    setSuccess(false);
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className={styles.modal_overlay}>
+      <div className={styles.modal}>
+        <div className={styles.modal_header}>
+          <h2>{success ? "Transfer Successful" : "Transfer Funds"}</h2>
+          <button className={styles.modal_close} onClick={handleClose}>
+            <IconX size={18} />
+          </button>
+        </div>
+
+        {success ? (
+          <div className={styles.modal_success}>
+            <div className={styles.modal_success_icon}>✓</div>
+            <p className={styles.modal_success_msg}>
+              ${parsedAmount.toFixed(2)} transferred from {fromLabel} to{" "}
+              {toLabel} Wallet.
+            </p>
+            <Button variant="fill-red" onClick={handleClose}>
+              Done
+            </Button>
+          </div>
+        ) : (
+          <>
+            <div className={styles.transfer_route}>
+              <span
+                className={`${styles.route_tag} ${styles[`route_${from}`]}`}
+              >
+                {fromLabel}
+              </span>
+              <IconArrowRight size={16} className={styles.route_arrow} />
+              <span className={`${styles.route_tag} ${styles[`route_${to}`]}`}>
+                {toLabel}
+              </span>
+            </div>
+
+            <div className={styles.transfer_info}>
+              <p className={styles.transfer_label}>
+                Available Balance
+              </p>
+              <p className={styles.transfer_balance}>
+                $
+                {available.toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                })}{" "}
+                USD
+              </p>
+            </div>
+
+            <div className={styles.input_group}>
+              <label className={styles.input_label}>Amount (USD)</label>
+              <input
+                type="number"
+                placeholder="0.00"
+                value={amount}
+                onChange={(e) => {
+                  setAmount(e.target.value);
+                  setError("");
+                }}
+                className={styles.transfer_input}
+              />
+              {error && <p className={styles.transfer_error}>{error}</p>}
+            </div>
+
+            <div className={styles.modal_actions}>
+              <Button variant="outline-red" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button variant="fill-red" onClick={handleTransfer}>
+                Confirm Transfer
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+
+const ComingSoonModal = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
+  if (!isOpen) return null;
+  return (
+    <div className={styles.modal_overlay}>
+      <div className={styles.modal}>
+        <h2>Coming Soon!</h2>
+        <p>This feature is under development and will be available soon.</p>
+        <Button onClick={onClose}>Close</Button>
+      </div>
+    </div>
+  );
+};
 
 export { OverviewUI };

@@ -15,9 +15,9 @@ import {
   IconX,
 } from "@tabler/icons-react";
 
-type KYCStep = "intro" | "personal" | "document" | "facial" | "submitted";
+type KYCStep = "intro" | "personal" | "document" | "selfie" | "submitted";
 
-const STEPS = ["Personal Info", "Document", "Facial", "Review"];
+const STEPS = ["Personal Info", "Document", "Selfie", "Review"];
 
 const KycUI = () => {
   const [step, setStep] = useState<KYCStep>("intro");
@@ -37,17 +37,17 @@ const KycUI = () => {
     "passport"
   );
   const [docFile, setDocFile] = useState<File | null>(null);
-  const [facialFile, setFacialFile] = useState<File | null>(null);
+  const [selfieFile, setSelfieFile] = useState<File | null>(null);
 
   const docRef = useRef<HTMLInputElement>(null);
-  const facialRef = useRef<HTMLInputElement>(null);
+  const selfieRef = useRef<HTMLInputElement>(null);
 
   const stepIndex =
     step === "personal"
       ? 0
       : step === "document"
         ? 1
-        : step === "facial"
+        : step === "selfie"
           ? 2
           : step === "submitted"
             ? 3
@@ -99,7 +99,7 @@ const KycUI = () => {
                 <IconCamera size={18} strokeWidth={1.5} />
               </div>
               <div>
-                <p className={styles.step_label}>Facial Verification</p>
+                <p className={styles.step_label}>Selfie Verification</p>
                 <p className={styles.step_desc}>
                   A photo of you holding your document
                 </p>
@@ -318,7 +318,7 @@ const KycUI = () => {
                   </Button>
                   <Button
                     variant="fill-red"
-                    onClick={() => setStep("facial")}
+                    onClick={() => setStep("selfie")}
                   >
                     Continue <IconChevronRight size={16} />
                   </Button>
@@ -326,15 +326,15 @@ const KycUI = () => {
               </div>
             )}
 
-            {step === "facial" && (
+            {step === "selfie" && (
               <div className={styles.form_section}>
-                <h2 className={styles.section_title}>Facial Verification</h2>
+                <h2 className={styles.section_title}>Selfie Verification</h2>
                 <p className={styles.section_sub}>
                   Take or upload a clear photo of yourself holding your
                   government ID next to your face.
                 </p>
 
-                <div className={styles.facial_tips}>
+                <div className={styles.selfie_tips}>
                   <p className={styles.tips_title}>Tips for a good photo:</p>
                   <ul className={styles.tips_list}>
                     <li>Make sure your face is clearly visible</li>
@@ -345,32 +345,32 @@ const KycUI = () => {
                 </div>
 
                 <input
-                  ref={facialRef}
+                  ref={selfieRef}
                   type="file"
                   accept="image/*"
                   style={{ display: "none" }}
                   onChange={(e) =>
-                    setFacialFile(e.target.files?.[0] || null)
+                    setSelfieFile(e.target.files?.[0] || null)
                   }
                 />
 
                 <div
-                  className={`${styles.upload_zone} ${styles.facial} ${facialFile ? styles.upload_zone_filled : ""
+                  className={`${styles.upload_zone} ${styles.upload_zone_selfie} ${selfieFile ? styles.upload_zone_filled : ""
                     }`}
-                  onClick={() => facialRef.current?.click()}
+                  onClick={() => selfieRef.current?.click()}
                 >
-                  {facialFile ? (
+                  {selfieFile ? (
                     <div className={styles.upload_preview}>
                       <IconCircleCheck
                         size={24}
                         className={styles.upload_success_icon}
                       />
-                      <p className={styles.upload_filename}>{facialFile.name}</p>
+                      <p className={styles.upload_filename}>{selfieFile.name}</p>
                       <button
                         className={styles.upload_remove}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setFacialFile(null);
+                          setSelfieFile(null);
                         }}
                       >
                         <IconX size={14} />
@@ -382,7 +382,7 @@ const KycUI = () => {
                         <IconCamera size={32} strokeWidth={1.2} />
                       </div>
                       <p className={styles.upload_label}>
-                        Upload image with ID
+                        Upload selfie with ID
                       </p>
                       <p className={styles.upload_hint}>
                         JPG or PNG — max 10MB

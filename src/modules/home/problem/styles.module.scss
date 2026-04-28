@@ -39,7 +39,6 @@
   @media screen and (max-width: 640px)  { font-size: 28px; }
 }
 
-/* ── Cards ── */
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -57,7 +56,6 @@
   overflow: hidden;
 }
 
-/* Animated red left border */
 .card__border {
   position: absolute;
   left: 0;
@@ -86,7 +84,6 @@
   @media screen and (max-width: 640px) { font-size: 14px; }
 }
 
-/* ── Bridge line ── */
 .bridge {
   font-size: 17px;
   font-weight: 600;

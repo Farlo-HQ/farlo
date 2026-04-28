@@ -11,12 +11,12 @@ const MarketDive = () => {
         <div>
           <div className={styles.card}>
             <p className={styles.card__ttl}>
-              Market timing matters, trade smarter with Farlo.
+              Market timing matters, trade smarter with FarloFX.
             </p>
 
             <p className={styles.card__txt}>
               Whether you’re trading on earnings reports, macroeconomic news, or
-              technical signals, Farlo equips you with the tools needed to
+              technical signals, FarloFX equips you with the tools needed to
               capitalize on market movements, whether prices are rising or
               falling
             </p>

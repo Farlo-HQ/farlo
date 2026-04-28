@@ -32,7 +32,7 @@ const AssitedTradingUI = () => {
       <HeroSection2
         tag="ASSISTED TRADING"
         title={<>Trade smarter with copy, social, and prop trading</>}
-        text="Follow top traders, engage with a trading community, and trade with our capital, Farlo provides the tools and opportunities to elevate your trading journey."
+        text="Follow top traders, engage with a trading community, and trade with our capital, FarloFX provides the tools and opportunities to elevate your trading journey."
         bgClassName={styles.bg}
         sectionClassName={styles.hero}
         txtClassName={styles.txt}
@@ -41,10 +41,10 @@ const AssitedTradingUI = () => {
       <SocialTrading />
       <PropTrading />
       <GettingStarted />
-      <FAQS title="Farlo Index Trading FAQs" />
+      <FAQS title="FarloFX Index Trading FAQs" faqs={faqs} />
       <BottomBanner
         title="Start trading the world's most popular currency pairs today"
-        text="Don’t miss another market opportunity. Farlo provides the tools, pricing, and execution speed to elevate your forex trading experience."
+        text="Don’t miss another market opportunity. FarloFX provides the tools, pricing, and execution speed to elevate your forex trading experience."
         fillBtn={{ text: "Blog", action: console.log }}
         outlineBtn={{ text: "Education", action: console.log }}
       />

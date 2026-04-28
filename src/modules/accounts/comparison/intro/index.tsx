@@ -1,162 +1,74 @@
-// import { Button, Section } from "@/components";
-// import styles from "./styles.module.scss";
-// import { ArrowRight } from "@/assets/icons/arrow-right";
-
-// const AccountsIntro = () => {
-//   return (
-//     <>
-//       <Section bgClassName={styles.bg} sectionClassName={styles.section}>
-//         <div className={styles.header}>
-//           <p className={styles.header__tag}>Intro to FarloFX Accounts</p>
-//           <h2 className={styles.header__ttl}>
-//             Unique account options tailored to your trading experience.
-//           </h2>
-//         </div>
-//         <div className={styles.live}>
-//           <div className={styles.live__intro}>
-//             <p className={styles.live__ttl}>Live Accounts</p>
-//             <ul className={styles.live__list}>
-//               <li>Minimum of $50 deposit</li>
-//               <li>Leverage of up to 1:1000</li>
-//               <li>Tight spreads from 0.6 pips</li>
-//             </ul>
-//           </div>
-//           <div className={styles.live__card}>
-//             <p className={styles.live__card__ttl}>STARTER </p>
-//             <ul className={styles.live__card__list}>
-//               <li>Ideal for new traders </li>
-//               <li>Minimum deposit of $50</li>
-//               <li>Spreads from 1.5 pips</li>
-//               <li>Leverage up to 1:500</li>
-//             </ul>
-//             <Button>
-//               Register <ArrowRight />
-//             </Button>
-//           </div>
-//           <div className={styles.live__card}>
-//             <p className={styles.live__card__ttl}>PROFESSIONAL </p>
-//             <ul className={styles.live__card__list}>
-//               <li>Designed for experienced traders </li>
-//               <li>Tighter spreads from 1.0 pips </li>
-//               <li>$250 minimum deposit</li>
-//               <li>Leverage up to 1:500</li>
-//             </ul>
-//             <Button>
-//               Register <ArrowRight />
-//             </Button>
-//           </div>
-//           <div className={styles.live__card}>
-//             <p className={styles.live__card__ttl}>VIP </p>
-//             <ul className={styles.live__card__list}>
-//               <li>Premium account with zero spreads </li>
-//               <li>$500 minimum deposit</li>
-//               <li>Dedicated account management </li>
-//               <li>Leverage up to 1:500</li>
-//             </ul>
-//             <Button>
-//               Register <ArrowRight />
-//             </Button>
-//           </div>
-//         </div>
-//         <div className={styles.demo}>
-//           <div>
-//             <p className={styles.demo__ttl}>Demo Account</p>
-//             <p className={styles.demo__txt}>
-//               Trade with no limits, and no problems for free. Start with a demo
-//               account today
-//             </p>
-//           </div>
-//           <Button>
-//             Open Demo <ArrowRight />
-//           </Button>
-//         </div>
-//       </Section>
-//     </>
-//   );
-// };
-
-// export { AccountsIntro };
-
 import { Button, Section } from "@/components";
 import styles from "./styles.module.scss";
 import { ArrowRight } from "@/assets/icons/arrow-right";
-
-const tableRows = [
-  { label: "Purpose", demo: "Practice risk-free", standard: "Active everyday trading", pro: "High-volume professionals" },
-  { label: "Minimum deposit", demo: "None", standard: "$100", pro: "$1,000" },
-  { label: "Spreads", demo: "From 0.6 pips", standard: "From 0.8 pips", pro: "From 0.6 pips (raw)" },
-  { label: "Leverage", demo: "Up to 1:500", standard: "Up to 1:500", pro: "Up to 1:1000" },
-  { label: "Commission", demo: "None", standard: "None", pro: "$3 per lot" },
-  { label: "Copy trading", demo: "Yes", standard: "Yes", pro: "Yes" },
-  { label: "Investing Mode", demo: "No", standard: "Yes", pro: "Yes" },
-  { label: "Islamic option", demo: "No", standard: "Yes", pro: "Yes" },
-];
 
 const AccountsIntro = () => {
   return (
     <>
       <Section bgClassName={styles.bg} sectionClassName={styles.section}>
         <div className={styles.header}>
-          <p className={styles.header__tag}>Intro to Farlo Accounts</p>
+          <p className={styles.header__tag}>Intro to FarloFX Accounts</p>
           <h2 className={styles.header__ttl}>
             Unique account options tailored to your trading experience.
           </h2>
         </div>
-
-        {/* Comparison Table */}
-        <div className={styles.tableWrap}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Demo Account</th>
-                <th>Standard Account</th>
-                <th>Pro Account</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableRows.map((row) => (
-                <tr key={row.label}>
-                  <td className={styles.rowLabel}>{row.label}</td>
-                  <td>{row.demo}</td>
-                  <td>{row.standard}</td>
-                  <td>{row.pro}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className={styles.recommendation}>
-          <p className={styles.recommendation__text}>
-            Not sure where to start? Open a demo account first, practice with $10,000 in virtual funds, and switch to live when you are ready. It takes two minutes and no card.
-          </p>
-          <div className={styles.recommendation__ctas}>
+        <div className={styles.live}>
+          <div className={styles.live__intro}>
+            <p className={styles.live__ttl}>Live Accounts</p>
+            <ul className={styles.live__list}>
+              <li>Minimum of $50 deposit</li>
+              <li>Leverage of up to 1:1000</li>
+              <li>Tight spreads from 0.6 pips</li>
+            </ul>
+          </div>
+          <div className={styles.live__card}>
+            <p className={styles.live__card__ttl}>STARTER </p>
+            <ul className={styles.live__card__list}>
+              <li>Ideal for new traders </li>
+              <li>Minimum deposit of $50</li>
+              <li>Spreads from 1.5 pips</li>
+              <li>Leverage up to 1:500</li>
+            </ul>
             <Button>
-              Open Demo Account <ArrowRight />
+              Register <ArrowRight />
             </Button>
-            <Button variant="outline-red">
-              Open Live Account <ArrowRight />
+          </div>
+          <div className={styles.live__card}>
+            <p className={styles.live__card__ttl}>PROFESSIONAL </p>
+            <ul className={styles.live__card__list}>
+              <li>Designed for experienced traders </li>
+              <li>Tighter spreads from 1.0 pips </li>
+              <li>$250 minimum deposit</li>
+              <li>Leverage up to 1:500</li>
+            </ul>
+            <Button>
+              Register <ArrowRight />
+            </Button>
+          </div>
+          <div className={styles.live__card}>
+            <p className={styles.live__card__ttl}>VIP </p>
+            <ul className={styles.live__card__list}>
+              <li>Premium account with zero spreads </li>
+              <li>$500 minimum deposit</li>
+              <li>Dedicated account management </li>
+              <li>Leverage up to 1:500</li>
+            </ul>
+            <Button>
+              Register <ArrowRight />
             </Button>
           </div>
         </div>
-
-        <div className={styles.deposits}>
-          <p className={styles.deposits__label}>DEPOSITS AND WITHDRAWALS</p>
-          <div className={styles.deposits__grid}>
-            <div>
-              <p className={styles.deposits__subLabel}>Deposit methods</p>
-              <p className={styles.deposits__value}>
-                Paystack (NGN, GHS, KES) &nbsp;|&nbsp; USDT (TRC20, ERC20) &nbsp;|&nbsp; Card (Visa, Mastercard) &nbsp;|&nbsp; Bank wire (SWIFT)
-              </p>
-            </div>
-            <div>
-              <p className={styles.deposits__subLabel}>Minimums &amp; processing</p>
-              <p className={styles.deposits__value}>
-                Minimum deposit: $100 &nbsp;|&nbsp; Minimum withdrawal: $50 &nbsp;|&nbsp; Processing: instant for Paystack and USDT, 1 to 3 days for wire
-              </p>
-            </div>
+        <div className={styles.demo}>
+          <div>
+            <p className={styles.demo__ttl}>Demo Account</p>
+            <p className={styles.demo__txt}>
+              Trade with no limits, and no problems for free. Start with a demo
+              account today
+            </p>
           </div>
+          <Button>
+            Open Demo <ArrowRight />
+          </Button>
         </div>
       </Section>
     </>
