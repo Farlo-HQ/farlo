@@ -1,11 +1,10 @@
 
 
 
-import * as React from "react"
 import { SVGProps } from "react"
 const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
   <svg width="50" height="50" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_29_5)">
+    <g clipPath="url(#clip0_29_5)">
       <path d="M293.82 0H6.18047C2.76709 0 0 2.76709 0 6.18047V293.82C0 297.233 2.76709 300 6.18047 300H293.82C297.233 300 300 297.233 300 293.82V6.18047C300 2.76709 297.233 0 293.82 0Z" fill="#CB1A36" />
       <path d="M158.019 57.293H115.467C110.584 57.293 105.902 59.2089 102.426 62.6236L62.8554 102.194C59.3016 105.686 57.293 110.476 57.293 115.467V158.004H104.465V104.465H158.019V57.3084V57.293Z" fill="#FAFAFA" />
       <path d="M104.465 145.936L62.8554 187.546C59.3016 191.038 57.293 195.828 57.293 200.819V242.722H104.465V145.936Z" fill="#FAFAFA" />
