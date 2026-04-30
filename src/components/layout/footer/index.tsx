@@ -1,14 +1,14 @@
-import Link from "next/link";
-import styles from "./styles.module.scss";
-import { LogoText } from "@/assets/vectors/logo-text";
-import { AppStore } from "@/assets/vectors/app-store";
-import { PlayStore } from "@/assets/vectors/play-store";
-import { TwitterLogo } from "@/assets/icons/twitter";
-import { YoutubeLogo } from "@/assets/icons/youtube";
-import { LinkedinLogo } from "@/assets/icons/linkedin";
 import { FacebookLogo } from "@/assets/icons/facebook";
 import { InstagramLogo } from "@/assets/icons/instagram";
+import { LinkedinLogo } from "@/assets/icons/linkedin";
+import { TwitterLogo } from "@/assets/icons/twitter";
+import { YoutubeLogo } from "@/assets/icons/youtube";
+import { AppStore } from "@/assets/vectors/app-store";
+import { LogoText } from "@/assets/vectors/logo-text";
+import { PlayStore } from "@/assets/vectors/play-store";
 import { ROUTES } from "@/utils/routes";
+import Link from "next/link";
+import styles from "./styles.module.scss";
 
 const Footer = () => {
   const links = [
@@ -186,14 +186,14 @@ const Footer = () => {
       <footer className={styles.footerBg}>
         <section className={`layout-container ${styles.footer}`}>
           <div className={styles.sec1}>
-            {links.map((item) =>
+            {links.map((item, i) =>
               item.type === "dual" ? (
-                <div key={item.title} className={styles.linkSubWrap}>
-                  {item.sublinks.map((item) => (
-                    <div className={styles.linkWrap}>
+                <div key={`link-${i}`} className={styles.linkSubWrap}>
+                  {item.sublinks.map((subItem) => (
+                    <div key={subItem.title} className={styles.linkWrap}>
                       <p>{item.title}</p>
-                      {item.links?.map((link) => (
-                        <Link href={link.path}>{link.title}</Link>
+                      {subItem.links?.map((link) => (
+                        <Link key={link.title} href={link.path}>{link.title}</Link>
                       ))}
                     </div>
                   ))}
@@ -202,7 +202,7 @@ const Footer = () => {
                 <div key={item.title} className={styles.linkWrap}>
                   <p>{item.title}</p>
                   {item.links?.map((link) => (
-                    <Link href={link.path}>{link.title}</Link>
+                    <Link key={link.title} href={link.path}>{link.title}</Link>
                   ))}
                 </div>
               )

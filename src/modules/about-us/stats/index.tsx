@@ -1,9 +1,9 @@
 "use client";
 
 import { Section } from "@/components";
-import styles from "./styles.module.scss";
-import { useState, useEffect, useRef } from "react";
 import { useCountUp } from "@/hooks/useCountup";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./styles.module.scss";
 
 const stats = [
   { value: 150, label: "total employees" },
@@ -44,15 +44,15 @@ const Stats = () => {
       ref={sectionRef}
     >
       {stats.map(({ value, label }, i) => (
-        <>
-          <div className={styles.stat} key={`stat-${i}`}>
+       <React.Fragment key={`stat-${i}`}> 
+          <div className={styles.stat} >
             <p className={styles.stat__ttl}>
               {useCountUp(value, hasAnimated)}+
             </p>
             <p className={styles.stat__txt}>{label}</p>
           </div>
           {i < stats.length - 1 ? <div className={styles.line}></div> : ""}
-        </>
+        </React.Fragment>
       ))}
     </Section>
   );
