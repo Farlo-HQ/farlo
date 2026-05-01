@@ -1,8 +1,13 @@
 "use client";
-import styles from "./page.module.css";
+import CoinsAnimation from "@/assets/animations/coins3.json";
+import { NewLogo } from "@/assets/vectors/new-logo";
 import WaitlistForm from "@/components/waitlist";
 import { useState } from "react";
-import { NewLogo } from "@/assets/vectors/new-logo";
+import styles from "./page.module.css";
+
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function Home() {
   const [waitlist, setWaitlist] = useState(false);
@@ -11,6 +16,16 @@ export default function Home() {
     <>
       <WaitlistForm isOpen={waitlist} onClose={() => setWaitlist(false)} />
       <div className={styles.page}>
+      <>
+        <div className={styles.overlay}></div>
+        <Lottie
+          className={styles.animation_wrapper}
+          animationData={CoinsAnimation}
+          loop={true}
+        />
+      </>
+
+      <div className={styles.content_wrapper}>
         <header className={styles.header}>
           <NewLogo className={styles.header__logo} />
           <button onClick={() => setWaitlist(true)} className={styles.btn}>
@@ -19,12 +34,12 @@ export default function Home() {
         </header>
         <main className={styles.main}>
           <section className={styles.content}>
-            <h1>Your gateway to global trading, investing, and payments.</h1>
-            <h4> Built to unlock global markets for the next billion users.</h4>
+            <h1>Trade FX. <br />Copy proven strategies.</h1>
+            <h4>Invest in U.S. stocks.</h4>
             <p className={styles.sub_txt}>
-              Trade FX, copy top startegies, invest in U.S. stocks, and move money globally — all from a single account.
+              Move money globally, all from one account.
               <br />
-              One KYC. One Wallet. Built for users across emerging markets.
+              One KYC. One wallet. Built for the next billion users.
             </p>
           </section>
 
@@ -34,9 +49,12 @@ export default function Home() {
             </button>
           </div>
           <p className={styles.rider}>
-            Join 4,200+ early users on the waitlist. Free to join.
+          Join 4,200+ early users across emerging markets.
           </p>
         </main>
+        </div>
+
+
       </div>
     </>
   );
