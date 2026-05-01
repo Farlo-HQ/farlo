@@ -34,10 +34,10 @@ export default function Home() {
         </header>
         <main className={styles.main}>
           <section className={styles.content}>
-            <h1>Trade FX. <br />Copy proven strategies.</h1>
-            <h4>Invest in U.S. stocks.</h4>
+            <h1>Trade FX. <br />Invest in Stocks.</h1>
+            <h4>Move Money Globally.</h4>
             <p className={styles.sub_txt}>
-              Move money globally, all from one account.
+               All from one account.
               <br />
               One KYC. One wallet. Built for the next billion users.
             </p>
