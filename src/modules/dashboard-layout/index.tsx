@@ -15,10 +15,11 @@ import {
   IconSparkles, IconSun, IconTransfer, IconTransferIn,
   IconUserDollar, IconUsers, IconWallet, IconX,
 } from "@tabler/icons-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoBriefcaseOutline } from "react-icons/io5";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
   const [showSidebar, setShowSidebar] = useState(false);
   const { isMobile } = useDeviceSize(900);
   const { mode, setMode, notifications, markAllRead, unreadCount } = useDashboard();
@@ -35,6 +36,17 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const handleModeChange = (m: "trading" | "investing") => {
     setMode(m);
     if (isMobile) setTimeout(() => setShowSidebar(false), 150);
+  };
+
+  const handleModeSwitch = (newMode: "trading" | "investing") => {
+    setMode(newMode);
+
+    if (newMode === "investing" && pathname === "/copy-trading-desk") {
+      router.push("/investing-desk");
+    }
+    if (newMode === "trading" && pathname === "/investing-desk") {
+      router.push("/copy-trading-desk");
+    }
   };
 
   const showSidebarContent = (isMobile && showSidebar) || !isMobile;
@@ -61,33 +73,20 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           <div className={styles.mode_toggle}>
             <button
               className={`${styles.mode_btn} ${mode === "trading" ? styles.mode_btn_active_trading : ""}`}
-              onClick={() => handleModeChange("trading")}
-            >Trading</button>
+              onClick={() => handleModeSwitch("trading")}
+            >
+              Trading
+            </button>
             <button
               className={`${styles.mode_btn} ${mode === "investing" ? styles.mode_btn_active_investing : ""}`}
-              onClick={() => handleModeChange("investing")}
-            >Investing</button>
+              onClick={() => handleModeSwitch("investing")}
+            >
+              Investing
+            </button>
           </div>
 
 
-          {/* <nav className={styles.nav}>
-            <p>OVERVIEW</p>
-            <SidebarLink href="/overview" active={pathname === "/overview"} onNav={() => isMobile && setShowSidebar(false)}>
-              <IconWallet size={20} strokeWidth={1.5} /> Wallets
-            </SidebarLink>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
-              <IconHome size={20} strokeWidth={1.5} /> Accounts
-            </SidebarLink>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
-              <IconGraph size={20} strokeWidth={1.5} /> Invest rating
-            </SidebarLink>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
-              <IconAward size={20} strokeWidth={1.5} /> Challenges
-            </SidebarLink>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
-              <IconSparkles size={20} strokeWidth={1.5} /> Statuses
-            </SidebarLink>
-          </nav> */}
+
           <nav className={styles.nav}>
             <p>OVERVIEW</p>
             <SidebarLink href="/overview" active={pathname === "/overview"} onNav={() => isMobile && setShowSidebar(false)}>
