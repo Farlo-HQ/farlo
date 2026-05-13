@@ -1,11 +1,16 @@
 "use client";
 
-import { PlatformDesktopUI } from "@/modules/platforms/desktop";
+import { PlatformsUI } from "@/modules/platforms";
 
-export default function Home() {
-  return (
-    <>
-      <PlatformDesktopUI />
-    </>
-  );
+// import { PlatformDesktopUI } from "@/modules/platforms/desktop";
+
+// export default function Home() {
+//   return (
+//     <>
+//       <PlatformDesktopUI />
+//     </>
+//   );
+// }
+export default function PlatformDesktopPage() {
+  return <PlatformsUI defaultTab="MT5 Desktop" />;
 }

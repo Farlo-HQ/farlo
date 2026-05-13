@@ -8,11 +8,11 @@ const EarnMore = () => {
   return (
     <Section sectionClassName={styles.section}>
       <div className={styles.sec1}>
-        <p className={styles.tag}>Why Partner with FarloFX?</p>
+        <p className={styles.tag}>Why Partner with Farlo?</p>
         <h2 className={styles.ttl}>Earn more with each client you refer</h2>
         <p className={styles.txt}>
           Use our calculator to find out how much you stand to get as income
-          with each client you bring to FarloFX
+          with each client you bring to Farlo
         </p>
       </div>
       <div className={styles.calculate}>

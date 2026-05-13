@@ -35,4 +35,10 @@ export const ROUTES = {
   transactions: "/transactions",
   kyc: "/kyc",
   deposit: "/deposit",
+  withdraw: "/withdraw",
+  copy_trading:"/copy-trading",
+  investing_mode:"/investing-mode",
+  education: "/education",
+  copy_trading_desk: "/copy-trading-desk",
+ investing_desk: "/investing-desk",
 };

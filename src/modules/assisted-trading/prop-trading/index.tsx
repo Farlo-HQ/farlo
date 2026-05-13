@@ -4,7 +4,7 @@ const PropTrading = () => {
   const list = [
     {
       title: "Access Larger Capital",
-      text: "Trade with funds provided by FarloFX instead of your own capital.",
+      text: "Trade with funds provided by Farlo instead of your own capital.",
     },
     {
       title: "Earn a Profit Share",
@@ -20,7 +20,7 @@ const PropTrading = () => {
     <AlternateList
       title={<>Prop Trading</>}
       text={
-        "Use our funds to trade and maximize your earnings.At FarloFX, we provide skilled traders the opportunity to:"
+        "Use our funds to trade and maximize your earnings.At Farlo, we provide skilled traders the opportunity to:"
       }
       color="light"
       list={list}

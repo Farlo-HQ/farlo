@@ -28,6 +28,7 @@ import {
 import styles from "./styles.module.scss";
 import { AppStore, PlayStore2 } from "@/assets/vectors";
 
+/* ─── Data ──────────────────────────────────────────────────────────── */
 
 const tabs = ["MT5 Desktop", "MT5 Mobile", "MT5 Web"] as const;
 type Tab = (typeof tabs)[number];
@@ -167,6 +168,7 @@ const PlatformsUI = ({ defaultTab = "MT5 Desktop" }: PlatformsUIProps) => {
 
   return (
     <>
+      {/* ── Hero ── */}
       <section className={styles.hero}>
         <div className={`container ${styles.hero__inner}`}>
           <div className={styles.hero__text}>
@@ -179,6 +181,7 @@ const PlatformsUI = ({ defaultTab = "MT5 Desktop" }: PlatformsUIProps) => {
             </p>
           </div>
 
+          {/* ── Tab switcher ── */}
           <div className={styles.tabs}>
             {tabs.map((tab) => (
               <button

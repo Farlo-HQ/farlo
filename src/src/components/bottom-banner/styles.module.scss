@@ -1,0 +1,49 @@
+.bg {
+  background-image: url("../../../public/red-grid2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media screen and (max-width: 1024px) {
+    background-image: url("../../../public/red-grid2-mobile.svg");
+  }
+}
+.section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  color: #fff;
+  text-align: center;
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+.ttl {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.txt {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.ctas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+@media screen and (max-width: 1024px) {
+  .ttl {
+    font-size: 32px;
+  }
+  .txt {
+    font-size: 16px;
+  }
+}

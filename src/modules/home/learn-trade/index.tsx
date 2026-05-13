@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react";
 import { Section } from "@/components";
 import styles from "./styles.module.scss";
@@ -10,20 +12,20 @@ import { useDeviceSize } from "@/hooks/useDeviceSize";
 
 const baseData = [
   {
-    title: "Live Webinars",
-    text: "Stay updated with expert insights and real-time market analysis.",
+    title: "Monthly live webinars",
+    text: "Live sessions with market analysts. Recorded and available after. Calendar updated monthly.",
     icon: <LiveWebinars />,
     backgroundColor: "#cb1a36",
   },
   {
-    title: "Technical and Fundamental Research",
-    text: "Make informed decisions with top-tier data.",
+    title: "Research and analysis",
+    text: "Weekly market outlook. Economic calendar with impact ratings. Technical levels updated daily.",
     icon: <TechResearch />,
     backgroundColor: "#9d142a",
   },
   {
-    title: "E-books and Guides",
-    text: "Master market fundamentals and advanced trading techniques.",
+    title: "Courses and guides",
+    text: "Three learning tracks: Starting Out, Building Skills, and Advanced. Know where to begin and where to go next.",
     icon: <BooksGuides />,
     backgroundColor: "#631420",
   },
@@ -45,7 +47,7 @@ const LearnTrade = () => {
 
     const interval = setInterval(() => {
       setOrderIndex((prev) => (prev + 1) % shuffleOrder.length);
-    }, 5000);
+    }, 5000); // Shuffle every 5 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -56,10 +58,10 @@ const LearnTrade = () => {
 
   useEffect(() => {
     if (isMobile) return;
-    setAnimateIndex(2);
+    setAnimateIndex(2); // Always the last card in the displayed data
 
     const timeout = setTimeout(() => {
-      setAnimateIndex(null);
+      setAnimateIndex(null); // Remove animation class after 1s
     }, 1000);
 
     return () => clearTimeout(timeout);
@@ -85,11 +87,10 @@ const LearnTrade = () => {
       </div>
       <div className={styles.content}>
         <p className={styles.content__ttl}>
-          Learn, Trade, Succeed <span>with FarloFX</span>
+          Learn. Then trade <span>with confidence.</span>
         </p>
         <p className={styles.content__txt}>
-          Our extensive suite of learning materials provides insights from
-          industry professionals through:
+          Every piece of content in this section was written for traders who are serious about getting better. No fluff. No generic advice.
         </p>
         <Link href={""}>
           Learn more <ArrowRight />

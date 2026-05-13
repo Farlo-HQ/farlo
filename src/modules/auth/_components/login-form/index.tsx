@@ -24,22 +24,21 @@ const LoginForm = () => {
   const [error, setError] = useState<LoginFormErrors | undefined>();
   const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e?: React.MouseEvent) => {
+    e?.preventDefault();
     const errors: LoginFormErrors = {};
-
     if (password.trim().length === 0) errors.password = "Required";
     if (email.trim().length === 0) errors.email = "Required";
 
     if (Object.keys(errors).length > 0) {
       setError(errors);
     } else {
-      console.log(state);
       router.push(ROUTES.overview);
     }
   };
 
   return (
-    <form className={styles.form}>
+    <div className={styles.form}>
       <Input
         name="email"
         type="email"
@@ -65,7 +64,7 @@ const LoginForm = () => {
         styleType="style2"
       />
       <Button onClick={handleSubmit}>Login</Button>
-    </form>
+    </div>
   );
 };
 

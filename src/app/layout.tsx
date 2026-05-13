@@ -13,16 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FarloFx",
+  title: "Farlo",
   description:
-    "FarloFX puts you in the driver’s seat of your financial future.",
+    "Farlo puts you in the driver’s seat of your financial future.",
   keywords: [
     "trading",
     "financial",
     "future",
     "trade",
     "securities",
-    "farlofx",
+    "farlo",
   ],
 };
 
@@ -32,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
     </html>

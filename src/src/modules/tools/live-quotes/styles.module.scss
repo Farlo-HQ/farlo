@@ -1,0 +1,9 @@
+.hero {
+  padding-top: 17rem;
+  padding-bottom: 5rem;
+
+  @media screen and (max-width: 900px) {
+    padding-top: 8rem;
+    padding-bottom: 12rem;
+  }
+}

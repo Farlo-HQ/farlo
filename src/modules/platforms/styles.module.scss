@@ -1,3 +1,4 @@
+/* ── Hero ──────────────────────────────────────────────────────────── */
 .hero {
   background: linear-gradient(180deg, #1d1d1e 0%, #191919 100%);
   padding-top: 105px;
@@ -58,6 +59,7 @@
   }
 }
 
+/* ── Tab switcher ──────────────────────────────────────────────────── */
 .tabs {
   display: flex;
   gap: 0.5rem;
@@ -104,6 +106,7 @@
   }
 }
 
+/* ── Tab Panel ─────────────────────────────────────────────────────── */
 .panelBg {
   background: #141414;
 }
@@ -174,6 +177,7 @@
   margin-top: 0.5rem;
 }
 
+/* Screenshot */
 .panel__img {
   display: flex;
   align-items: center;
@@ -187,6 +191,7 @@
   // box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
 
+/* Web placeholder */
 .panel__webPlaceholder {
   display: flex;
   flex-direction: column;
@@ -217,6 +222,7 @@
   color: #666 !important;
 }
 
+/* ── Features grid ─────────────────────────────────────────────────── */
 .features {
   padding-top: 6rem;
   padding-bottom: 6rem;

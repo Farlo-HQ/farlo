@@ -1,0 +1,80 @@
+.bg {
+  padding-top: 105px;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  background: linear-gradient(180deg, #191919 0%, #cb1a36 100%);
+  height: 640px;
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 65px;
+  }
+}
+.section {
+  display: flex;
+  height: 100%;
+  max-width: 1390px;
+}
+.tag {
+  color: #e07686;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 900px) {
+    margin-bottom: 1rem;
+  }
+}
+.ttl {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+
+  @media screen and (max-width: 900px) {
+    font-size: 32px;
+    color: #fff;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+  }
+}
+.txt {
+  color: #ffffffcc;
+  font-size: 24px;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  font-weight: 500;
+
+  @media screen and (max-width: 900px) {
+    font-size: 20px;
+  }
+}
+.txtContent {
+  max-width: 700px;
+  padding: 5rem 1rem;
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+
+  @media screen and (max-width: 1024px) {
+    padding: 8rem 0 0;
+    margin: 0;
+  }
+}
+.element {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  @media screen and (max-width: 900px) {
+    bottom: -7rem;
+  }
+}

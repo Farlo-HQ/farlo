@@ -1,0 +1,33 @@
+.bg {
+  background: #fafafa;
+}
+.section {
+  padding-top: 5rem;
+  padding-bottom: 6rem;
+
+  @media screen and (max-width: 900px) {
+    padding-top: 4rem;
+  }
+}
+.ttl {
+  font-weight: 600;
+  font-size: 48px;
+  max-width: 650px;
+  margin-bottom: 6rem;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 32px;
+    margin-bottom: 3rem;
+  }
+
+  span {
+    color: var(--primary);
+  }
+}
+.table {
+  margin-top: 2rem;
+
+  @media screen and (max-width: 1024px) {
+    margin-top: 1rem;
+  }
+}

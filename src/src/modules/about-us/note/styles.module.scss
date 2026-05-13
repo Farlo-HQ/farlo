@@ -1,0 +1,93 @@
+.bg {
+  background-color: #fafafa;
+  padding: 1.5rem;
+
+  @media screen and (max-width: 600px) {
+    padding: 0;
+  }
+}
+.section {
+  background-image: url(../../../assets/images/ceo-note-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20rem 3rem 3rem;
+  max-width: 1410px;
+
+  @media screen and (max-width: 1024px) {
+    background-position: right;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 20rem 0 0;
+  }
+}
+.note {
+  backdrop-filter: blur(44px);
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.11),
+      rgba(255, 255, 255, 0.11)
+    ),
+    linear-gradient(
+      163.45deg,
+      rgba(165, 43, 62, 0) 11.46%,
+      rgba(165, 43, 62, 0.11) 91.77%
+    );
+  padding: 1.5rem;
+  color: #fff;
+  border: 1px solid #959595;
+  max-width: 580px;
+
+  @media screen and (max-width: 600px) {
+    max-width: none;
+    border: none;
+    padding: 1rem;
+  }
+
+  &__ttl {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.1;
+    margin-bottom: 2.2rem;
+
+    @media screen and (max-width: 600px) {
+      font-size: 18px;
+      margin-bottom: 1.2rem;
+    }
+  }
+
+  &__txt {
+    font-weight: 500;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 155%;
+    margin-bottom: 2.2rem;
+
+    @media screen and (max-width: 600px) {
+      font-size: 14px;
+      margin-bottom: 1.2rem;
+    }
+  }
+
+  &__name {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 155%;
+    letter-spacing: -0.4px;
+
+    @media screen and (max-width: 600px) {
+      font-size: 14px;
+    }
+  }
+
+  &__role {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 155%;
+    letter-spacing: -0.4px;
+
+    @media screen and (max-width: 600px) {
+      font-size: 14px;
+    }
+  }
+}

@@ -28,6 +28,8 @@ import { VoiceCircle } from "@/assets/icons/voice-cricle";
 import { Monitor } from "@/assets/icons/monitor";
 import { MonitorMobile } from "@/assets/icons/monitor-mobbile";
 import { Mobile } from "@/assets/icons/mobile";
+import { NewLogo } from "@/assets/vectors/new-logo";
+import { NewLogoBlack } from "@/assets/vectors/new-logo-block";
 
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
@@ -39,11 +41,11 @@ const Navbar = () => {
   }, [isMobile]);
 
   const navItems: NavItemData[] = [
-    {
-      title: "About us",
-      path: ROUTES.about,
-      type: "link",
-    },
+    // {
+    //   title: "About us",
+    //   path: ROUTES.about,
+    //   type: "link",
+    // },
     {
       title: "Trading",
       type: "menu",
@@ -52,19 +54,19 @@ const Navbar = () => {
           options: [
             {
               title: <>FOREX </>,
-              text: "EURUSD, GBPUSD, NZDUSD",
+              text: "EUR/USD, GBP/USD, USD/NGN",
               icon: <Image src={forexIcon} alt="" width={32} height={32} />,
               path: ROUTES.forex_trading,
             },
             {
               title: <>INDICIES </>,
-              text: "NASDAQ100, S&P500, FTSE100",
+              text: "US30, NAS100, FTSE100",
               icon: <Image src={indicesIcon} alt="" width={32} height={32} />,
               path: ROUTES.indices_trading,
             },
             {
-              title: <>CRYPTOCURRENCIES </>,
-              text: "BTCUSD, ETHUSD, SOLUSD",
+              title: <>CRYPTO CFDs </>,
+              text: "BTC/USD, ETH/USD, SOL/USD",
               icon: <Image src={cryptoIcon} alt="" width={32} height={32} />,
               path: ROUTES.crypto_trading,
             },
@@ -73,21 +75,22 @@ const Navbar = () => {
         {
           options: [
             {
-              title: <>STOCKS </>,
-              text: "NVDA, AAPL, GOOGL, MSFT",
+              title: <>US STOCKS </>,
+              text: "NVDA, AAPL,TSLA",
               icon: <Image src={stocksIcon} alt="" width={32} height={32} />,
               path: ROUTES.stocks_trading,
             },
             {
               title: <>COMMODITIES </>,
-              text: "XAU, XAG, USOIL",
+              text: "GOLD, SILVER, OIL",
               icon: (
                 <Image src={commoditiesIcon} alt="" width={32} height={32} />
               ),
               path: ROUTES.commodities_trading,
             },
             {
-              title: <>CFDs </>,
+              title: <>Copy Trading </>,
+              text: "Follow Verified Strategies",
               icon: <Image src={cfdIcon} alt="" width={32} height={32} />,
               path: "/",
             },
@@ -190,6 +193,31 @@ const Navbar = () => {
       ],
     },
     {
+      title: "Copy Trading",
+      // path: ROUTES.copy_trading,
+      type: "menu",
+      data: [
+        {
+          title: "Copy Trading",
+          options: [
+            {
+              title: "Copy Trading",
+              text: "",
+              icon: <Image src={forexIcon} alt="" width={32} height={32} />,
+              path: ROUTES.copy_trading,
+            },
+            {
+              title: "Investing Mode",
+              text: "Optimize Your Investment Management",
+              icon: <Image src={indicesIcon} alt="" width={32} height={32} />,
+              path: ROUTES.investing_mode,
+            },
+
+          ],
+        }
+      ]
+    },
+    {
       title: "Partnerships",
       type: "menu",
       data: [
@@ -198,7 +226,7 @@ const Navbar = () => {
           options: [
             {
               title: "Introducing Brokers",
-              text: "Join FarloFX As An Introducing Broker",
+              text: "Join Farlo As An Introducing Broker",
               icon: <Image src={forexIcon} alt="" width={32} height={32} />,
               path: ROUTES.partnerships_ib,
             },
@@ -223,6 +251,11 @@ const Navbar = () => {
           ],
         },
       ],
+    },
+    {
+      title: "Education",
+      path: ROUTES.education,
+      type: "link",
     },
   ];
 
@@ -257,20 +290,18 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`${styles.header} ${
-          scrolledPastViewport ? styles["header--scroll"] : ""
-        } ${dargBg ? styles["header--dark"] : ""}`}
+        className={`${styles.header} ${scrolledPastViewport ? styles["header--scroll"] : ""
+          } ${dargBg ? styles["header--dark"] : ""}`}
       >
         <section
-          className={`layout-container ${styles.nav} ${
-            showNav ? styles["nav--open"] : ""
-          }`}
+          className={`layout-container ${styles.nav} ${showNav ? styles["nav--open"] : ""
+            }`}
         >
           <div className={styles.logoSec}>
             {!showNav ? (
-              <Logo onClick={goHome} style={{ cursor: "pointer" }} />
+              <NewLogo onClick={goHome} style={{ cursor: "pointer" }} />
             ) : (
-              <LogoBlack onClick={goHome} style={{ cursor: "pointer" }} />
+              <NewLogoBlack onClick={goHome} style={{ cursor: "pointer" }} />
             )}
             {isMobile ? (
               <button

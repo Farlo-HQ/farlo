@@ -1,0 +1,36 @@
+.bg {
+  background: #fafafa;
+}
+.section {
+  padding-top: 6rem;
+  padding-bottom: 7rem;
+
+  @media screen and (max-width: 900px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.table {
+  background-color: #fafafa !important;
+
+}
+div.tableHeader,
+div.tableRow {
+  grid-template-columns: 1.5fr 1fr 3fr;
+  min-width: 700px;
+
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 100px 100px 1fr;
+  }
+  > div:last-of-type {
+    text-align: left;
+  }
+}
+div.dataGroup {
+  min-width: 700px;
+}
+div.tableRow {
+  color: var(--text);
+}

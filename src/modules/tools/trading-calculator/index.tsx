@@ -10,7 +10,7 @@ const TradingCalculatorUI = () => {
       <HeroSection3
         title={<>Trade Smarter, Plan Better</>}
         text={
-          "FarloFX’s investment calculator helps you instantly compute pips, margin, spread, commission, and more."
+          "Farlo’s investment calculator helps you instantly compute pips, margin, spread, commission, and more."
         }
         sectionClassName={styles.hero}
         noElement
