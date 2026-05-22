@@ -1,6 +1,5 @@
 "use client";
 
-import { LogoBlack } from "@/assets/vectors";
 import styles from "@/modules/overview/styles.module.scss";
 import { useDeviceSize } from "@/hooks/useDeviceSize";
 import { useState, useEffect, useRef } from "react";
@@ -17,6 +16,8 @@ import {
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { IoBriefcaseOutline } from "react-icons/io5";
+import { LogoRed } from "@/assets/vectors/logo-red";
+import { NewLogo } from "@/assets/vectors/new-logo";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -68,7 +69,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
       {showSidebarContent ? (
         <aside ref={sidebarRef} className={`hide-scrollbar ${styles.sidebar}`}>
-          <LogoBlack className={styles.logo} />
+          {theme === "light" ? <LogoRed className={styles.logo} /> : <NewLogo className={styles.logo} />}
+
 
           <div className={styles.mode_toggle}>
             <button
@@ -211,7 +213,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
 
           <div className={styles.mobile_header}>
-            <LogoBlack className={styles.logo} />
+            {theme === "light" ? <LogoRed className={styles.logo} /> : <NewLogo className={styles.logo} />}
+
 
             <div className={styles.mobile_header_actions}>
               <button className={styles.mobile_icon_btn} onClick={() => {

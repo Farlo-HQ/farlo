@@ -1,5 +1,4 @@
 import { Button } from "@/components";
-import { Logo, LogoBlack } from "@/assets/vectors";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -29,7 +28,7 @@ import { Monitor } from "@/assets/icons/monitor";
 import { MonitorMobile } from "@/assets/icons/monitor-mobbile";
 import { Mobile } from "@/assets/icons/mobile";
 import { NewLogo } from "@/assets/vectors/new-logo";
-import { NewLogoBlack } from "@/assets/vectors/new-logo-block";
+import { NewLogoBlack } from "@/assets/vectors/new-logo-black";
 
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);

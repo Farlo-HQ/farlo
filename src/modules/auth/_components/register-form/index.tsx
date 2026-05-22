@@ -178,6 +178,7 @@ import { Button } from "@/components";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/utils/routes";
 import { Select } from "@/components/select";
+import { useDashboard } from "@/context/DashboardContext";
 
 interface RegisterFormData {
   country: string;
@@ -242,6 +243,8 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
   const [error, setError] = useState<RegisterFormErrors | undefined>();
   const router = useRouter();
   const { email, password, country, phone } = state;
+  // const { setMode } = useDashboard();
+  const [mode, setMode] = useState<Mode>("trading");
 
   useEffect(() => {
     onModeStepChange?.(step === "mode");
@@ -264,10 +267,27 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
     setStep("mode");
   };
 
+  // const handleFinalSubmit = (e?: React.MouseEvent) => {
+  //   e?.preventDefault();
+  //   if (!selectedMode) { setModeError(true); return; }
+  //   router.push(ROUTES.overview);
+  // };
+
   const handleFinalSubmit = (e?: React.MouseEvent) => {
     e?.preventDefault();
-    if (!selectedMode) { setModeError(true); return; }
-    router.push(ROUTES.overview);
+
+    if (!selectedMode) {
+      setModeError(true);
+      return;
+    }
+
+    setMode(selectedMode);
+
+    if (selectedMode === "trading") {
+      router.push("/copy-trading-desk");
+    } else {
+      router.push("/investing-desk");
+    }
   };
 
   if (step === "mode") {

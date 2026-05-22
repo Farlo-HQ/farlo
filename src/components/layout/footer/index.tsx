@@ -5,7 +5,6 @@ import { PlayStore } from "@/assets/vectors/play-store";
 import { TwitterLogo } from "@/assets/icons/twitter";
 import { YoutubeLogo } from "@/assets/icons/youtube";
 import { LinkedinLogo } from "@/assets/icons/linkedin";
-import { FacebookLogo } from "@/assets/icons/facebook";
 import { InstagramLogo } from "@/assets/icons/instagram";
 import { ROUTES } from "@/utils/routes";
 import { NewLogoText } from "@/assets/vectors/new-logo-text";
