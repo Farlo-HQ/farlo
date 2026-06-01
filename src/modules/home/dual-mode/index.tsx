@@ -240,7 +240,6 @@ const DualMode = () => {
 
         <div className={styles.inner}>
 
-          {/* Header */}
           <div className={styles.header}>
             <p className={`dm-overline ${styles.overline}`}>
               ONE PLATFORM &nbsp;·&nbsp; TWO MODES &nbsp;·&nbsp; EVERY MARKET
@@ -252,13 +251,10 @@ const DualMode = () => {
             </h2>
           </div>
 
-          {/* Full-width rule */}
           <div className={`dm-divider ${styles.rule}`} />
 
-          {/* Two-column split */}
           <div className={`dm-cols ${styles.cols}`}>
 
-            {/* Trading */}
             <div className={`dm-col ${styles.col} ${styles["col--trading"]}`}>
               <div className={styles.colHeader}>
                 <p className={`${styles.modeLabel} ${styles["modeLabel--red"]}`}>Trading Mode</p>
@@ -273,9 +269,12 @@ const DualMode = () => {
                   <span key={f} className={`dm-tag ${styles.tag} ${styles["tag--red"]}`}>{f}</span>
                 ))}
               </div>
+
+
               <button
                 className={`${styles.btn} ${styles["btn--red"]}`}
-                onClick={() => router.push(ROUTES.signup)}
+                // onClick={() => router.push(ROUTES.signup)}
+                onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
               >
                 Start Trading <ArrowRight />
               </button>
@@ -299,7 +298,8 @@ const DualMode = () => {
               </div>
               <button
                 className={`${styles.btn} ${styles["btn--green"]}`}
-                onClick={() => router.push(ROUTES.signup)}
+                // onClick={() => router.push(ROUTES.signup)}
+                onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
               >
                 Start Investing <ArrowRight />
               </button>
@@ -307,7 +307,6 @@ const DualMode = () => {
 
           </div>
 
-          {/* Wallet note */}
           <div className={styles.walletNote}>
             <div className={styles.walletIcon}>
               <LogoIconRed width={28} height={28} />

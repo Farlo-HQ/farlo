@@ -39,7 +39,10 @@ const BottomBanner = ({
       </div>
       <div className={styles.ctas}>
         {!fillBtn && !outlineBtn ? (
-          <Button onClick={register} variant="fill-white">
+          <Button
+            // onClick={register}
+            onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
+            variant="fill-white">
             Open Account <ArrowRight />
           </Button>
         ) : null}

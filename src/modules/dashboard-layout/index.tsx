@@ -7,6 +7,7 @@ import { useDashboard } from "@/context/DashboardContext";
 import { useTheme } from "@/context/ThemeContext";
 import {
   IconAnalyze, IconAward, IconBell,
+  IconBook,
   IconCalendar, IconChartArcs, IconChartBar,
   IconContract, IconFileDownload, IconFileExport, IconGraph,
   IconHome, IconLockDollar, IconLogout, IconMenu, IconMoneybag,
@@ -160,6 +161,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </SidebarLink>
             <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
               <IconChartArcs size={20} strokeWidth={1.5} /> Dashboards
+            </SidebarLink>
+          </nav>
+
+          <nav className={styles.nav}>
+            <p>LEARN</p>
+            <SidebarLink href="/education" active={pathname === "/education"} onNav={() => isMobile && setShowSidebar(false)}>
+              <IconBook size={20} strokeWidth={1.5} /> Education
             </SidebarLink>
           </nav>
 

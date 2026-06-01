@@ -46,9 +46,13 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
           <h1 className={styles.ttl}>{title}</h1>
           <p className={`${styles.txt} ${txtClassName}`}>{text}</p>
           <div className={styles.ctas}>
-            <Button onClick={register} variant="fill-red">
+
+            <Button variant="fill-red" onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}>
               Open Account <ArrowRight />
             </Button>
+            {/* <Button onClick={register} variant="fill-red">
+              Open Account <ArrowRight />
+            </Button> */}
             <Button onClick={register} variant="outline-white">
               Open Demo <ArrowRight />
             </Button>

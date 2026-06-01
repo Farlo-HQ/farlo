@@ -107,7 +107,10 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
         <h3>Open your account in minutes.</h3>
       </div>
       <div className={styles.btnSec}>
-        <Button onClick={() => router.push(ROUTES.signup)}>
+        <Button
+          // onClick={() => router.push(ROUTES.signup)}
+          onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
+        >
           Get Started <ArrowRight />
         </Button>
       </div>
