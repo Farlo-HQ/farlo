@@ -130,7 +130,9 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
                 <p className={styles.card__content__txt}>{description}</p>
               </div>
               {index === 0 && !isMobile ? (
-                <Button onClick={() => router.push(ROUTES.signup)}>
+                <Button
+                  onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
+                >
                   Get Started <ArrowRight />
                 </Button>
               ) : null}
