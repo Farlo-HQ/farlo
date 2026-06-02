@@ -40,43 +40,30 @@ const HomeUI = () => {
         }
       />
 
-      {/* ── ORIGINAL: Rates ticker ── */}
       <Rates />
 
-      {/* ── IMPROVED: Gateway (350+ instruments) ── */}
       <Gateway />
 
-      {/* ── NEW: Problem section ── */}
       <Problem />
 
-      {/* ── NEW: Dual mode ── */}
       <DualMode />
 
-      {/* ── ORIGINAL: Getting started carousel ── */}
       <GettingStarted />
 
-      {/* ── ORIGINAL: Opportunity ── */}
       <Opportunity />
 
-      {/* ── ORIGINAL: Trade anywhere / platforms ── */}
       <TradeAnywhere />
 
-      {/* ── ORIGINAL: Why FARLO ── */}
       <WhyFarlo />
 
-      {/* ── NEW: Stats strip ── */}
       <StatsStrip />
 
-      {/* ── ORIGINAL: Complete package CTA ── */}
       <CompletePackage />
 
-      {/* ── ORIGINAL: Learn & trade ── */}
       <LearnTrade />
 
-      {/* ── ORIGINAL: Get help ── */}
       <GetHelp />
 
-      {/* ── ORIGINAL: Bottom banner ── */}
       <BottomBanner />
     </>
   );

@@ -47,13 +47,13 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
           <p className={`${styles.txt} ${txtClassName}`}>{text}</p>
           <div className={styles.ctas}>
 
-            <Button variant="fill-red" onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}>
+            <Button variant="fill-red" className={styles.heroBtn} onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}>
               Open Account <ArrowRight />
             </Button>
             {/* <Button onClick={register} variant="fill-red">
               Open Account <ArrowRight />
             </Button> */}
-            <Button onClick={register} variant="outline-white">
+            <Button onClick={register} variant="outline-white" className={styles.heroBtn}>
               Open Demo <ArrowRight />
             </Button>
           </div>

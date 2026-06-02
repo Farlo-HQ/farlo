@@ -87,3 +87,11 @@
   color: #fafafa80;
   font-size: 12px;
 }
+
+.heroBtn {
+  @media screen and (max-width: 1024px) {
+    padding: 14px 28px !important; 
+    font-size: 17px !important;
+    width: 100%;
+  }
+}

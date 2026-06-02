@@ -1,3 +1,6 @@
+
+
+
 "use client";
 import { Button } from "@/components";
 import styles from "./styles.module.scss";
@@ -22,7 +25,7 @@ import { Monitor } from "@/assets/icons/monitor";
 import { MonitorMobile } from "@/assets/icons/monitor-mobbile";
 import { Mobile } from "@/assets/icons/mobile";
 import { NewLogo } from "@/assets/vectors/new-logo";
-import { NewLogoBlack } from "@/assets/vectors/new-logo-black";
+import { LogoRed } from "@/assets/vectors/logo-red";
 
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
@@ -122,11 +125,17 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`${styles.header} ${scrolledPastViewport ? styles["header--scroll"] : ""} ${dargBg ? styles["header--dark"] : ""}`}>
+      <header
+        className={`${styles.header} 
+    ${scrolledPastViewport ? styles["header--scroll"] : ""} 
+    ${dargBg ? styles["header--dark"] : ""} 
+    ${showNav ? styles["header--hidden"] : ""}`
+        }
+      >
         <section className={`layout-container ${styles.nav}`}>
           <div className={styles.logoSec}>
             <NewLogo onClick={() => router.push(ROUTES.home)} style={{ cursor: "pointer" }} />
-            {isMobile && (
+            {isMobile && !showNav && (
               <button className={styles.hamburger} onClick={() => setShowNav(p => !p)} aria-label="Menu">
                 <IconMenu size={20} />
               </button>
@@ -136,7 +145,7 @@ const Navbar = () => {
             <>
               <nav>
                 {navItems.map(item => (
-                  <NavItem key={item.title} {...item} callback={() => setShowNav(false)} isMobile={false} />
+                  <NavItem key={item.title} {...item} callback={() => { if (item.type === "link") setShowNav(false); }} isMobile={false} />
                 ))}
               </nav>
               <div className={styles.ctaSec}>
@@ -146,10 +155,11 @@ const Navbar = () => {
                   target="_blank"
                   rel="noopener noreferrer">Log in
                 </Link>
-                <Button onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}>
+                <Button onClick={() => window.open("https://accounts.farlofx.com/auth/registw", "_blank", "noopener,noreferrer")}>
                   Open Account
                 </Button>
-                {/* <Button onClick={() => router.push(ROUTES.signup)}>Open Account</Button> */}
+                {/* <Link className={styles.loginLink} href={ROUTES.login}>Log in</Link>
+                <Button onClick={() => router.push(ROUTES.signup)}>Open Account</Button> */}
               </div>
             </>
           )}
@@ -161,8 +171,8 @@ const Navbar = () => {
       {isMobile && showNav && (
         <div className={styles.mobile_nav}>
           <div className={styles.mobile_nav_header}>
-            <NewLogoBlack style={{ width: 100 }} />
-            <button onClick={() => setShowNav(false)}><IconX size={16} /></button>
+            <LogoRed />
+            <button onClick={() => setShowNav(false)}><IconX size={20} /></button>
           </div>
           <nav>
             {navItems.map(item => (
@@ -170,8 +180,16 @@ const Navbar = () => {
             ))}
           </nav>
           <div className={styles.ctaSec}>
-            <Link className={styles.loginLink} href={ROUTES.login} onClick={() => setShowNav(false)}>Log in</Link>
-            <Button onClick={() => { router.push(ROUTES.signup); setShowNav(false); }}>Open Account</Button>
+            <Link
+              className={styles.loginLink}
+              href={"https://accounts.farlofx.com/auth/login"}
+              onClick={() => setShowNav(false)}
+              target="_blank"
+              rel="noopener noreferrer">Log in
+            </Link>
+            <Button onClick={() => window.open("https://accounts.farlofx.com/auth/registw", "_blank", "noopener,noreferrer")}>
+              Open Account
+            </Button>
           </div>
         </div>
       )}
@@ -215,7 +233,17 @@ interface NavMenuDropdownProps { data: NavMenuDropdownData[]; close: () => void;
 const NavMenuDropdown = ({ data, close, isMobile }: NavMenuDropdownProps) => {
   const router = useRouter();
   const ref = useRef(null);
-  useClickOutside(ref, close);
+
+  useClickOutside(ref, (event) => {
+    if (!isMobile) {
+      const clickedElement = event.target as HTMLElement;
+      if (clickedElement.closest(`.${styles.navBtn}`)) {
+        return;
+      }
+
+      close();
+    }
+  });
   return (
     <div ref={ref} className={`${styles.dropdown} ${isMobile ? styles.mobile_dropdown : ""}`}>
       {data.map((item, i) => (

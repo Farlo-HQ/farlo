@@ -17,6 +17,7 @@ interface ButtonProps
   | "outline-white"
   | "outline-red"
   | "grey";
+  size?: "small" | "medium" | "large";
   disabled?: boolean;
   fullWidth?: boolean;
 }
@@ -25,6 +26,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   const {
     children,
     variant = "fill-red",
+    size = "medium",
     className,
     onClick,
     disabled,
@@ -42,6 +44,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       className={`
         ${styles.btn} 
         ${styles[`btn--${variant}`]} 
+        ${styles[`btn--${size}`]}
         ${fullWidth ? styles["btn--fullWidth"] : ""} 
         ${className || ""}
       `}
