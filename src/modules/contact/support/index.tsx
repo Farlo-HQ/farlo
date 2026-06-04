@@ -34,7 +34,7 @@ const Support = () => {
       <div>
         <p className={styles.tag}>Still have Questions?</p>
         <p className={styles.ttl}>
-          Reach out to our support team at{" "} &nbsp;
+          Reach out to our support team at{" "}
           <a href="mailto:support@farlofx.com" className={styles.email}>
             support@farlofx.com
           </a>{" "}
