@@ -426,3 +426,132 @@
     color: var(--text);
   }
 }
+
+/* ── COUNTRY SELECT ── */
+.cselect_wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cselect_label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.cselect_trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 13px;
+  background: #f5f5f7;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  color: var(--title);
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: #d1d5db; }
+  &:focus-within { border-color: var(--primary); }
+}
+
+.cselect_error { border-color: var(--primary) !important; }
+
+.cselect_val {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cselect_placeholder { color: rgba(193,199,208,1); }
+
+.cselect_err_msg {
+  font-size: 12px;
+  color: var(--primary);
+  margin-top: -2px;
+}
+
+.cselect_menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  z-index: 200;
+  overflow: hidden;
+  animation: fadeDown 0.15s ease;
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+.cselect_search_wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 13px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #9ca3af;
+}
+
+.cselect_search {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  color: var(--title);
+  background: transparent;
+
+  &::placeholder { color: #9ca3af; }
+}
+
+.cselect_list {
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.cselect_empty {
+  font-size: 13px;
+  color: #9ca3af;
+  text-align: center;
+  padding: 16px;
+}
+
+.cselect_option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+
+  &:hover { background: #f5f5f7; }
+}
+
+.cselect_option_active {
+  background: rgba(203,26,54,0.05);
+  .cselect_name { color: var(--primary); font-weight: 600; }
+}
+
+.cselect_flag { font-size: 16px; flex-shrink: 0; }
+
+.cselect_name { font-size: 13px; color: var(--title); font-weight: 500; flex: 1; }
+
+.cselect_dial { font-size: 12px; color: #9ca3af; flex-shrink: 0; }

@@ -22,16 +22,15 @@ const Select: React.FC<InputProps> = (props) => {
 
   return (
     <div
-      className={`${
-        type === "checkbox" ? `${styles.checkboxWrap}` : styles.style2
-      } ${parentClassName || ""}`}
+      className={`${type === "checkbox" ? `${styles.checkboxWrap}` : styles.style2
+        } ${parentClassName || ""}`}
     >
       {label && <label className={styles.label}>{label} </label>}
       <div className={styles.selectWrapper}>
         <select {...rest} className={`${styles.select} ${className || ""}`}>
           <option value={"select"}>Choose an option</option>
           {options?.map((option) => (
-            <option value={option.value}>{option.label}</option>
+            <option key={option.value} value={option.value}>{option.label}</option>
           ))}
         </select>
       </div>

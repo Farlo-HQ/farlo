@@ -10,14 +10,17 @@ const ContactUI = () => {
   return (
     <>
       <HeroSection />
-      <Addresses />
+      {/* <Addresses /> */}
       <Support />
-      <AddressMap />
-      <Buildings />
+      {/* <AddressMap /> */}
+      {/* <Buildings /> */}
       <BottomBanner
         title="The Future of Trading Starts Here"
         text="Experience world-class trading conditions, advanced tools, and dedicated support all in one platform."
-        fillBtn={{ text: "Register", action: console.log }}
+        fillBtn={{
+          text: "Register",
+          action: () => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")
+        }}
         outlineBtn={{ text: "Open Demo", action: console.log }}
       />
     </>

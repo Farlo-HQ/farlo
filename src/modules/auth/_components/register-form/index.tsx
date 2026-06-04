@@ -380,7 +380,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./styles.module.scss";
 import { Input } from "@/components/input";
 import { Button } from "@/components";
@@ -441,6 +441,120 @@ const options = [
   { value: "usa", label: "United States", flag: "🇺🇸", dialCode: "+1" },
 ];
 
+function CountrySelect({
+  value,
+  onChange,
+  options,
+  error,
+}: {
+  value: string;
+  onChange: (val: string) => void;
+  options: { value: string; label: string; flag?: string; dialCode?: string }[];
+  error?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const ref = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+        setSearch("");
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  useEffect(() => {
+    if (open) setTimeout(() => inputRef.current?.focus(), 50);
+  }, [open]);
+
+  const selected = options.find(o => o.value === value);
+  const filtered = options.filter(o =>
+    o.label.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className={styles.cselect_wrap} ref={ref}>
+      <label className={styles.cselect_label}>Country / Region of residence</label>
+      <button
+        type="button"
+        className={`${styles.cselect_trigger} ${error ? styles.cselect_error : ""}`}
+        onClick={() => setOpen(o => !o)}
+      >
+        <span className={styles.cselect_val}>
+          {selected ? (
+            <>
+              <span>{selected.flag}</span>
+              <span>{selected.label}</span>
+            </>
+          ) : (
+            <span className={styles.cselect_placeholder}>Select your country</span>
+          )}
+        </span>
+        <svg
+          width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s", flexShrink: 0 }}
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+
+      {error && <p className={styles.cselect_err_msg}>{error}</p>}
+
+      {open && (
+        <div className={styles.cselect_menu}>
+          {/* Search */}
+          <div className={styles.cselect_search_wrap}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input
+              ref={inputRef}
+              className={styles.cselect_search}
+              placeholder="Search country..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.cselect_list}>
+            {filtered.length === 0 ? (
+              <p className={styles.cselect_empty}>No results</p>
+            ) : (
+              filtered.map(opt => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  className={`${styles.cselect_option} ${value === opt.value ? styles.cselect_option_active : ""}`}
+                  onClick={() => {
+                    onChange(opt.value);
+                    setOpen(false);
+                    setSearch("");
+                  }}
+                >
+                  <span className={styles.cselect_flag}>{opt.flag}</span>
+                  <span className={styles.cselect_name}>{opt.label}</span>
+                  {opt.dialCode && <span className={styles.cselect_dial}>{opt.dialCode}</span>}
+                  {value === opt.value && (
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: "auto", flexShrink: 0, color: "var(--primary)" }}>
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  )}
+                </button>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const RegisterForm = ({ onModeStepChange }: Props) => {
   const [step, setStep] = useState<Step>("details");
   const [state, setState] = useState<RegisterFormData>({
@@ -460,10 +574,10 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
     onModeStepChange?.(step === "mode");
   }, [step, onModeStepChange]);
 
-  // When a country is picked, also auto-set the phone dial code
-  const handleCountryChange = (value: string, option?: { dialCode?: string }) => {
-    const dialCode = option?.dialCode ?? "+234";
-    setState((prev) => ({ ...prev, country: value, phone: dialCode }));
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    const found = options.find(o => o.value === value);
+    setState(prev => ({ ...prev, country: value, phone: found?.dialCode ?? "+234" }));
   };
 
   const handleDetailsSubmit = (e?: React.MouseEvent) => {
@@ -471,7 +585,7 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
     const errors: RegisterFormErrors = {};
     if (!password.trim()) errors.password = "Required";
     if (!email.trim()) errors.email = "Required";
-    if (!country.trim()) errors.country = "Required";
+    if (!country || !String(country).trim()) errors.country = "Required";
     if (!phone.trim()) errors.phone = "Required";
     else if (!/^\+?[1-9]\d{1,14}$/.test(phone)) errors.phone = "Invalid phone number";
 
@@ -556,13 +670,14 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
 
   return (
     <div className={styles.form_wrap}>
-      <Select
-        label="Country / Region of residence"
+      <CountrySelect
+        value={country}
+        onChange={(val) => {
+          const found = options.find(o => o.value === val);
+          setState(prev => ({ ...prev, country: val, phone: found?.dialCode ?? prev.phone }));
+        }}
         options={options}
         error={error?.country}
-        value={country}
-        onChange={handleCountryChange}
-        // onChange={(e) => setState((prev) => ({ ...prev, country: e.target.value }))}
       />
       <Input
         name="email"

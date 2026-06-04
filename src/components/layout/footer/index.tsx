@@ -300,77 +300,12 @@ const Footer = () => {
     <footer className={styles.footerBg}>
       <section className={`layout-container ${styles.footer}`}>
 
-        {/* <div className={styles.legal}>
-          <p className={styles.legal__company}>
-            <strong>Farlo Markets Ltd</strong>&nbsp;
-            is registered in Saint Lucia and is authorized to conduct
-            permissible international commercial and financial activities
-            by the Financial Services Regulatory Authority (FSRA) in compliance
-            with the RATLA and IBC Act (Cap 12.14) section 10(5) under registration number &nbsp;<strong>2025-00057</strong>.
-            Its registered office is located at Top Floor, Rodney Court Building, Rodney Bay, Gros-Islet, Saint Lucia LC01 101.
-          </p>
-
-          <p className={styles.legal__text}>
-            <span className={styles.legal__iconLabel}>
-              <IoIosWarning color="#EAB308" />
-              <strong> Risk Warning : </strong>
-            </span> &nbsp;
-            Trading Contracts for Difference (CFDs) and other leveraged
-            products involve a high level of risk and may not be suitable
-            for all traders and investors. CFDs are complex instruments and
-            the use of leverage magnifies both potential profits and losses,
-            meaning you could incur losses greater than your initial deposit.
-            You should carefully consider your investment objectives, level of experience,
-            and risk appetite before deciding to trade CFDs. Ensure you fully understand the
-            risks involved and seek independent financial advice if necessary.
-          </p>
-
-          <p className={styles.legal__text}>
-            The information provided on this website does not constitute investment advice,
-            a recommendation, or a solicitation to engage in any investment activity.
-            By accessing this website, users acknowledge that their interaction with its content
-            is personal and voluntary, and undertaken at their own discretion.
-            The content does not constitute an offer or invitation to enter into any contractual
-            agreement or to acquire financial services or products provided by Farlo Markets Ltd.
-
-            All rights are reserved. Any possible action by a non-authorized person concerning intellectual property objects is prohibited.
-          </p>
-
-
-
-          <p className={`${styles.legal__text}  ${styles.legal__disclaimer}`}>
-            <span className={styles.legal__iconLabel}>
-              <IoInformationCircleSharp color="#A1A1AA" size={16} />
-              <strong> Disclaimer : </strong> &nbsp;
-            </span>
-            Farlo Markets Ltd does not offer
-            services to the United States of America, Pakistan, Iraq, Iran,
-            Uzbekistan, or any other jurisdiction listed on the FATF
-            &ldquo;blacklist&rdquo;, and the major global sanctions lists. It is
-            also not intended for distribution or use in any jurisdiction where
-            such distribution or use would violate local laws or regulations.
-          </p>
-
-          <div className={styles.legal__strip}>
-            <div className={styles.legal__links}>
-              <Link href={ROUTES.privacy_policy}>Privacy Policy</Link>
-              <Link href={ROUTES.terms_of_use}>Terms of Use</Link>
-              <Link href={ROUTES.legal}>Legal</Link>
-            </div>
-            <span className={styles.legal__copy}>
-              Copyright &copy; 2026 Farlo. All rights reserved.
-            </span>
-          </div>
-
-        </div> */}
         <div className={styles.legal}>
           <p className={styles.legal__company}>
-            <strong>Farlo Markets Ltd</strong>&nbsp;
-            is registered in Saint Lucia and is authorized to conduct
-            permissible international commercial and financial activities
-            by the Financial Services Regulatory Authority (FSRA) in compliance
-            with the RATLA and IBC Act (Cap 12.14) section 10(5) under registration number &nbsp;<strong>2025-00057</strong>.
-            Its registered office is located at Top Floor, Rodney Court Building, Rodney Bay, Gros-Islet, Saint Lucia LC01 101.
+            <strong>Farlo Markets Ltd</strong>&nbsp; is an international business company incorporated in Saint Lucia
+            under registration number &nbsp;<strong>2025-00057</strong>. The company is duly registered in accordance
+            with the laws of Saint Lucia. Its registered office is located at Top Floor,
+            Rodney Court Building, Rodney Bay, Gros-Islet, Saint Lucia LC01 101.
           </p>
 
           <div className={styles.legal__notices}>

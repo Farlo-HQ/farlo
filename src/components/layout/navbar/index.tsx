@@ -111,6 +111,7 @@ const Navbar = () => {
       }],
     },
     { title: "Education", path: ROUTES.education, type: "link" },
+    { title: "Contact", path: ROUTES.contact, type: "link" },
   ];
 
   const [scrolledPastViewport, setScrolledPastViewport] = useState(false);

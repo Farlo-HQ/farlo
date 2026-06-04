@@ -4,7 +4,7 @@
   background-color: #fafafa;
 
   @media screen and (max-width: 800px) {
-    display: none;
+    // display: none;
   }
 }
 .tag {
@@ -21,7 +21,7 @@
   line-height: 140%;
   letter-spacing: 0%;
 
-  span {
+  a {
     font-weight: 600;
     color: var(--primary);
   }
