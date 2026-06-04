@@ -49,6 +49,22 @@ const ContactForm = () => {
   const { name, message, email } = state;
   const [error, setError] = useState<ContactFormErrors | undefined>();
 
+  // const handleSubmit = () => {
+  //   const errors: ContactFormErrors = {};
+
+  //   if (name.trim().length === 0) errors.name = "Required";
+  //   if (message.trim().length === 0) errors.message = "Required";
+  //   else if (message.trim().length < 12)
+  //     errors.message = "Message must contain at least 10 characters";
+  //   if (email.trim().length === 0) errors.email = "Required";
+
+  //   if (Object.keys(errors).length > 0) {
+  //     setError(errors);
+  //   } else {
+  //     console.log(state);
+  //   }
+  // };
+
   const handleSubmit = () => {
     const errors: ContactFormErrors = {};
 
@@ -60,9 +76,15 @@ const ContactForm = () => {
 
     if (Object.keys(errors).length > 0) {
       setError(errors);
-    } else {
-      console.log(state);
+      return;
     }
+
+    const subject = encodeURIComponent(`Contact Form — ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:support@farlofx.com?subject=${subject}&body=${body}`;
   };
 
   return (
