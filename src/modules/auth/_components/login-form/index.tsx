@@ -101,51 +101,51 @@ const LoginForm = () => {
   const router = useRouter();
   const { setMode } = useDashboard();
 
-  // const handleSubmit = (e?: React.MouseEvent) => {
-  //   e?.preventDefault();
-  //   const errors: LoginFormErrors = {};
-  //   if (password.trim().length === 0) errors.password = "Required";
-  //   if (email.trim().length === 0) errors.email = "Required";
-
-  //   if (Object.keys(errors).length > 0) {
-  //     setError(errors);
-  //   } else {
-  //     router.push(ROUTES.overview);
-  //   }
-  // };
-
-  const handleSubmit = async (e?: React.MouseEvent) => {
+  const handleSubmit = (e?: React.MouseEvent) => {
     e?.preventDefault();
     const errors: LoginFormErrors = {};
-    if (!password.trim()) errors.password = "Required";
-    if (!email.trim()) errors.email = "Required";
+    if (password.trim().length === 0) errors.password = "Required";
+    if (email.trim().length === 0) errors.email = "Required";
 
-    if (Object.keys(errors).length > 0) { setError(errors); return; }
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setError({ email: "Invalid email or password" });
-      return;
-    }
-
-    if (data.user) {
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("default_mode")
-        .eq("id", data.user.id)
-        .single();
-
-      if (profile?.default_mode) {
-        setMode(profile.default_mode as "trading" | "investing");
-      }
-
+    if (Object.keys(errors).length > 0) {
+      setError(errors);
+    } else {
       router.push(ROUTES.overview);
     }
   };
+
+  // const handleSubmit = async (e?: React.MouseEvent) => {
+  //   e?.preventDefault();
+  //   const errors: LoginFormErrors = {};
+  //   if (!password.trim()) errors.password = "Required";
+  //   if (!email.trim()) errors.email = "Required";
+
+  //   if (Object.keys(errors).length > 0) { setError(errors); return; }
+
+  //   const { data, error } = await supabase.auth.signInWithPassword({
+  //     email,
+  //     password,
+  //   });
+
+  //   if (error) {
+  //     setError({ email: "Invalid email or password" });
+  //     return;
+  //   }
+
+  //   if (data.user) {
+  //     const { data: profile } = await supabase
+  //       .from("profiles")
+  //       .select("default_mode")
+  //       .eq("id", data.user.id)
+  //       .single();
+
+  //     if (profile?.default_mode) {
+  //       setMode(profile.default_mode as "trading" | "investing");
+  //     }
+
+  //     router.push(ROUTES.overview);
+  //   }
+  // };
 
   return (
     <div className={styles.form}>
