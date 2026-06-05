@@ -172,7 +172,7 @@ const Navbar = () => {
       {isMobile && showNav && (
         <div className={styles.mobile_nav}>
           <div className={styles.mobile_nav_header}>
-            <LogoRed />
+            <LogoRed onClick={() => router.push(ROUTES.home)} style={{ cursor: "pointer" }} />
             <button onClick={() => setShowNav(false)}><IconX size={20} /></button>
           </div>
           <nav>

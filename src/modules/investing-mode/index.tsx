@@ -15,12 +15,15 @@ const faqs: FAQData[] = [
   {
     question: "Are these real shares or CFDs?",
     answer:
-      "Real shares. These are actual US equities held in a regulated brokerage account in your name via Alpaca. You own the stock. Dividends are yours. This is not a CFD.",
+      // "Real shares. These are actual US equities held in a regulated brokerage account in your name via Alpaca. You own the stock. Dividends are yours. This is not a CFD.",
+      "Real shares. These are actual US equities held in a brokerage account in your name via Alpaca. You own the stock. Dividends are yours. This is not a CFD."
+
   },
   {
     question: "Do I need a US bank account?",
     answer:
       "No. You fund your FARLO master wallet in NGN, GHS, KES, or USD via Paystack, USDT, or card. Funds are allocated to your Alpaca sub-account instantly. No wire transfer required.",
+
   },
   {
     question: "How do I access Investing Mode?",
@@ -49,7 +52,9 @@ const instruments = [
 const differentiators = [
   {
     title: "Real ownership.",
-    body: "This is not a CFD. These are actual shares held in a regulated US brokerage account in your name. Dividends are yours.",
+    // body: "This is not a CFD. These are actual shares held in a regulated US brokerage account in your name. Dividends are yours.",
+    body: "This is not a CFD. These are actual shares held in a US brokerage account in your name. Dividends are yours.",
+
   },
   {
     title: "No US bank account.",
@@ -77,7 +82,9 @@ const InvestingModeUI = () => {
           </>
         }
         text={
-          "Buy Apple, NVIDIA, and the S&P 500 from Lagos, Cairo, Nairobi, or Accra. Regulated access via Alpaca. No US bank account. No wire transfer."
+          // "Buy Apple, NVIDIA, and the S&P 500 from Lagos, Cairo, Nairobi, or Accra. Regulated access via Alpaca. No US bank account. No wire transfer."
+          "Buy Apple, NVIDIA, and the S&P 500 from Lagos, Cairo, Nairobi, or Accra. No US bank account. No wire transfer."
+
         }
         bgClassName={styles.heroBg}
         btn1={{ text: "Start Investing in US Stocks", action: () => router.push(ROUTES.signup) }}

@@ -35,12 +35,12 @@ const WhyFarlo = () => {
       title: "Instant transfers",
       text: "Move profits between Trading and Investing in seconds. No fee.",
     },
-    {
-      img: islamic_acc,
-      img_size: 48,
-      title: "Regulated rails",
-      text: "US equities and FX via Licensed Infrastructure.",
-    },
+    // {
+    //   img: islamic_acc,
+    //   img_size: 48,
+    //   title: "Regulated rails",
+    //   text: "US equities and FX via Licensed Infrastructure.",
+    // },
     {
       img: live_quotes,
       img_size: 48,

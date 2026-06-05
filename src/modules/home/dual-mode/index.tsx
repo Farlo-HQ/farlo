@@ -288,7 +288,7 @@ const DualMode = () => {
               </div>
               <p className={styles.colHeadline}>For builders<br />who think long.</p>
               <p className={styles.colBody}>
-                Real US equities, ETFs, and options via a regulated brokerage.
+                Real US equities, ETFs, and options.
                 Buy Apple and NVIDIA from Lagos without a US bank account.
               </p>
               <div className={styles.tags}>

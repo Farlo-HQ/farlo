@@ -86,11 +86,11 @@ import { FAQData } from "@/components/faqs/accordion";
 const faqs: FAQData[] = [
   {
     question: "What is the difference between stock CFDs and real shares?",
-    answer: "Stock CFDs are derivatives — you trade on price movement without owning the stock. Real shares in Investing Mode are actual equity held in a regulated US brokerage account in your name. Dividends are yours. Ownership is real.",
+    answer: "Stock CFDs are derivatives — you trade on price movement without owning the stock. Real shares in Investing Mode are actual equity held in a US brokerage account in your name. Dividends are yours. Ownership is real.",
   },
   {
     question: "Can I invest in US stocks from Emerging markets?",
-    answer: "Yes. FARLO's Investing Mode gives you real access to US equities via Alpaca, a regulated US brokerage. No US bank account required. Fund in NGN, GHS, KES, or USD via Paystack.",
+    answer: "Yes. FARLO's Investing Mode gives you real access to US equities via Alpaca, a US brokerage. No US bank account required. Fund in NGN, GHS, KES, or USD via Paystack.",
   },
   {
     question: "What stocks are available?",
@@ -114,7 +114,7 @@ const StocksUI = () => (
     specsHours="NYSE & NASDAQ hours"
     specsCount="1,000+ stocks"
     whatHeading="Own a piece of the world's biggest companies."
-    whatBody="US stocks give you a share of Apple, NVIDIA, Tesla, and thousands more. FARLO offers two ways in: stock CFDs via MT5 for leveraged trading, and real share ownership via Investing Mode — held in a regulated US brokerage account in your name."
+    whatBody="US stocks give you a share of Apple, NVIDIA, Tesla, and thousands more. FARLO offers two ways in: stock CFDs via MT5 for leveraged trading, and real share ownership via Investing Mode — held in a US brokerage account in your name."
     whyPoints={[
       "Real US shares via Investing Mode — actual ownership with dividends.",
       "No US bank account needed. Fund in NGN, GHS, KES, or USD via Paystack.",

@@ -10,7 +10,7 @@ const faqs: FAQData[] = [
   {
     question: "How long do deposits take?",
     answer:
-      "Farlo FX is a regulated broker, holding multiple regulatory licenses from several financial authorities across the globe such as the Seychelles Financial Services Authority (FSA), Cyprus Securities and Exchange Commission (CySEC)*, the Financial Conduct Authority (FCA) in the UK*, South Africa Financial Sector Conduct Authority (FSCA), Central Bank of Curacao and Sint Maarten (CBCS), Financial Services Commission (FSC) in the British Virgin Islands, Financial Services Commission (FSC) in Mauritius, Capital Markets Authority (CMA) in Kenya, and the Jordan Securities Commission (JSC).",
+      "Farlo FX is a broker, holding multiple licenses from several financial authorities across the globe such as the Seychelles Financial Services Authority (FSA), Cyprus Securities and Exchange Commission (CySEC)*, the Financial Conduct Authority (FCA) in the UK*, South Africa Financial Sector Conduct Authority (FSCA), Central Bank of Curacao and Sint Maarten (CBCS), Financial Services Commission (FSC) in the British Virgin Islands, Financial Services Commission (FSC) in Mauritius, Capital Markets Authority (CMA) in Kenya, and the Jordan Securities Commission (JSC).",
   },
   {
     question: "How long do withdrawals take?",

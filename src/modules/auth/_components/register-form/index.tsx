@@ -387,6 +387,7 @@ import { Button } from "@/components";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/utils/routes";
 import { Select } from "@/components/select";
+import { supabase } from "@/lib/supabase";
 
 interface RegisterFormData {
   country: string;
@@ -594,14 +595,50 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
     setStep("mode");
   };
 
-  const handleFinalSubmit = (e?: React.MouseEvent) => {
+  // const handleFinalSubmit = (e?: React.MouseEvent) => {
+  //   e?.preventDefault();
+  //   if (!selectedMode) { setModeError(true); return; }
+  //   setMode(selectedMode);
+  //   if (selectedMode === "trading") {
+  //     router.push("/copy-trading-desk");
+  //   } else {
+  //     router.push("/investing-desk");
+  //   }
+  // };
+  const handleFinalSubmit = async (e?: React.MouseEvent) => {
     e?.preventDefault();
     if (!selectedMode) { setModeError(true); return; }
-    setMode(selectedMode);
-    if (selectedMode === "trading") {
-      router.push("/copy-trading-desk");
-    } else {
-      router.push("/investing-desk");
+
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          phone,
+          country,
+          default_mode: selectedMode,
+        }
+      }
+    });
+
+    if (error) {
+      console.error(error.message);
+      return;
+    }
+
+    if (data.user) {
+      await supabase
+        .from("profiles")
+        .update({
+          phone,
+          country,
+          default_mode: selectedMode
+        })
+        .eq("id", data.user.id);
+
+      setMode(selectedMode);
+
+      router.push(ROUTES.overview);
     }
   };
 
