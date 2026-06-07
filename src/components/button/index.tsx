@@ -36,6 +36,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 
   return (
     <button
+      suppressHydrationWarning
       {...rest}
       disabled={disabled}
       onClick={(e) => {

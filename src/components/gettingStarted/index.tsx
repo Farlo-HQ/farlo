@@ -50,7 +50,6 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      // cards 2 and 3 start off-screen to the right
       gsap.set(".step-2", { xPercent: 150, x: 0 });
       gsap.set(".step-3", { xPercent: 150, x: 0 });
 
@@ -61,7 +60,7 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
           pinSpacing: true,
           start: "top 100px",
           end: isMobile ? "+=1200px" : "+=1800",
-          scrub: 1,          // smoother than 0.5 — tied to scroll, not snapping
+          scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
@@ -69,7 +68,6 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
 
       timeline.addLabel("step1");
 
-      // Step 2 eases in
       timeline.to(".step-2", {
         xPercent: 0,
         x: isMobile ? 0 : 60,
@@ -78,7 +76,6 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
       });
       timeline.addLabel("step2");
 
-      // Step 3 eases in
       timeline.to(
         ".step-3",
         {
@@ -91,7 +88,6 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
       );
       timeline.addLabel("step3");
 
-      // small hold at end to prevent jump on unpin
       timeline.to({}, { duration: 0.5 });
     });
     return () => ctx.revert();

@@ -11,7 +11,6 @@ interface ComingSoonPageProps {
   icon?: React.ReactNode;
 }
 
-// Generic coming soon page — use this for any unlinked nav item
 const ComingSoonPage = ({ title, description, icon }: ComingSoonPageProps) => (
   <div className={styles.container}>
     <div className={styles.inner}>
@@ -28,8 +27,6 @@ const ComingSoonPage = ({ title, description, icon }: ComingSoonPageProps) => (
   </div>
 );
 
-// Pre-configured pages for each nav item
-// Import whichever you need and drop into the relevant page.tsx
 
 const AccountsPage = () => (
   <ComingSoonPage

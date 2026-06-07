@@ -13,18 +13,19 @@ import {
   IconHome, IconLockDollar, IconLogout, IconMenu, IconMoneybag,
   IconMoneybagMove, IconMoneybagMoveBack, IconMoon, IconNews,
   IconSparkles, IconSun, IconTransfer, IconTransferIn,
-  IconUserDollar, IconUsers, IconWallet, IconX,
+  IconUserDollar, IconUsers, IconWallet, IconX, IconUser,
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { LogoRed } from "@/assets/vectors/logo-red";
 import { NewLogo } from "@/assets/vectors/new-logo";
+import { supabase } from "@/lib/supabase";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [showSidebar, setShowSidebar] = useState(false);
   const { isMobile } = useDeviceSize(900);
-  const { mode, setMode, notifications, markAllRead, unreadCount } = useDashboard();
+  const { mode, setMode, notifications, markAllRead, unreadCount, userProfile, loading } = useDashboard();
   const { theme, toggleTheme } = useTheme();
   const [showNotifications, setShowNotifications] = useState(false);
   const sidebarRef = useRef<HTMLElement>(null);
@@ -34,15 +35,18 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     if (isMobile) setShowSidebar(false);
   }, [pathname, isMobile]);
 
-
-  const handleModeChange = (m: "trading" | "investing") => {
-    setMode(m);
-    if (isMobile) setTimeout(() => setShowSidebar(false), 150);
-  };
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        router.push("/login");
+      }
+    };
+    checkAuth();
+  }, []);
 
   const handleModeSwitch = (newMode: "trading" | "investing") => {
     setMode(newMode);
-
     if (newMode === "investing" && pathname === "/copy-trading-desk") {
       router.push("/investing-desk");
     }
@@ -52,6 +56,19 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   const showSidebarContent = (isMobile && showSidebar) || !isMobile;
+
+  const displayName = userProfile?.firstName
+    ? `${userProfile.firstName}${userProfile.lastName ? ` ${userProfile.lastName}` : ""}`
+    : userProfile?.email?.split("@")[0] ?? "User";
+
+  const displayEmail = userProfile?.email ?? "";
+
+  const hasName = !!userProfile?.firstName;
+  const initials = hasName
+    ? `${userProfile!.firstName![0]}${userProfile!.lastName ? userProfile!.lastName[0] : ""}`.toUpperCase()
+    : null;
+
+
 
   return (
     <div className={styles.container}>
@@ -72,7 +89,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <aside ref={sidebarRef} className={`hide-scrollbar ${styles.sidebar}`}>
           {theme === "light" ? <LogoRed className={styles.logo} /> : <NewLogo className={styles.logo} />}
 
-
           <div className={styles.mode_toggle}>
             <button
               className={`${styles.mode_btn} ${mode === "trading" ? styles.mode_btn_active_trading : ""}`}
@@ -87,8 +103,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               Investing
             </button>
           </div>
-
-
 
           <nav className={styles.nav}>
             <p>OVERVIEW</p>
@@ -122,8 +136,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             <nav className={styles.nav}>
               <p>INVESTING</p>
               <SidebarLink href="/investing-desk" active={pathname === "/investing-desk"} onNav={() => isMobile && setShowSidebar(false)}>
-                <IoBriefcaseOutline
-                  size={18} strokeWidth={1.5} /> Portfolio Mirror
+                <IoBriefcaseOutline size={18} strokeWidth={1.5} /> Portfolio Mirror
               </SidebarLink>
             </nav>
           )}
@@ -211,41 +224,36 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </SidebarLink>
           </nav>
 
-          <a className={styles.signout} href="/"><IconLogout /> Sign out</a>
+          <button
+            className={styles.signout}
+            onClick={async () => {
+              await supabase.auth.signOut();
+              window.location.href = "/login";
+            }}
+          >
+            <IconLogout /> Sign out
+          </button>
         </aside>
       ) : null}
 
       <div className={styles.main}>
         <header className={styles.header}>
-
-
-
           <div className={styles.mobile_header}>
             {theme === "light" ? <LogoRed className={styles.logo} /> : <NewLogo className={styles.logo} />}
 
-
             <div className={styles.mobile_header_actions}>
               <button className={styles.mobile_icon_btn} onClick={() => {
-                if (isMobile) {
-                  setShowSidebar(false);
-                }
+                if (isMobile) setShowSidebar(false);
                 toggleTheme();
               }}>
-                {theme === "light" ? (
-                  <IconMoon size={18} strokeWidth={1.5} />
-                ) : (
-                  <IconSun size={18} strokeWidth={1.5} />
-                )}
+                {theme === "light" ? <IconMoon size={18} strokeWidth={1.5} /> : <IconSun size={18} strokeWidth={1.5} />}
               </button>
 
               <div className={styles.notif_wrap}>
                 <button
                   className={styles.mobile_icon_btn}
                   onClick={() => {
-                    if (isMobile) {
-                      setShowSidebar(false);
-                    }
-
+                    if (isMobile) setShowSidebar(false);
                     setShowNotifications((prev) => {
                       const next = !prev;
                       if (next) markAllRead();
@@ -254,19 +262,14 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                   }}
                 >
                   <IconBell size={18} strokeWidth={1.5} />
-                  {unreadCount > 0 && (
-                    <span className={styles.notif_badge}>{unreadCount}</span>
-                  )}
+                  {unreadCount > 0 && <span className={styles.notif_badge}>{unreadCount}</span>}
                 </button>
 
                 {showNotifications && (
                   <div className={`${styles.notif_dropdown} ${styles.notif_dropdown_mobile}`}>
                     <div className={styles.notif_header}>
                       <p className={styles.notif_title}>Notifications</p>
-                      <button
-                        className={styles.notif_close}
-                        onClick={() => setShowNotifications(false)}
-                      >
+                      <button className={styles.notif_close} onClick={() => setShowNotifications(false)}>
                         <IconX size={14} />
                       </button>
                     </div>
@@ -274,18 +277,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                       <div className={styles.notif_empty}>No notifications yet</div>
                     ) : (
                       notifications.map((n) => (
-                        <div
-                          key={n.id}
-                          className={`${styles.notif_item} ${!n.read ? styles.notif_unread : ""}`}
-                        >
-                          <div
-                            className={`${styles.notif_dot} ${n.type === "success"
-                              ? styles.dot_success
-                              : n.type === "warning"
-                                ? styles.dot_warning
-                                : styles.dot_info
-                              }`}
-                          />
+                        <div key={n.id} className={`${styles.notif_item} ${!n.read ? styles.notif_unread : ""}`}>
+                          <div className={`${styles.notif_dot} ${n.type === "success" ? styles.dot_success : n.type === "warning" ? styles.dot_warning : styles.dot_info}`} />
                           <div className={styles.notif_text}>
                             <p className={styles.notif_item_title}>{n.title}</p>
                             <p className={styles.notif_item_msg}>{n.message}</p>
@@ -298,7 +291,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 )}
               </div>
 
-              <button className={styles.mobile_menu}
+              <button
+                className={styles.mobile_menu}
                 onMouseDown={(e) => e.stopPropagation()}
                 onTouchStart={(e) => e.stopPropagation()}
                 onClick={() => setShowSidebar((prev) => !prev)}
@@ -307,6 +301,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               </button>
             </div>
           </div>
+
           <div className={styles.header_content}>
             <div className={styles.header_actions}>
               <button className={styles.icon_btn} onClick={toggleTheme}>
@@ -343,17 +338,37 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               </button>
 
               <div className={styles.profile}>
-                <div className={styles.avatar}>JD</div>
+                <div className={styles.avatar}>
+                  {initials ? initials : <IconUser size={16} strokeWidth={1.5} />}
+                </div>
                 <div className={styles.details}>
-                  <p className={styles.name}>John Doe</p>
-                  <p className={styles.email}>john.doe@yopmail.com</p>
+                  <p className={styles.name}>{displayName}</p>
+                  <p className={styles.email}>{displayEmail}</p>
                 </div>
               </div>
             </div>
           </div>
         </header>
 
-        <div>{children}</div>
+        {loading ? (
+          <div style={{
+            minHeight: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "inherit",
+          }}>
+            <style>{`
+          @keyframes farlo-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.92); }
+          }
+          .farlo-loader { animation: farlo-pulse 1.4s ease-in-out infinite; }
+        `}</style>
+            {theme === "light" ? <LogoRed className="farlo-loader" style={{ width: 78, height: 78 }} /> : <NewLogo className="farlo-loader" style={{ width: 78, height: 78 }} />}
+          </div>) : children
+        }
+
       </div>
     </div>
   );

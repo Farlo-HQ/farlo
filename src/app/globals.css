@@ -19,6 +19,9 @@
   --max-width: 1390px;
   --max-width-1: 1350px;
   --max-width-2: 1300px;
+  --input-bg: #f5f5f7;
+  --input-border: #e5e7eb;
+  --input-placeholder: #C1C7D0
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -153,12 +156,18 @@ hide-scrollbar::-webkit-scrollbar {
   --dash-header: #111620;
   --dash-input: #1a2033;
   --dash-input-secondary: #161b22;
+  --input-bg: #1f2937;
+  --input-border: #374151;
+  --input-placeholder: #6b7280
 }
 
 input[type="date"] {
   -webkit-appearance: none;
   appearance: none;
 }
+
+
+
 
 /* html:not([data-theme]) {
   visibility: hidden;

@@ -61,7 +61,6 @@ const Quotes = () => {
       spread: { value: "0.2", type: "red" },
       time: "18:35:35",
     },
-    // Add more items as needed
   ];
 
   return (

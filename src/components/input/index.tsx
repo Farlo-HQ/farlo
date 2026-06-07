@@ -28,6 +28,7 @@ const Input: React.FC<InputProps> = (props) => {
     >
       {label && <label className={styles.label}>{label} </label>}
       <input
+        suppressHydrationWarning
         name={name}
         type={type}
         value={value}

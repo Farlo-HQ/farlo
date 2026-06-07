@@ -52,39 +52,38 @@
 }
 .style2 {
   .label {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 500;
+    color: var(--text);
     line-height: 1.5;
     text-align: left;
-    color: var(--dash-text);
     display: block;
     margin-bottom: 6px;
   }
   .input {
+    padding: 10px 13px;
+    background: var(--input-bg);
+    border: 1.5px solid var(--input-border);
+    border-radius: 10px;
     outline: none;
-    padding: 10px 14px 10px 1rem;
     width: 100%;
     color: #ffffff;
-    font-family: "Inter";
     font-size: 15px;
-    height: 54px;
-    // background: transparent;
-    background: var(--dash-input);
-    border: 1.5px solid transparent;
-    color: var(--text);
+    height: 40px;
+    color: var(--title);
     font-size: 16px;
-    border-radius: 16px;
-    border: none;
+
+    &:hover { border-color: #d1d5db; }
+    &:focus-within { border-color: var(--primary); }
 
     &::placeholder {
-      color: var(--dash-text-muted);
-      font-size: inherit;
-      font-weight: 400;
+      color: var(--input-placeholder);
+      font-size: 14px;
     }
     &[type="date"] {
       -webkit-appearance: none;
       appearance: none;
-      min-height: 54px;
+      min-height: 40px;
       color: var(--text);
     }
   }
@@ -99,8 +98,7 @@
 
     &::placeholder {
       color: #575a5d;
-      font-size: inherit;
-      font-weight: 400;
+      font-size: 13px;
     }
   }
 }

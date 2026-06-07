@@ -47,7 +47,7 @@ const LearnTrade = () => {
 
     const interval = setInterval(() => {
       setOrderIndex((prev) => (prev + 1) % shuffleOrder.length);
-    }, 5000); // Shuffle every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -58,10 +58,10 @@ const LearnTrade = () => {
 
   useEffect(() => {
     if (isMobile) return;
-    setAnimateIndex(2); // Always the last card in the displayed data
+    setAnimateIndex(2);
 
     const timeout = setTimeout(() => {
-      setAnimateIndex(null); // Remove animation class after 1s
+      setAnimateIndex(null);
     }, 1000);
 
     return () => clearTimeout(timeout);

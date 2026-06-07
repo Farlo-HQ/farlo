@@ -1,7 +1,6 @@
-
-
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 export type Mode = "trading" | "investing";
 
@@ -30,165 +29,260 @@ interface WalletState {
   investing: number;
 }
 
+export interface UserProfile {
+  id: string;
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  isNewUser: boolean;
+}
+
 interface DashboardContextType {
   mode: Mode;
   setMode: (m: Mode) => void;
   wallets: WalletState;
-  transfer: (
-    from: "main" | "trading" | "investing",
-    to: "main" | "trading" | "investing",
-    amount: number
-  ) => boolean;
-  deposit: (amount: number) => void;
+  setWallets: React.Dispatch<React.SetStateAction<WalletState>>;
+  transfer: (from: "main" | "trading" | "investing", to: "main" | "trading" | "investing", amount: number) => Promise<boolean>;
+  withdraw: (amount: number, fromWallet: "main" | "trading" | "investing", label?: string) => Promise<boolean>;
+  deposit: (amount: number, label?: string) => void;
   transactions: Transaction[];
+  addTransaction: (tx: Omit<Transaction, "id">) => void;
   notifications: Notification[];
   markAllRead: () => void;
   unreadCount: number;
   kycStatus: "pending" | "submitted" | "approved";
   setKycStatus: (s: "pending" | "submitted" | "approved") => void;
+  userProfile: UserProfile | null;
+  loading: boolean;
+  refetchWallets: () => Promise<void>;
 }
 
-const DashboardContext = createContext<DashboardContextType>(
-  {} as DashboardContextType
-);
-
-const MOCK_TRANSACTIONS: Transaction[] = [
-  { id: "t1", type: "deposit", wallet: "main", label: "Bank Transfer Deposit", amount: 500, date: "2026-03-23T09:14:00", status: "completed" },
-  { id: "t2", type: "transfer_out", wallet: "main", label: "Transfer to Trading Wallet", amount: 200, date: "2026-03-23T09:20:00", status: "completed" },
-  { id: "t3", type: "transfer_in", wallet: "trading", label: "Received from Main Wallet", amount: 200, date: "2026-03-23T09:20:00", status: "completed" },
-  { id: "t4", type: "trade", wallet: "trading", label: "EUR/USD Position Closed", amount: 84.5, date: "2026-03-22T16:32:00", status: "completed" },
-  { id: "t5", type: "transfer_out", wallet: "main", label: "Transfer to Investing Wallet", amount: 1000, date: "2026-03-22T14:10:00", status: "completed" },
-  { id: "t6", type: "transfer_in", wallet: "investing", label: "Received from Main Wallet", amount: 1000, date: "2026-03-22T14:10:00", status: "completed" },
-  { id: "t7", type: "trade", wallet: "investing", label: "AAPL Stock Purchase", amount: -340, date: "2026-03-20T11:00:00", status: "completed" },
-  { id: "t8", type: "deposit", wallet: "main", label: "Card Deposit", amount: 250, date: "2026-03-19T08:45:00", status: "completed" },
-  { id: "t9", type: "withdrawal", wallet: "main", label: "Bank Withdrawal", amount: -100, date: "2026-03-18T15:22:00", status: "pending" },
-];
-
-const MOCK_NOTIFICATIONS: Notification[] = [
-  { id: "n1", title: "KYC Verification Pending", message: "Complete your identity verification to unlock all features.", time: "Just now", read: false, type: "warning" },
-  { id: "n2", title: "Transfer Successful", message: "$200.00 transferred to your Trading Wallet.", time: "2 hours ago", read: false, type: "success" },
-  { id: "n3", title: "Deposit Confirmed", message: "Your deposit of $500.00 has been confirmed.", time: "Today, 9:14 AM", read: false, type: "success" },
-  { id: "n4", title: "Welcome to Farlo", message: "Your account has been created. Start by completing your profile.", time: "Yesterday", read: true, type: "info" },
-];
+const DashboardContext = createContext<DashboardContextType>({} as DashboardContextType);
 
 export const DashboardProvider = ({ children }: { children: React.ReactNode }) => {
-  const [mode, setModeState] = useState<Mode>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("farlo_mode") as Mode | null;
-      if (saved === "trading" || saved === "investing") return saved;
-    }
-    return "trading";
-  });
-
-  const [wallets, setWallets] = useState<WalletState>({
-    main: 12450,
-    trading: 5200,
-    investing: 3800,
-  });
-  const [transactions, setTransactions] = useState<Transaction[]>(MOCK_TRANSACTIONS);
-  const [notifications, setNotifications] = useState<Notification[]>(MOCK_NOTIFICATIONS);
-  const [kycStatus, setKycStatus] = useState<"pending" | "submitted" | "approved">("pending");
+  const [mode, setModeState] = useState<Mode>("trading");
+  const [wallets, setWallets] = useState<WalletState>({ main: 0, trading: 0, investing: 0 });
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [kycStatus, setKycStatusState] = useState<"pending" | "submitted" | "approved">("pending");
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   const setMode = (newMode: Mode) => {
     setModeState(newMode);
-    localStorage.setItem("farlo_mode", newMode);
+    if (typeof window !== "undefined") localStorage.setItem("farlo_mode", newMode);
   };
 
-  const transfer = (
+  const setKycStatus = (s: "pending" | "submitted" | "approved") => {
+    setKycStatusState(s);
+    if (typeof window !== "undefined" && userProfile?.id) {
+      localStorage.setItem(`farlo_kyc_${userProfile.id}`, s);
+    }
+  };
+
+  const refetchWallets = useCallback(async () => {
+    if (!userProfile?.id) return;
+    const { data } = await supabase
+      .from("wallets")
+      .select("main_balance, trading_balance, investing_balance")
+      .eq("user_id", userProfile.id)
+      .single();
+    if (data) {
+      setWallets({
+        main: data.main_balance ?? 0,
+        trading: data.trading_balance ?? 0,
+        investing: data.investing_balance ?? 0,
+      });
+    }
+  }, [userProfile?.id]);
+
+  const refetchTransactions = useCallback(async () => {
+    if (!userProfile?.id) return;
+    const { data } = await supabase
+      .from("transactions")
+      .select("*")
+      .eq("user_id", userProfile.id)
+      .order("date", { ascending: false });
+    setTransactions(data ?? []);
+  }, [userProfile?.id]);
+
+  useEffect(() => {
+    const init = async () => {
+      setLoading(true);
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) { setLoading(false); return; }
+
+      const user = session.user;
+
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+
+      const { count } = await supabase
+        .from("transactions")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", user.id);
+
+      const isNewUser = !count || count === 0;
+
+      setUserProfile({
+        id: user.id,
+        email: user.email ?? "",
+        firstName: profile?.first_name ?? undefined,
+        lastName: profile?.last_name ?? undefined,
+        isNewUser,
+      });
+
+      const savedMode = profile?.default_mode ?? localStorage.getItem("farlo_mode");
+      if (savedMode === "trading" || savedMode === "investing") setModeState(savedMode);
+
+      const savedKyc = localStorage.getItem(`farlo_kyc_${user.id}`);
+      if (savedKyc === "pending" || savedKyc === "submitted" || savedKyc === "approved") {
+        setKycStatusState(savedKyc);
+      }
+
+      const { data: walletData } = await supabase
+        .from("wallets")
+        .select("main_balance, trading_balance, investing_balance")
+        .eq("user_id", user.id)
+        .single();
+
+      if (walletData) {
+        setWallets({
+          main: walletData.main_balance ?? 0,
+          trading: walletData.trading_balance ?? 0,
+          investing: walletData.investing_balance ?? 0,
+        });
+      }
+
+      const { data: txData } = await supabase
+        .from("transactions")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("date", { ascending: false });
+
+      setTransactions(txData ?? []);
+
+      if (isNewUser) {
+        setNotifications([
+          { id: "n_welcome", title: "Welcome to Farlo", message: "Your account has been created. Start by completing your KYC verification.", time: "Just now", read: false, type: "info" },
+          { id: "n_kyc", title: "KYC Verification Required", message: "Complete your identity verification to unlock full access.", time: "Just now", read: false, type: "warning" },
+        ]);
+      } else {
+        setNotifications([
+          { id: "n_welcome_back", title: "Welcome back", message: "You have successfully logged in.", time: "Just now", read: false, type: "success" },
+        ]);
+      }
+
+      setLoading(false);
+    };
+
+    init();
+  }, []);
+
+  const addTransaction = useCallback(async (tx: Omit<Transaction, "id">) => {
+    if (!userProfile?.id) return;
+    const { data } = await supabase
+      .from("transactions")
+      .insert({ ...tx, user_id: userProfile.id })
+      .select()
+      .single();
+    if (data) {
+      setTransactions((prev) => [data, ...prev]);
+    }
+  }, [userProfile?.id]);
+
+  const persistWallets = useCallback(async (newWallets: WalletState) => {
+    if (!userProfile?.id) return;
+    await supabase
+      .from("wallets")
+      .update({
+        main_balance: newWallets.main,
+        trading_balance: newWallets.trading,
+        investing_balance: newWallets.investing,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("user_id", userProfile.id);
+  }, [userProfile?.id]);
+
+  const deposit = useCallback(async (amount: number, label = "Deposit to Main Wallet") => {
+    const newWallets = { ...wallets, main: wallets.main + amount };
+    setWallets(newWallets);
+    await persistWallets(newWallets);
+    await addTransaction({
+      type: "deposit",
+      wallet: "main",
+      label,
+      amount,
+      date: new Date().toISOString(),
+      status: "completed",
+    });
+    setNotifications((prev) => [
+      { id: `n${Date.now()}`, title: "Deposit Confirmed", message: `$${amount.toFixed(2)} added to your Main Wallet.`, time: "Just now", read: false, type: "success" },
+      ...prev,
+    ]);
+  }, [wallets, persistWallets, addTransaction]);
+
+  const withdraw = useCallback(async (amount: number, fromWallet: "main" | "trading" | "investing" = "main", label = "Withdrawal"): Promise<boolean> => {
+    if (wallets[fromWallet] < amount) return false;
+    const newWallets = { ...wallets, [fromWallet]: wallets[fromWallet] - amount };
+    setWallets(newWallets);
+    await persistWallets(newWallets);
+    await addTransaction({
+      type: "withdrawal",
+      wallet: fromWallet,
+      label,
+      amount: -amount,
+      date: new Date().toISOString(),
+      status: "pending",
+    });
+    setNotifications((prev) => [
+      { id: `n${Date.now()}`, title: "Withdrawal Submitted", message: `$${amount.toFixed(2)} withdrawal is being processed.`, time: "Just now", read: false, type: "info" },
+      ...prev,
+    ]);
+    return true;
+  }, [wallets, persistWallets, addTransaction]);
+
+  const transfer = useCallback(async (
     from: "main" | "trading" | "investing",
     to: "main" | "trading" | "investing",
     amount: number
-  ): boolean => {
+  ): Promise<boolean> => {
     if (wallets[from] < amount) return false;
+    const newWallets = { ...wallets, [from]: wallets[from] - amount, [to]: wallets[to] + amount };
+    setWallets(newWallets);
+    await persistWallets(newWallets);
 
-    setWallets((prev) => ({
+    const fromLabel = from.charAt(0).toUpperCase() + from.slice(1);
+    const toLabel = to.charAt(0).toUpperCase() + to.slice(1);
+
+    await addTransaction({ type: "transfer_out", wallet: from, label: `Transfer to ${toLabel} Wallet`, amount, date: new Date().toISOString(), status: "completed" });
+    await addTransaction({ type: "transfer_in", wallet: to, label: `Received from ${fromLabel} Wallet`, amount, date: new Date().toISOString(), status: "completed" });
+
+    setNotifications((prev) => [
+      { id: `n${Date.now()}`, title: "Transfer Successful", message: `$${amount.toFixed(2)} moved from ${fromLabel} to ${toLabel} Wallet.`, time: "Just now", read: false, type: "success" },
       ...prev,
-      [from]: prev[from] - amount,
-      [to]: prev[to] + amount,
-    }));
-
-    const newTx: Transaction = {
-      id: `t${Date.now()}`,
-      type: "transfer_out",
-      wallet: from,
-      label: `Transfer to ${from.charAt(0).toUpperCase() + from.slice(1)} Wallet`,
-      amount,
-      date: new Date().toISOString(),
-      status: "completed",
-    };
-
-    const newTxIn: Transaction = {
-      id: `t${Date.now() + 1}`,
-      type: "transfer_in",
-      wallet: to,
-      label: `Received from ${from.charAt(0).toUpperCase() + from.slice(1)} Wallet`,
-      amount,
-      date: new Date().toISOString(),
-      status: "completed",
-    };
-
-    setTransactions((prev) => [newTxIn, newTx, ...prev]);
-
-    const notif: Notification = {
-      id: `n${Date.now()}`,
-      title: "Transfer Successful",
-      message: `$${amount.toFixed(2)} transferred to your ${to.charAt(0).toUpperCase() + to.slice(1)} Wallet.`,
-      time: "Just now",
-      read: false,
-      type: "success",
-    };
-    setNotifications((prev) => [notif, ...prev]);
-
+    ]);
     return true;
-  };
+  }, [wallets, persistWallets, addTransaction]);
 
-  const deposit = (amount: number) => {
-    setWallets((prev) => ({ ...prev, main: prev.main + amount }));
-
-    const newTx: Transaction = {
-      id: `t${Date.now()}`,
-      type: "deposit",
-      wallet: "main",
-      label: "Deposit to Main Wallet",
-      amount,
-      date: new Date().toISOString(),
-      status: "completed",
-    };
-
-    setTransactions((prev) => [newTx, ...prev]);
-
-    const notif: Notification = {
-      id: `n${Date.now()}`,
-      title: "Deposit Confirmed",
-      message: `Your deposit of $${amount.toFixed(2)} has been confirmed.`,
-      time: "Just now",
-      read: false,
-      type: "success",
-    };
-    setNotifications((prev) => [notif, ...prev]);
-  };
-
-  const markAllRead = () =>
-    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  const markAllRead = () => setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
 
   return (
-    <DashboardContext.Provider
-      value={{
-        mode,
-        setMode,
-        wallets,
-        transfer,
-        deposit,
-        transactions,
-        notifications,
-        markAllRead,
-        unreadCount,
-        kycStatus,
-        setKycStatus,
-      }}
-    >
+    <DashboardContext.Provider value={{
+      mode, setMode,
+      wallets, setWallets,
+      transfer, deposit, withdraw,
+      transactions, addTransaction,
+      notifications, markAllRead, unreadCount,
+      kycStatus, setKycStatus,
+      userProfile, loading,
+      refetchWallets,
+    }}>
       {children}
     </DashboardContext.Provider>
   );

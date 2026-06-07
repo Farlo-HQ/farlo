@@ -160,7 +160,7 @@ const KycUI = () => {
                       setPersonal((p) => ({ ...p, firstName: e.target.value }))
                     }
                     styleType="style2"
-                    placeholder="John"
+                    placeholder="Enter first name"
                   />
                   <Input
                     label="Last Name"
@@ -169,7 +169,7 @@ const KycUI = () => {
                       setPersonal((p) => ({ ...p, lastName: e.target.value }))
                     }
                     styleType="style2"
-                    placeholder="Doe"
+                    placeholder="Enter last name"
                   />
                   <Input
                     label="Date of Birth"
@@ -190,7 +190,7 @@ const KycUI = () => {
                       }))
                     }
                     styleType="style2"
-                    placeholder="Nigerian"
+                    placeholder="Enter Nationality"
                   />
                   <div className={styles.full_col}>
                     <Input
@@ -200,7 +200,7 @@ const KycUI = () => {
                         setPersonal((p) => ({ ...p, address: e.target.value }))
                       }
                       styleType="style2"
-                      placeholder="123 Street Name"
+                      placeholder="Enter Address"
                     />
                   </div>
                   <Input
