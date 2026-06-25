@@ -98,3 +98,27 @@
 //     background-color: var(--primary);
 //     color: #fff;
 //   }
+
+/* Loading state */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: currentColor;
+  animation: btn-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+.btn--loading {
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+.btn_label_loading {
+  opacity: 0.9;
+}

@@ -673,3 +673,7 @@
   transition: transform 0.1s;
   &:active { transform: scale(0.97); }
 }
+.export_btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

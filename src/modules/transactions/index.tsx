@@ -1,3 +1,5 @@
+
+
 "use client";
 import { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
@@ -11,6 +13,7 @@ import {
   IconSearch,
   IconChevronDown,
   IconX,
+  IconDownload,
 } from "@tabler/icons-react";
 import { Button } from "@/components";
 
@@ -153,6 +156,31 @@ const TransactionsUI = () => {
     .filter((t) => t.type === "withdrawal" || t.type === "transfer_out")
     .reduce((sum, t) => sum + Math.abs(t.amount), 0);
 
+  const handleExportCsv = () => {
+    if (filtered.length === 0) return;
+
+    const headers = ["Date", "Type", "Wallet", "Description", "Amount", "Status"];
+    const rows = filtered.map((tx) => [
+      new Date(tx.date).toLocaleString("en-US"),
+      tx.type,
+      tx.wallet,
+      `"${tx.label.replace(/"/g, '""')}"`,
+      tx.amount.toFixed(2),
+      tx.status,
+    ]);
+
+    const csvContent = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `farlo-transactions-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.page_header}>
@@ -162,8 +190,8 @@ const TransactionsUI = () => {
             A complete record of all your account activity
           </p>
         </div>
-        <button className={styles.export_btn}>
-          Export CSV
+        <button className={styles.export_btn} onClick={handleExportCsv} disabled={filtered.length === 0}>
+          <IconDownload size={14} /> Export CSV
         </button>
       </div>
 

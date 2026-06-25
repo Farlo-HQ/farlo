@@ -176,7 +176,7 @@ function CustomSelect({
 }
 
 export function CopyInvestingUI() {
-  const { wallets } = useDashboard();
+  const { wallets, trade } = useDashboard();
   const [holdings, setHoldings] = useState<Holding[]>(INITIAL_HOLDINGS);
   const [side, setSide] = useState<"buy" | "sell">("buy");
   const [selectedSym, setSelectedSym] = useState("AAPL");
@@ -209,7 +209,7 @@ export function CopyInvestingUI() {
     setConfirmModal({ sym: selectedSym, side, shares, price: curPrice, total: estTotal });
   };
 
-  const confirmOrder = () => {
+  const confirmOrder = async () => {
     if (!confirmModal) return;
     const { sym, side: s, shares: sh, price } = confirmModal;
     const numShares = parseInt(sh);
@@ -217,6 +217,15 @@ export function CopyInvestingUI() {
     const stock = STOCKS[sym];
     if (s === "buy") {
       if (wallets.investing < total) { showToast("Insufficient investing balance", "warn"); setConfirmModal(null); return; }
+
+      const ok = await trade({
+        wallet: "investing",
+        amount: -total,
+        label: `Buy ${numShares}x ${sym} @ $${price.toFixed(2)}`,
+      });
+
+      if (!ok) { showToast("Insufficient investing balance", "warn"); setConfirmModal(null); return; }
+
       setHoldings(prev => {
         const existing = prev.find(h => h.sym === sym);
         if (existing) {
@@ -229,19 +238,30 @@ export function CopyInvestingUI() {
       const existing = holdings.find(h => h.sym === sym);
       if (!existing || existing.shares < numShares) { showToast(`You don't have ${numShares} shares of ${sym}`, "warn"); setConfirmModal(null); return; }
       const pnl = (price - existing.avg) * numShares;
+
+      await trade({
+        wallet: "investing",
+        amount: total,
+        label: `Sell ${numShares}x ${sym} @ $${price.toFixed(2)} — P&L ${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}`,
+      });
+
       setHoldings(prev => prev.map(h => h.sym === sym ? { ...h, shares: h.shares - numShares, val: (h.shares - numShares) * price } : h).filter(h => h.shares > 0));
       showToast(`✓ ${numShares}x ${sym} sold — P&L ${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}`, pnl >= 0 ? "success" : "warn");
     }
     setConfirmModal(null);
   };
 
-  const handleMirror = (manager: PortManager) => {
+  const handleMirror = async (manager: PortManager) => {
     const alloc = parseFloat(allocInputs[manager.id] || "500");
     if (mirroring[manager.id]) {
+      const refund = mirroring[manager.id];
+      await trade({ wallet: "investing", amount: refund, label: `Stopped mirroring ${manager.name} — capital returned` });
       setMirroring(prev => { const n = { ...prev }; delete n[manager.id]; return n; });
       showToast(`Stopped mirroring ${manager.name}`, "warn");
     } else {
       if (alloc > wallets.investing) { showToast("Insufficient investing balance", "warn"); return; }
+      const ok = await trade({ wallet: "investing", amount: -alloc, label: `Mirroring ${manager.name} — capital allocated` });
+      if (!ok) { showToast("Insufficient investing balance", "warn"); return; }
       setMirroring(prev => ({ ...prev, [manager.id]: alloc }));
       showToast(`✓ Mirroring ${manager.name} — $${alloc} allocated`, "success");
     }

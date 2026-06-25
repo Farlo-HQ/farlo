@@ -1,3 +1,4 @@
+
 "use client";
 import styles from "@/modules/overview/styles.module.scss";
 import accStyles from "./styles.module.scss";
@@ -17,15 +18,49 @@ import {
   IconMapPin,
   IconCalendar,
   IconLock,
+  IconCheck,
+  IconX,
+  IconPlus,
+  IconCreditCard,
 } from "@tabler/icons-react";
 import { IoPerson } from "react-icons/io5";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
+
+interface ProfileDetails {
+  phone: string | null;
+  country: string | null;
+  created_at: string | null;
+}
 
 const AccountsUI = () => {
   const { userProfile, kycStatus, wallets, transactions, mode } = useDashboard();
+  const router = useRouter();
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+
+  const [details, setDetails] = useState<ProfileDetails | null>(null);
+
+  useEffect(() => {
+    const load = async () => {
+      if (!userProfile?.id) return;
+      const { data } = await supabase
+        .from("profiles")
+        .select("phone, country, created_at")
+        .eq("id", userProfile.id)
+        .single();
+      setDetails(data);
+    };
+    load();
+  }, [userProfile?.id]);
 
   const displayName = userProfile?.firstName
     ? `${userProfile.firstName}${userProfile.lastName ? ` ${userProfile.lastName}` : ""}`
     : userProfile?.email?.split("@")[0] ?? "User";
+
+  const initials = userProfile?.firstName
+    ? `${userProfile.firstName[0]}${userProfile.lastName ? userProfile.lastName[0] : ""}`.toUpperCase()
+    : null;
 
   const totalDeposited = transactions
     .filter((t) => t.type === "deposit")
@@ -60,6 +95,10 @@ const AccountsUI = () => {
         ? IconClock
         : IconAlertCircle;
 
+  const memberSince = details?.created_at
+    ? new Date(details.created_at).toLocaleDateString("en-US", { month: "long", year: "numeric" })
+    : "—";
+
   return (
     <section className={accStyles.body}>
       {/* Header */}
@@ -78,8 +117,7 @@ const AccountsUI = () => {
 
           <div className={accStyles.profile_avatar_row}>
             <div className={accStyles.avatar_circle}>
-
-              <IoPerson />
+              {initials ? initials : <IoPerson />}
             </div>
             <div>
               <p className={accStyles.profile_name}>{displayName}</p>
@@ -94,6 +132,18 @@ const AccountsUI = () => {
               <span className={accStyles.info_value}>{userProfile?.email ?? "—"}</span>
             </div>
             <div className={accStyles.info_row}>
+              <IconPhone size={15} strokeWidth={1.5} className={accStyles.info_icon} />
+              <span className={accStyles.info_label}>Phone</span>
+              <span className={accStyles.info_value}>{details?.phone || "Not provided"}</span>
+            </div>
+            <div className={accStyles.info_row}>
+              <IconMapPin size={15} strokeWidth={1.5} className={accStyles.info_icon} />
+              <span className={accStyles.info_label}>Country</span>
+              <span className={accStyles.info_value}>
+                {details?.country ? details.country.charAt(0).toUpperCase() + details.country.slice(1) : "Not provided"}
+              </span>
+            </div>
+            <div className={accStyles.info_row}>
               <IconUser size={15} strokeWidth={1.5} className={accStyles.info_icon} />
               <span className={accStyles.info_label}>Account type</span>
               <span className={accStyles.info_value}>
@@ -103,9 +153,7 @@ const AccountsUI = () => {
             <div className={accStyles.info_row}>
               <IconCalendar size={15} strokeWidth={1.5} className={accStyles.info_icon} />
               <span className={accStyles.info_label}>Member since</span>
-              <span className={accStyles.info_value}>
-                {new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" })}
-              </span>
+              <span className={accStyles.info_value}>{memberSince}</span>
             </div>
           </div>
         </div>
@@ -135,7 +183,7 @@ const AccountsUI = () => {
           {kycStatus === "pending" && (
             <button
               className={accStyles.kyc_cta}
-              onClick={() => (window.location.href = "/kyc")}
+              onClick={() => router.push("/kyc")}
             >
               <IconShieldCheck size={15} />
               Start Verification
@@ -151,7 +199,6 @@ const AccountsUI = () => {
           </div>
         </div>
 
-        {/* Account summary card */}
         <div className={accStyles.card}>
           <div className={accStyles.card_header}>
             <h3 className={accStyles.card_title}>Account Summary</h3>
@@ -221,7 +268,7 @@ const AccountsUI = () => {
                   <p className={accStyles.security_sub}>Last changed: Not set</p>
                 </div>
               </div>
-              <button className={accStyles.security_action}>Edit</button>
+              <button className={accStyles.security_action} onClick={() => setShowPasswordModal(true)}>Edit</button>
             </div>
 
             <div className={accStyles.security_row}>
@@ -236,7 +283,34 @@ const AccountsUI = () => {
             </div>
           </div>
         </div>
+
+        {/* Linked Accounts — merged in from the old Profile page */}
+        <div className={accStyles.card}>
+          <div className={accStyles.card_header}>
+            <div>
+              <h3 className={accStyles.card_title}>Linked Accounts</h3>
+              <p className={accStyles.card_sub_header}>Connect external accounts for faster funding and withdrawals.</p>
+            </div>
+          </div>
+
+          <div className={accStyles.linked_list}>
+            <button className={accStyles.linked_add_row}>
+              <span className={accStyles.linked_add_icon}><IconCreditCard size={16} /></span>
+              <span className={accStyles.linked_add_text}>Add a debit or credit card</span>
+              <IconPlus size={16} className={accStyles.linked_add_plus} />
+            </button>
+            <button className={accStyles.linked_add_row}>
+              <span className={accStyles.linked_add_icon}><IconMapPin size={16} /></span>
+              <span className={accStyles.linked_add_text}>Add a bank account</span>
+              <IconPlus size={16} className={accStyles.linked_add_plus} />
+            </button>
+          </div>
+        </div>
       </div>
+
+      {showPasswordModal && (
+        <ChangePasswordModal onClose={() => setShowPasswordModal(false)} />
+      )}
     </section>
   );
 };
@@ -244,10 +318,112 @@ const AccountsUI = () => {
 const KycCheckItem = ({ done, label }: { done: boolean; label: string }) => (
   <div className={accStyles.check_item}>
     <div className={`${accStyles.check_dot} ${done ? accStyles.check_dot_done : ""}`}>
-      {done && <IconCircleCheck size={14} />}
+      {done && <IconCheck size={20} style={{ padding: 1.5 }} />}
     </div>
     <p className={`${accStyles.check_label} ${done ? accStyles.check_label_done : ""}`}>{label}</p>
   </div>
 );
+
+const ChangePasswordModal = ({ onClose }: { onClose: () => void }) => {
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    setError("");
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      setError("Please fill in all fields.");
+      return;
+    }
+    if (newPassword.length < 6) {
+      setError("New password must be at least 6 characters.");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    setLoading(true);
+
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user?.email) {
+      setLoading(false);
+      setError("Could not verify your session. Please log in again.");
+      return;
+    }
+
+    const { error: reauthError } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password: currentPassword,
+    });
+
+    if (reauthError) {
+      setLoading(false);
+      setError("Current password is incorrect.");
+      return;
+    }
+
+    const { error: updateError } = await supabase.auth.updateUser({ password: newPassword });
+
+    setLoading(false);
+
+    if (updateError) {
+      setError(updateError.message);
+      return;
+    }
+
+    setSuccess(true);
+  };
+
+  return (
+    <div className={accStyles.modal_overlay}>
+      <div className={accStyles.modal_box}>
+        {success ? (
+          <div className={accStyles.modal_success}>
+            <div className={accStyles.success_icon_sm}><IconCheck size={28} /></div>
+            <h3>Password Updated</h3>
+            <p>Your password has been changed successfully.</p>
+            <button className={accStyles.modal_btn_primary} onClick={onClose}>Done</button>
+          </div>
+        ) : (
+          <>
+            <div className={accStyles.modal_header}>
+              <h3>Change Password</h3>
+              <button onClick={onClose} className={accStyles.modal_close}><IconX size={18} /></button>
+            </div>
+
+            {error && (
+              <div className={accStyles.modal_error}>
+                <IconAlertCircle size={14} /> {error}
+              </div>
+            )}
+
+            <div className={accStyles.modal_field}>
+              <label>Current Password</label>
+              <input type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} disabled={loading} />
+            </div>
+            <div className={accStyles.modal_field}>
+              <label>New Password</label>
+              <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} disabled={loading} />
+            </div>
+            <div className={accStyles.modal_field}>
+              <label>Confirm New Password</label>
+              <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} disabled={loading} />
+            </div>
+
+            <button className={accStyles.modal_btn_primary} onClick={handleSubmit} disabled={loading}>
+              {loading ? "Updating…" : "Update Password"}
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export { AccountsUI };

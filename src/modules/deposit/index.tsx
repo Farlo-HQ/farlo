@@ -2,7 +2,7 @@
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import { useDashboard } from "@/context/DashboardContext";
-import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
 import {
   IconBuildingBank,
   IconCurrencyBitcoin,
@@ -15,10 +15,12 @@ import {
   IconCheck,
   IconCopy,
   IconAlertCircle,
+  IconWallet,
 } from "@tabler/icons-react";
 import { IoArrowForward } from "react-icons/io5";
 
-type Step = "method" | "amount" | "details" | "review" | "processing" | "success";
+type Step = "wallet" | "method" | "amount" | "details" | "review" | "processing" | "success";
+type WalletKey = "main" | "trading" | "investing";
 
 interface Method {
   id: string;
@@ -31,6 +33,12 @@ interface Method {
   fee: number;
   instructions?: string;
 }
+
+const WALLET_OPTIONS: { key: WalletKey; label: string; desc: string; color: string }[] = [
+  { key: "main", label: "Main Wallet", desc: "Your primary balance, free to move anywhere", color: "#CB1A36" },
+  { key: "trading", label: "Trading Wallet", desc: "Fund live FX, CFD and copy-trading positions", color: "#CB1A36" },
+  { key: "investing", label: "Investing Wallet", desc: "Fund stock purchases and portfolio mirroring", color: "#1a9e75" },
+];
 
 const METHODS: Method[] = [
   {
@@ -87,7 +95,8 @@ interface CardDetails {
 }
 
 const DepositUI = () => {
-  const [step, setStep] = useState<Step>("method");
+  const [step, setStep] = useState<Step>("wallet");
+  const [targetWallet, setTargetWallet] = useState<WalletKey>("main");
   const [method, setMethod] = useState<Method | null>(null);
   const [amount, setAmount] = useState("");
   const [cardDetails, setCardDetails] = useState<CardDetails>({ number: "", name: "", expiry: "", cvv: "" });
@@ -95,16 +104,23 @@ const DepositUI = () => {
   const [copied, setCopied] = useState(false);
   const [amountError, setAmountError] = useState("");
 
-  const { deposit, wallets, userProfile } = useDashboard();
+  const { deposit, wallets } = useDashboard();
+  const router = useRouter();
 
   const parsedAmount = parseFloat(amount) || 0;
   const fee = method ? (parsedAmount * method.fee) / 100 : 0;
   const total = parsedAmount - fee;
 
   const goBack = () => {
-    if (step === "amount") setStep("method");
+    if (step === "method") setStep("wallet");
+    else if (step === "amount") setStep("method");
     else if (step === "details") setStep("amount");
     else if (step === "review") setStep(method?.id === "card" ? "details" : "amount");
+  };
+
+  const handleWalletSelect = (w: WalletKey) => {
+    setTargetWallet(w);
+    setStep("method");
   };
 
   const handleMethodSelect = (m: Method) => {
@@ -139,35 +155,12 @@ const DepositUI = () => {
 
   const handleConfirm = async () => {
     setStep("processing");
-
     await new Promise((r) => setTimeout(r, 2200));
 
-    deposit(parsedAmount);
-
-    if (userProfile?.id) {
-      await supabase.from("transactions").insert({
-        user_id: userProfile.id,
-        type: "deposit",
-        wallet: "main",
-        label: `Deposit via ${method?.title}`,
-        amount: parsedAmount,
-        date: new Date().toISOString(),
-        status: "completed",
-      });
-
-      const { data: wallet } = await supabase
-        .from("wallets")
-        .select("main_balance")
-        .eq("user_id", userProfile.id)
-        .single();
-
-      if (wallet) {
-        await supabase
-          .from("wallets")
-          .update({ main_balance: wallet.main_balance + parsedAmount, updated_at: new Date().toISOString() })
-          .eq("user_id", userProfile.id);
-      }
-    }
+    // Single source of truth — context handles wallet update, transaction
+    // insert, and notification together. targetWallet now actually controls
+    // where the money lands instead of always defaulting to Main.
+    await deposit(parsedAmount, `Deposit via ${method?.title}`, targetWallet);
 
     setStep("success");
   };
@@ -189,7 +182,7 @@ const DepositUI = () => {
     return digits;
   };
 
-  const stepIndex = ["method", "amount", "details", "review"].indexOf(step);
+  const walletInfo = WALLET_OPTIONS.find((w) => w.key === targetWallet)!;
 
   if (step === "processing") {
     return (
@@ -213,10 +206,14 @@ const DepositUI = () => {
             </div>
             <h1 className={styles.success_title}>Deposit Confirmed</h1>
             <p className={styles.success_sub}>
-              <strong>${parsedAmount.toLocaleString("en-US", { minimumFractionDigits: 2 })}</strong> has been credited to your Main Wallet.
+              <strong>${parsedAmount.toLocaleString("en-US", { minimumFractionDigits: 2 })}</strong> has been credited to your {walletInfo.label}.
             </p>
 
             <div className={styles.success_receipt}>
+              <div className={styles.receipt_row}>
+                <span>Destination</span>
+                <span>{walletInfo.label}</span>
+              </div>
               <div className={styles.receipt_row}>
                 <span>Method</span>
                 <span>{method?.title}</span>
@@ -236,15 +233,15 @@ const DepositUI = () => {
             </div>
 
             <div className={styles.success_balance}>
-              Main Wallet balance: <strong>${(wallets.main).toLocaleString("en-US", { minimumFractionDigits: 2 })}</strong>
+              {walletInfo.label} balance: <strong>${(wallets[targetWallet]).toLocaleString("en-US", { minimumFractionDigits: 2 })}</strong>
             </div>
 
             <div className={styles.success_actions}>
-              <button className={styles.btn_primary} onClick={() => window.location.href = "/overview"}>
+              <button className={styles.btn_primary} onClick={() => router.push("/overview")}>
                 Go to Dashboard
               </button>
               <button className={styles.btn_ghost} onClick={() => {
-                setStep("method");
+                setStep("wallet");
                 setMethod(null);
                 setAmount("");
                 setCardDetails({ number: "", name: "", expiry: "", cvv: "" });
@@ -263,28 +260,53 @@ const DepositUI = () => {
       <div className={styles.container}>
 
         <div className={styles.header}>
-          {step !== "method" && (
+          {step !== "wallet" && (
             <button className={styles.back_btn} onClick={goBack}>
               <IconChevronLeft size={16} /> Back
             </button>
           )}
           <div className={styles.header_text}>
             <h1 className={styles.title}>
-              {step === "method" && "Deposit Funds"}
+              {step === "wallet" && "Deposit Funds"}
+              {step === "method" && `Deposit to ${walletInfo.label}`}
               {step === "amount" && `Deposit via ${method?.title}`}
               {step === "details" && "Card Details"}
               {step === "review" && "Confirm Deposit"}
             </h1>
             <p className={styles.subtitle}>
-              {step === "method" && "Choose how you'd like to fund your account."}
+              {step === "wallet" && "Choose which wallet you want to fund."}
+              {step === "method" && "Choose how you'd like to fund this wallet."}
               {step === "amount" && `Minimum deposit: $${method?.minDeposit}. ${method?.fee ? `${method.fee}% fee applies.` : "No fees."}`}
               {step === "details" && "Your card details are encrypted and never stored."}
               {step === "review" && "Review carefully before confirming."}
             </p>
           </div>
-
-
         </div>
+
+        {step === "wallet" && (
+          <div className={styles.methods}>
+            {WALLET_OPTIONS.map((w) => (
+              <button key={w.key} className={styles.method_card} onClick={() => handleWalletSelect(w.key)}>
+                <div className={styles.method_icon} style={{ background: `${w.color}18`, color: w.color }}>
+                  <IconWallet size={20} strokeWidth={1.6} />
+                </div>
+                <div className={styles.method_info}>
+                  <p className={styles.method_title}>{w.label}</p>
+                  <p className={styles.method_desc}>{w.desc}</p>
+                </div>
+                <span className={styles.method_tag} style={{ background: `${w.color}14`, color: w.color }}>
+                  ${wallets[w.key].toLocaleString("en-US", { minimumFractionDigits: 2 })}
+                </span>
+                <IconArrowRight size={16} className={styles.method_arrow} strokeWidth={1.8} />
+              </button>
+            ))}
+
+            <div className={styles.security_note}>
+              <IconLock size={13} strokeWidth={1.8} />
+              <span>All transactions are secured with 256-bit SSL encryption</span>
+            </div>
+          </div>
+        )}
 
         {step === "method" && (
           <div className={styles.methods}>
@@ -309,6 +331,12 @@ const DepositUI = () => {
 
         {step === "amount" && (
           <div className={styles.amount_step}>
+            <div className={styles.source_badge}>
+              <div className={styles.source_dot} style={{ background: walletInfo.color }} />
+              <span>To: <strong>{walletInfo.label}</strong></span>
+              <span className={styles.source_balance}>${wallets[targetWallet].toLocaleString("en-US", { minimumFractionDigits: 2 })}</span>
+            </div>
+
             <div className={styles.amount_input_wrap}>
               <span className={styles.currency_symbol}>$</span>
               <input
@@ -489,7 +517,7 @@ const DepositUI = () => {
               )}
               <div className={styles.receipt_row}>
                 <span>Destination</span>
-                <span>Main Wallet</span>
+                <span>{walletInfo.label}</span>
               </div>
               <div className={`${styles.receipt_row} ${styles.receipt_total}`}>
                 <span>Total credited</span>

@@ -24,11 +24,14 @@ const LoginForm = () => {
   const { password, email } = state;
   const [error, setError] = useState<LoginFormErrors | undefined>();
   const [generalError, setGeneralError] = useState<string | undefined>();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { setMode } = useDashboard();
 
   const handleSubmit = async (e?: React.MouseEvent) => {
     e?.preventDefault();
+    if (loading) return;
+
     setGeneralError(undefined);
 
     const errors: LoginFormErrors = {};
@@ -38,9 +41,12 @@ const LoginForm = () => {
     if (Object.keys(errors).length > 0) { setError(errors); return; }
     setError(undefined);
 
+    setLoading(true);
+
     const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password });
 
     if (authError) {
+      setLoading(false);
       if (authError.message.toLowerCase().includes("email")) {
         setError({ email: authError.message });
       } else if (authError.message.toLowerCase().includes("password")) {
@@ -62,7 +68,10 @@ const LoginForm = () => {
         setMode(profile.default_mode as "trading" | "investing");
       }
 
+
       router.push(ROUTES.overview);
+    } else {
+      setLoading(false);
     }
   };
 
@@ -82,6 +91,7 @@ const LoginForm = () => {
         onChange={(e) => setState((prev) => ({ ...prev, email: e.target.value }))}
         error={error?.email}
         styleType="style2"
+        disabled={loading}
       />
       <Input
         name="password"
@@ -92,8 +102,11 @@ const LoginForm = () => {
         onChange={(e) => setState((prev) => ({ ...prev, password: e.target.value }))}
         error={error?.password}
         styleType="style2"
+        disabled={loading}
       />
-      <Button onClick={handleSubmit}>Login</Button>
+      <Button onClick={handleSubmit} loading={loading} fullWidth>
+        {loading ? "Logging in…" : "Login"}
+      </Button>
     </div>
   );
 };

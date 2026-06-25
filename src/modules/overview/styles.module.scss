@@ -1556,3 +1556,62 @@
 .wallet_stat_up {
   color: #4ade80 !important;
 }
+
+.wallet_stat_down {
+  color: #f87171 !important;
+}
+
+/* Profile dropdown — clicking the top-bar profile area */
+.profile_wrap {
+  position: relative;
+}
+
+.profile_wrap .profile {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+.profile_dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 200px;
+  background: var(--dash-card);
+  border: 1px solid var(--dash-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+  z-index: 50;
+  overflow: hidden;
+  padding: 6px;
+}
+
+.profile_dropdown_item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.55rem 0.65rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dash-text);
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+
+  &:hover { background: var(--dash-input); }
+}
+
+.profile_dropdown_danger {
+  color: #f87171;
+}
+
+.profile_dropdown_divider {
+  height: 1px;
+  background: var(--dash-border);
+  margin: 4px 2px;
+}

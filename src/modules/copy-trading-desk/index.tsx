@@ -232,7 +232,7 @@ function CustomSelect({
 }
 
 export function CopyTradingUI() {
-  const { wallets, mode } = useDashboard();
+  const { wallets, mode, trade } = useDashboard();
   const [positions, setPositions] = useState<Position[]>(INITIAL_POSITIONS);
   const [side, setSide] = useState<"buy" | "sell">("buy");
   const [sym, setSym] = useState("EUR/USD");
@@ -285,11 +285,31 @@ export function CopyTradingUI() {
     setConfirmModal({ sym, side, lot, price, margin });
   };
 
-  const confirmOrder = () => {
+  const confirmOrder = async () => {
     if (!confirmModal) return;
+    const lotSize = parseFloat(confirmModal.lot);
+
+    if (confirmModal.margin > wallets.trading) {
+      showToast("Insufficient trading balance for this margin requirement", "warn");
+      setConfirmModal(null);
+      return;
+    }
+
+    const ok = await trade({
+      wallet: "trading",
+      amount: -confirmModal.margin,
+      label: `Open ${confirmModal.sym} ${confirmModal.side.toUpperCase()} ${confirmModal.lot} lot — margin reserved`,
+    });
+
+    if (!ok) {
+      showToast("Insufficient trading balance", "warn");
+      setConfirmModal(null);
+      return;
+    }
+
     const newPos: Position = {
       id: Date.now(), sym: confirmModal.sym, ico: confirmModal.sym.substring(0, 3),
-      side: confirmModal.side as "buy" | "sell", lot: parseFloat(confirmModal.lot),
+      side: confirmModal.side as "buy" | "sell", lot: lotSize,
       open: confirmModal.price, cur: confirmModal.price, pl: 0,
     };
     setPositions(prev => [...prev, newPos]);
@@ -297,17 +317,35 @@ export function CopyTradingUI() {
     showToast(`✓ ${confirmModal.sym} ${confirmModal.side.toUpperCase()} ${confirmModal.lot} lot executed`, "success");
   };
 
-  const closePosition = (id: number) => {
+  const closePosition = async (id: number) => {
     const pos = positions.find(p => p.id === id);
     if (!pos) return;
+
+    const margin = pos.lot * (PRICES[pos.sym] || 1) * 10;
+    const settlement = margin + pos.pl;
+
+    await trade({
+      wallet: "trading",
+      amount: settlement,
+      label: `Close ${pos.sym} ${pos.side.toUpperCase()} ${pos.lot} lot — P&L ${pos.pl >= 0 ? "+" : ""}$${Math.abs(pos.pl).toFixed(2)}`,
+    });
+
     setPositions(prev => prev.filter(p => p.id !== id));
     showToast(`${pos.sym} closed — ${pos.pl >= 0 ? "+" : ""}$${Math.abs(pos.pl).toFixed(2)}`, pos.pl >= 0 ? "success" : "warn");
   };
 
-  const handleFollow = (trader: CopyTrader) => {
+  const handleFollow = async (trader: CopyTrader) => {
     const alloc = parseFloat(allocInputs[trader.id] || "500");
 
     if (following[trader.id]) {
+      const refund = following[trader.id];
+
+      await trade({
+        wallet: "trading",
+        amount: refund,
+        label: `Stopped copying ${trader.name} — capital returned`,
+      });
+
       setFollowing(prev => {
         const n = { ...prev };
         delete n[trader.id];
@@ -329,6 +367,17 @@ export function CopyTradingUI() {
       ]);
     } else {
       if (alloc > wallets.trading) {
+        showToast("Insufficient trading balance", "warn");
+        return;
+      }
+
+      const ok = await trade({
+        wallet: "trading",
+        amount: -alloc,
+        label: `Started copying ${trader.name} — capital allocated`,
+      });
+
+      if (!ok) {
         showToast("Insufficient trading balance", "warn");
         return;
       }
@@ -468,7 +517,14 @@ export function CopyTradingUI() {
               <div className={styles.panel_head}>
                 <span className={styles.panel_title}>Open Positions ({positions.length})</span>
                 {positions.length > 0 && (
-                  <button className={styles.close_all_btn} onClick={() => { setPositions([]); showToast("All positions closed", "info"); }}>
+                  <button className={styles.close_all_btn} onClick={async () => {
+                    for (const pos of positions) {
+                      const margin = pos.lot * (PRICES[pos.sym] || 1) * 10;
+                      await trade({ wallet: "trading", amount: margin + pos.pl, label: `Close ${pos.sym} ${pos.side.toUpperCase()} ${pos.lot} lot — P&L ${pos.pl >= 0 ? "+" : ""}$${Math.abs(pos.pl).toFixed(2)}` });
+                    }
+                    setPositions([]);
+                    showToast("All positions closed", "info");
+                  }}>
                     Close all
                   </button>
                 )}

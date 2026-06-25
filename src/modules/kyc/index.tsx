@@ -21,7 +21,7 @@ const STEPS = ["Personal Info", "Document", "Facial", "Review"];
 
 const KycUI = () => {
   const [step, setStep] = useState<KYCStep>("intro");
-  const { setKycStatus } = useDashboard();
+  const { submitKyc } = useDashboard();
 
   const [personal, setPersonal] = useState({
     firstName: "",
@@ -53,8 +53,12 @@ const KycUI = () => {
             ? 3
             : -1;
 
-  const handleSubmit = () => {
-    setKycStatus("submitted");
+  const handleSubmit = async () => {
+    await submitKyc({
+      full_name: `${personal.firstName} ${personal.lastName}`.trim(),
+      date_of_birth: personal.dob || null,
+      id_type: docType,
+    });
     setStep("submitted");
   };
 

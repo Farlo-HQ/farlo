@@ -9,10 +9,10 @@ import {
   IconAnalyze, IconAward, IconBell,
   IconBook,
   IconCalendar, IconChartArcs, IconChartBar,
-  IconContract, IconFileDownload, IconFileExport, IconGraph,
+  IconContract, IconFileExport, IconGraph,
   IconHome, IconLockDollar, IconLogout, IconMenu, IconMoneybag,
   IconMoneybagMove, IconMoneybagMoveBack, IconMoon, IconNews,
-  IconSparkles, IconSun, IconTransfer, IconTransferIn,
+  IconSparkles, IconSun, IconTransfer,
   IconUserDollar, IconUsers, IconWallet, IconX, IconUser,
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -28,6 +28,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const { mode, setMode, notifications, markAllRead, unreadCount, userProfile, loading } = useDashboard();
   const { theme, toggleTheme } = useTheme();
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
   const sidebarRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
 
@@ -43,6 +44,21 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       }
     };
     checkAuth();
+  }, []);
+
+  // Close profile / notification dropdowns when clicking anywhere outside them
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('[data-dropdown="profile"]')) {
+        setShowProfileMenu(false);
+      }
+      if (!target.closest('[data-dropdown="notif"]')) {
+        setShowNotifications(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleModeSwitch = (newMode: "trading" | "investing") => {
@@ -146,17 +162,14 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             <SidebarLink href="/deposit" active={pathname === "/deposit"} onNav={() => isMobile && setShowSidebar(false)}>
               <IconMoneybagMove size={20} strokeWidth={1.5} /> Deposit
             </SidebarLink>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
+            <SidebarLink href="/internal-transfer" active={pathname === "/internal-transfer"} onNav={() => isMobile && setShowSidebar(false)}>
               <IconTransfer size={20} strokeWidth={1.5} /> Internal transfer
             </SidebarLink>
-            <SidebarLink href="/withdraw" active={false} onNav={() => isMobile && setShowSidebar(false)}>
+            <SidebarLink href="/withdraw" active={pathname === "/withdraw"} onNav={() => isMobile && setShowSidebar(false)}>
               <IconMoneybagMoveBack size={20} strokeWidth={1.5} /> Withdraw
             </SidebarLink>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
+            <SidebarLink href="/payments" active={pathname === "/payments"} onNav={() => isMobile && setShowSidebar(false)}>
               <IconMoneybag size={20} strokeWidth={1.5} /> Payments
-            </SidebarLink>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
-              <IconTransferIn size={20} strokeWidth={1.5} /> Local payments
             </SidebarLink>
           </nav>
 
@@ -199,11 +212,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
           <nav className={styles.nav}>
             <p>FILES</p>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
+            <SidebarLink href="/transactions" active={false} onNav={() => isMobile && setShowSidebar(false)}>
               <IconFileExport size={20} strokeWidth={1.5} /> Exports
-            </SidebarLink>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
-              <IconFileDownload size={20} strokeWidth={1.5} /> Downloads
             </SidebarLink>
           </nav>
 
@@ -249,7 +259,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 {theme === "light" ? <IconMoon size={18} strokeWidth={1.5} /> : <IconSun size={18} strokeWidth={1.5} />}
               </button>
 
-              <div className={styles.notif_wrap}>
+              <div className={styles.notif_wrap} data-dropdown="notif">
                 <button
                   className={styles.mobile_icon_btn}
                   onClick={() => {
@@ -308,7 +318,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 {theme === "light" ? <IconMoon size={18} strokeWidth={1.5} /> : <IconSun size={18} strokeWidth={1.5} />}
               </button>
 
-              <div className={styles.notif_wrap}>
+              <div className={styles.notif_wrap} data-dropdown="notif">
                 <button className={styles.icon_btn} onClick={() => { setShowNotifications(p => !p); if (!showNotifications) markAllRead(); }}>
                   <IconBell size={18} strokeWidth={1.5} />
                   {unreadCount > 0 && <span className={styles.notif_badge}>{unreadCount}</span>}
@@ -333,18 +343,41 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 )}
               </div>
 
-              <button className={styles.deposit_btn} onClick={() => window.location.href = "/deposit"}>
-                <IconMoneybagMove size={16} strokeWidth={1.5} /> Deposit Funds
-              </button>
+              <div className={styles.profile_wrap} data-dropdown="profile">
+                <button
+                  className={styles.profile}
+                  onClick={() => setShowProfileMenu((p) => !p)}
+                >
+                  <div className={styles.avatar}>
+                    {initials ? initials : <IconUser size={16} strokeWidth={1.5} />}
+                  </div>
+                  <div className={styles.details}>
+                    <p className={styles.name}>{displayName}</p>
+                    <p className={styles.email}>{displayEmail}</p>
+                  </div>
+                </button>
 
-              <div className={styles.profile}>
-                <div className={styles.avatar}>
-                  {initials ? initials : <IconUser size={16} strokeWidth={1.5} />}
-                </div>
-                <div className={styles.details}>
-                  <p className={styles.name}>{displayName}</p>
-                  <p className={styles.email}>{displayEmail}</p>
-                </div>
+                {showProfileMenu && (
+                  <div className={styles.profile_dropdown}>
+                    <button
+                      className={styles.profile_dropdown_item}
+                      onClick={() => { setShowProfileMenu(false); router.push("/accounts"); }}
+                    >
+                      <IconHome size={15} strokeWidth={1.5} /> My Account
+                    </button>
+                    <div className={styles.profile_dropdown_divider} />
+                    <button
+                      className={`${styles.profile_dropdown_item} ${styles.profile_dropdown_danger}`}
+                      onClick={async () => {
+                        setShowProfileMenu(false);
+                        await supabase.auth.signOut();
+                        router.push("/login");
+                      }}
+                    >
+                      <IconLogout size={15} strokeWidth={1.5} /> Sign out
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

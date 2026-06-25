@@ -158,8 +158,14 @@ const OverviewUI = () => {
               </div>
               <div className={styles.wallet_stat}>
                 <span className={styles.wallet_stat_label}>All-time P&amp;L</span>
-                <span className={`${styles.wallet_stat_value} ${styles.wallet_stat_up}`}>
-                  ${transactions.filter(t => t.type === "trade" && t.amount > 0).reduce((s, t) => s + t.amount, 0).toLocaleString("en-US", { minimumFractionDigits: 2 })}
+                <span className={`${styles.wallet_stat_value} ${(() => {
+                  const netPnl = transactions.filter(t => t.type === "trade").reduce((s, t) => s + t.amount, 0);
+                  return netPnl >= 0 ? styles.wallet_stat_up : styles.wallet_stat_down;
+                })()}`}>
+                  {(() => {
+                    const netPnl = transactions.filter(t => t.type === "trade").reduce((s, t) => s + t.amount, 0);
+                    return `${netPnl >= 0 ? "+" : "-"}$${Math.abs(netPnl).toLocaleString("en-US", { minimumFractionDigits: 2 })}`;
+                  })()}
                 </span>
               </div>
               <div className={styles.wallet_stat}>

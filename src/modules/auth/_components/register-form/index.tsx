@@ -11,6 +11,8 @@ import { useDashboard } from "@/context/DashboardContext";
 import { IoArrowForward } from "react-icons/io5";
 
 interface RegisterFormData {
+  firstName: string;
+  lastName: string;
   country: string;
   password: string;
   email: string;
@@ -18,6 +20,8 @@ interface RegisterFormData {
 }
 
 interface RegisterFormErrors {
+  firstName?: string;
+  lastName?: string;
   password?: string;
   country?: string;
   email?: string;
@@ -185,12 +189,12 @@ function CountrySelect({
 
 const RegisterForm = ({ onModeStepChange }: Props) => {
   const [step, setStep] = useState<Step>("details");
-  const [state, setState] = useState<RegisterFormData>({ password: "", country: "", email: "", phone: "" });
+  const [state, setState] = useState<RegisterFormData>({ firstName: "", lastName: "", password: "", country: "", email: "", phone: "" });
   const [selectedMode, setSelectedMode] = useState<Mode>(null);
   const [modeError, setModeError] = useState(false);
   const [error, setError] = useState<RegisterFormErrors | undefined>();
   const router = useRouter();
-  const { email, password, country, phone } = state;
+  const { email, password, country, phone, firstName, lastName } = state;
   const { setMode } = useDashboard();
 
   useEffect(() => {
@@ -200,6 +204,8 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
   const handleDetailsSubmit = async (e?: React.MouseEvent) => {
     e?.preventDefault();
     const errors: RegisterFormErrors = {};
+    if (!firstName.trim()) errors.firstName = "Required";
+    if (!lastName.trim()) errors.lastName = "Required";
     if (!password.trim()) errors.password = "Required";
     if (!email.trim()) errors.email = "Required";
     if (!country || !String(country).trim()) errors.country = "Required";
@@ -235,8 +241,8 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
           phone,
           country,
           default_mode: selectedMode,
-          first_name: "",
-          last_name: "",
+          first_name: firstName.trim(),
+          last_name: lastName.trim(),
         },
       },
     });
@@ -262,7 +268,14 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
     if (data.user) {
       await supabase
         .from("profiles")
-        .update({ phone, country, default_mode: selectedMode })
+        .update({
+          phone,
+          country,
+          default_mode: selectedMode,
+          first_name: firstName.trim(),
+          last_name: lastName.trim(),
+          full_name: `${firstName.trim()} ${lastName.trim()}`.trim(),
+        })
         .eq("id", data.user.id);
 
       setMode(selectedMode);
@@ -344,6 +357,26 @@ const RegisterForm = ({ onModeStepChange }: Props) => {
         options={options}
         error={error?.country}
       />
+      <div className={styles.name_row}>
+        <Input
+          name="firstName"
+          label="First Name"
+          placeholder="First name"
+          value={firstName}
+          onChange={(e) => setState((prev) => ({ ...prev, firstName: e.target.value }))}
+          error={error?.firstName}
+          styleType="style2"
+        />
+        <Input
+          name="lastName"
+          label="Last Name"
+          placeholder="Last name"
+          value={lastName}
+          onChange={(e) => setState((prev) => ({ ...prev, lastName: e.target.value }))}
+          error={error?.lastName}
+          styleType="style2"
+        />
+      </div>
       <Input
         name="email"
         type="email"

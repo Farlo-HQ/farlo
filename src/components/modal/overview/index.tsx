@@ -1,7 +1,27 @@
+
+"use client";
 import { Button } from "@/components";
-import { IconArrowRight, IconBusinessplan, IconChartBar, IconTrendingUp, IconX } from "@tabler/icons-react";
+import {
+  IconArrowRight,
+  IconBusinessplan,
+  IconChartBar,
+  IconTrendingUp,
+  IconX,
+  IconCircleCheckFilled,
+  IconAlertCircle,
+} from "@tabler/icons-react";
 import { useState } from "react";
 import styles from "./styles.module.scss";
+
+type WalletKey = "main" | "trading" | "investing";
+
+const WALLET_META: Record<WalletKey, { label: string; color: string; icon: React.ReactNode }> = {
+  main: { label: "Main Wallet", color: "#CB1A36", icon: <IconBusinessplan size={20} /> },
+  trading: { label: "Trading Wallet", color: "#CB1A36", icon: <IconTrendingUp size={20} /> },
+  investing: { label: "Investing Wallet", color: "#1a9e75", icon: <IconChartBar size={20} /> },
+};
+
+const QUICK_PERCENTAGES = [25, 50, 75, 100];
 
 export const TransferModal = ({
   isOpen,
@@ -13,21 +33,21 @@ export const TransferModal = ({
 }: {
   isOpen: boolean;
   onClose: () => void;
-  from: "main" | "trading" | "investing";
-  to: "main" | "trading" | "investing";
-  transfer: (from: any, to: any, amount: number) => boolean;
+  from: WalletKey;
+  to: WalletKey;
+  transfer: (from: WalletKey, to: WalletKey, amount: number) => Promise<boolean>;
   wallets: { main: number; trading: number; investing: number };
 }) => {
   const [amount, setAmount] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [phase, setPhase] = useState<"input" | "processing" | "success">("input");
 
-  const fromLabel = from.charAt(0).toUpperCase() + from.slice(1);
-  const toLabel = to.charAt(0).toUpperCase() + to.slice(1);
+  const fromMeta = WALLET_META[from];
+  const toMeta = WALLET_META[to];
   const available = wallets[from];
-  const parsedAmount = parseFloat(amount);
+  const parsedAmount = parseFloat(amount) || 0;
 
-  const handleTransfer = () => {
+  const handleTransfer = async () => {
     setError("");
     if (!amount || isNaN(parsedAmount) || parsedAmount <= 0) {
       setError("Please enter a valid amount.");
@@ -37,15 +57,23 @@ export const TransferModal = ({
       setError("Insufficient balance.");
       return;
     }
-    const ok = transfer(from, to, parsedAmount);
-    if (ok) setSuccess(true);
-    else setError("Transfer failed. Please try again.");
+
+    setPhase("processing");
+    await new Promise((r) => setTimeout(r, 1100));
+
+    const ok = await transfer(from, to, parsedAmount);
+    if (ok) {
+      setPhase("success");
+    } else {
+      setPhase("input");
+      setError("Transfer failed. Please try again.");
+    }
   };
 
   const handleClose = () => {
     setAmount("");
     setError("");
-    setSuccess(false);
+    setPhase("input");
     onClose();
   };
 
@@ -55,47 +83,69 @@ export const TransferModal = ({
     <div className={styles.modal_overlay}>
       <div className={styles.modal}>
         <div className={styles.modal_header}>
-          <h2>{success ? "Transfer Successful" : "Transfer Funds"}</h2>
-          <button className={styles.modal_close} onClick={handleClose}>
-            <IconX size={18} />
-          </button>
+          <h2>
+            {phase === "success" ? "Transfer Successful" : phase === "processing" ? "Processing" : "Transfer Funds"}
+          </h2>
+          {phase !== "processing" && (
+            <button className={styles.modal_close} onClick={handleClose}>
+              <IconX size={18} />
+            </button>
+          )}
         </div>
 
-        {success ? (
-          <div className={styles.modal_success}>
-            <div className={styles.modal_success_icon}>✓</div>
-            <p className={styles.modal_success_msg}>
-              ${parsedAmount.toFixed(2)} transferred from {fromLabel} to{" "}
-              {toLabel} Wallet.
+        {phase === "processing" && (
+          <div className={styles.tf_processing}>
+            <div className={styles.tf_spinner} />
+            <p className={styles.tf_processing_text}>
+              Moving ${parsedAmount.toFixed(2)} from {fromMeta.label} to {toMeta.label}…
             </p>
+          </div>
+        )}
+
+        {phase === "success" && (
+          <div className={styles.modal_success}>
+            <div className={styles.tf_success_icon}>
+              <IconCircleCheckFilled size={48} />
+            </div>
+            <p className={styles.modal_success_msg}>
+              ${parsedAmount.toFixed(2)} moved from {fromMeta.label} to {toMeta.label}.
+            </p>
+
+            <div className={styles.tf_receipt}>
+              <div className={styles.tf_receipt_row}>
+                <span>New {fromMeta.label} balance</span>
+                <span>${(available - parsedAmount).toLocaleString("en-US", { minimumFractionDigits: 2 })}</span>
+              </div>
+              <div className={styles.tf_receipt_row}>
+                <span>New {toMeta.label} balance</span>
+                <span>${(wallets[to] + parsedAmount).toLocaleString("en-US", { minimumFractionDigits: 2 })}</span>
+              </div>
+            </div>
+
             <Button variant="fill-red" onClick={handleClose}>
               Done
             </Button>
           </div>
-        ) : (
+        )}
+
+        {phase === "input" && (
           <>
             <div className={styles.transfer_route}>
-              <span
-                className={`${styles.route_tag} ${styles[`route_${from}`]}`}
-              >
-                {fromLabel}
+              <span className={styles.tf_route_card} style={{ borderColor: `${fromMeta.color}40`, background: `${fromMeta.color}0d` }}>
+                <span className={styles.tf_route_icon} style={{ color: fromMeta.color }}>{fromMeta.icon}</span>
+                {fromMeta.label}
               </span>
-              <IconArrowRight size={16} className={styles.route_arrow} />
-              <span className={`${styles.route_tag} ${styles[`route_${to}`]}`}>
-                {toLabel}
+              <IconArrowRight size={18} className={styles.route_arrow} />
+              <span className={styles.tf_route_card} style={{ borderColor: `${toMeta.color}40`, background: `${toMeta.color}0d` }}>
+                <span className={styles.tf_route_icon} style={{ color: toMeta.color }}>{toMeta.icon}</span>
+                {toMeta.label}
               </span>
             </div>
 
             <div className={styles.transfer_info}>
-              <p className={styles.transfer_label}>
-                Available Balance
-              </p>
+              <p className={styles.transfer_label}>Available Balance</p>
               <p className={styles.transfer_balance}>
-                $
-                {available.toLocaleString("en-US", {
-                  minimumFractionDigits: 2,
-                })}{" "}
-                USD
+                ${available.toLocaleString("en-US", { minimumFractionDigits: 2 })} USD
               </p>
             </div>
 
@@ -110,15 +160,45 @@ export const TransferModal = ({
                   const val = e.target.value;
                   if (val === "" || /^[0-9]*\.?[0-9]*$/.test(val)) {
                     setAmount(val);
-                    setAmount(val);
                     setError("");
                   }
                 }}
-
                 className={styles.transfer_input}
               />
-              {error && <p className={styles.transfer_error}>{error}</p>}
+
+              <div className={styles.tf_percent_row}>
+                {QUICK_PERCENTAGES.map((p) => (
+                  <button
+                    key={p}
+                    type="button"
+                    className={styles.tf_percent_btn}
+                    onClick={() => setAmount(((available * p) / 100).toFixed(2))}
+                    disabled={available <= 0}
+                  >
+                    {p === 100 ? "Max" : `${p}%`}
+                  </button>
+                ))}
+              </div>
+
+              {error && (
+                <p className={styles.transfer_error}>
+                  <IconAlertCircle size={13} /> {error}
+                </p>
+              )}
             </div>
+
+            {parsedAmount > 0 && parsedAmount <= available && (
+              <div className={styles.tf_preview}>
+                <div className={styles.tf_preview_row}>
+                  <span>{fromMeta.label} after</span>
+                  <span>${(available - parsedAmount).toLocaleString("en-US", { minimumFractionDigits: 2 })}</span>
+                </div>
+                <div className={styles.tf_preview_row}>
+                  <span>{toMeta.label} after</span>
+                  <span>${(wallets[to] + parsedAmount).toLocaleString("en-US", { minimumFractionDigits: 2 })}</span>
+                </div>
+              </div>
+            )}
 
             <div className={styles.modal_actions}>
               <Button variant="outline-red" onClick={handleClose}>
@@ -135,30 +215,44 @@ export const TransferModal = ({
   );
 };
 
-export const DestinationModal = ({ isOpen, onClose, source, onSelect }: any) => {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+export const DestinationModal = ({
+  isOpen,
+  onClose,
+  source,
+  onSelect,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  source: WalletKey | null;
+  onSelect: (id: WalletKey) => void;
+}) => {
+  const [selectedId, setSelectedId] = useState<WalletKey | null>(null);
 
-  if (!isOpen) return null;
+  if (!isOpen || !source) return null;
 
-  const options = [
-    { id: "main", label: "Main Wallet", icon: <IconBusinessplan size={24} /> },
-    { id: "trading", label: "Trading Wallet", icon: <IconTrendingUp size={24} /> },
-    { id: "investing", label: "Investing Wallet", icon: <IconChartBar size={24} /> },
-  ].filter(opt => opt.id !== source);
+  const options: { id: WalletKey; label: string; icon: React.ReactNode }[] = (
+    [
+      { id: "main", label: "Main Wallet", icon: <IconBusinessplan size={24} /> },
+      { id: "trading", label: "Trading Wallet", icon: <IconTrendingUp size={24} /> },
+      { id: "investing", label: "Investing Wallet", icon: <IconChartBar size={24} /> },
+    ] as { id: WalletKey; label: string; icon: React.ReactNode }[]
+  ).filter((opt) => opt.id !== source);
 
   return (
     <div className={styles.modal_overlay} onClick={onClose}>
-      <div className={styles.modal_container} onClick={e => e.stopPropagation()}>
+      <div className={styles.modal_container} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modal_header}>
           <h2>Select Destination</h2>
-          <button onClick={onClose} className={styles.close_btn}><IconX size={20} /></button>
+          <button onClick={onClose} className={styles.close_btn}>
+            <IconX size={20} />
+          </button>
         </div>
 
         <div className={styles.selection_grid}>
-          {options.map(opt => (
+          {options.map((opt) => (
             <div
               key={opt.id}
-              className={`${styles.selection_card} ${selectedId === opt.id ? styles.active : ''}`}
+              className={`${styles.selection_card} ${selectedId === opt.id ? styles.active : ""}`}
               onClick={() => setSelectedId(opt.id)}
             >
               <div className={styles.check_circle}>
@@ -170,9 +264,13 @@ export const DestinationModal = ({ isOpen, onClose, source, onSelect }: any) => 
           ))}
         </div>
 
-        <Button fullWidth children={"Continue to transfer"} disabled={!selectedId} onClick={() => onSelect(selectedId)} />
-
-
+        <Button
+          fullWidth
+          disabled={!selectedId}
+          onClick={() => selectedId && onSelect(selectedId)}
+        >
+          Continue to transfer
+        </Button>
       </div>
     </div>
   );
