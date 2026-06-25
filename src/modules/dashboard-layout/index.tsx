@@ -125,7 +125,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             <SidebarLink href="/overview" active={pathname === "/overview"} onNav={() => isMobile && setShowSidebar(false)}>
               <IconWallet size={20} strokeWidth={1.5} /> Wallets
             </SidebarLink>
-            <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
+            <SidebarLink href="/accounts" active={false} onNav={() => isMobile && setShowSidebar(false)}>
               <IconHome size={20} strokeWidth={1.5} /> Accounts
             </SidebarLink>
             <SidebarLink href="/overview" active={false} onNav={() => isMobile && setShowSidebar(false)}>
