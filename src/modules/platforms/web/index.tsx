@@ -17,15 +17,15 @@ const PlatformWebUI = () => {
         bgClassName={styles.bg}
         sectionClassName={styles.hero}
         btn1={{ text: "MT5 Web Terminal", action: console.log }}
-        btn2={{ text: "Register", action: console.log }}
+        btn2={{ text: "Register", action: () => window.open("https://accounts.getfarlo.com/auth/register") }}
       />
       <WhySection />
       <GettingStarted />
       <BottomBanner
         title="The Future of Trading Starts Here"
         text="Experience world-class trading conditions, advanced tools, and dedicated support all in one platform."
-        fillBtn={{ text: "Register", action: console.log }}
-        outlineBtn={{ text: "Open Demo", action: console.log }}
+        fillBtn={{ text: "Register", action: () => window.open("https://accounts.getfarlo.com/auth/register") }}
+        outlineBtn={{ text: "Open Demo", action: () => window.open("https://accounts.getfarlo.com") }}
       />
     </>
   );

@@ -139,10 +139,8 @@ const InvestingModeUI = () => {
 
       <BottomBanner
         title="US stocks. From anywhere in Emerging markets."
-        // text="Open your FARLO account. Complete KYC once. Switch to Investing Mode. Buy Apple from Lagos."
         text="Switch to Investing Mode from your FARLO dashboard. Your Alpaca sub-account was provisioned when you completed KYC. No second sign-up."
         fillBtn={{ text: "Start Investing in US Stocks", action: () => router.push(ROUTES.signup) }}
-      // outlineBtn={{ text: "Open Demo", action: () => router.push(ROUTES.signup) }}
       />
     </>
   );

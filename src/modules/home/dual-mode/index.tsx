@@ -91,7 +91,7 @@ const DualMode = () => {
               <button
                 className={`${styles.btn} ${styles["btn--red"]}`}
                 // onClick={() => router.push(ROUTES.signup)}
-                onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
+                onClick={() => window.open("https://accounts.getfarlo.com/auth/register", "_blank", "noopener,noreferrer")}
               >
                 Start Trading <ArrowRight />
               </button>
@@ -116,7 +116,7 @@ const DualMode = () => {
               <button
                 className={`${styles.btn} ${styles["btn--green"]}`}
                 // onClick={() => router.push(ROUTES.signup)}
-                onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
+                onClick={() => window.open("https://accounts.getfarlo.com/auth/register", "_blank", "noopener,noreferrer")}
               >
                 Start Investing <ArrowRight />
               </button>

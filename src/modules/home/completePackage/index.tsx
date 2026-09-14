@@ -19,14 +19,12 @@ const CompletePackage = () => {
 
       <div className={styles.btns}>
         <Button
-          onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
+          onClick={() => window.open("https://accounts.getfarlo.com/auth/register", "_blank", "noopener,noreferrer")}
         >
           Open Account <ArrowRight />{" "}
 
         </Button>
-        {/* <Button variant="fill-white">
-          Open Demo <ArrowRight color="#575A5D" />
-        </Button> */}
+
       </div>
     </Section>
   );

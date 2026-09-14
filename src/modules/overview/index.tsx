@@ -363,7 +363,7 @@ const OverviewUI = () => {
                 role="button"
                 className={`${styles.product_card} ${styles.product_card_red}`}
                 onClick={() =>
-                  window.open("https://accounts.farlofx.com/", "_blank")
+                  window.open("https://accounts.getfarlo.com/", "_blank")
                 }
               >
                 <div className={styles.product_card_icon}>

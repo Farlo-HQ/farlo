@@ -16,6 +16,10 @@ const tableRows = [
 ];
 
 const AccountsIntro = () => {
+  const register = () => {
+    window.open("https://accounts.getfarlo.com");
+  };
+
   return (
     <>
       <Section bgClassName={styles.bg} sectionClassName={styles.section}>
@@ -54,7 +58,7 @@ const AccountsIntro = () => {
             Not sure where to start? Open a demo account first, practice with $10,000 in virtual funds, and switch to live when you are ready. It takes two minutes and no card.
           </p>
           <div className={styles.recommendation__ctas}>
-            <Button>
+            <Button onClick={register}>
               Open Demo Account <ArrowRight />
             </Button>
             <Button variant="outline-red">

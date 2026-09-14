@@ -111,7 +111,7 @@ const InstrumentPage = ({
   // faqs,
 }: InstrumentPageProps) => {
   const router = useRouter();
-  const openAccount = () => router.push(ROUTES.signup);
+  const openAccount = () => window.open("https://accounts.getfarlo.com/auth/register");
 
   return (
     <>

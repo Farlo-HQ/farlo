@@ -1,21 +1,21 @@
 import * as React from "react";
 
-export const useClickOutside = (ref: any, closeFunction: () => any) => {
+export const useClickOutside = (
+  ref: React.RefObject<HTMLElement | null>,
+  closeFunction: (event: MouseEvent) => void
+) => {
   React.useEffect(() => {
-    /**
-     * Hide if clicked on outside of element
-     */
-    const handleClickOutside = (event: { target: any }) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        closeFunction?.();
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        closeFunction?.(event);
       }
     };
 
-    // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
+  }, [ref, closeFunction]);
 };

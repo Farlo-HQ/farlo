@@ -126,7 +126,7 @@ const EducationUI = () => {
         title="Learn. Then trade with confidence."
         text="Start with Track 1 or jump to the level that matches where you are right now."
         fillBtn={{ text: "Start Learning", action: () => router.push(ROUTES.signup) }}
-        outlineBtn={{ text: "Open Demo Account", action: () => router.push(ROUTES.signup) }}
+        outlineBtn={{ text: "Open Demo Account", action: () => window.open("https://accounts.getfarlo.com") }}
       />
     </>
   );

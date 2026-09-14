@@ -125,7 +125,7 @@ const CopyTradingUI = () => {
         title="Follow the best. Profit without the screen time."
         text="Browse verified strategy providers. Set your allocation. Walk away."
         fillBtn={{ text: "Browse Strategy Providers", action: () => router.push(ROUTES.signup) }}
-        outlineBtn={{ text: "Open Demo", action: () => router.push(ROUTES.signup) }}
+        outlineBtn={{ text: "Open Demo", action: () => window.open("https://accounts.getfarlo.com") }}
       />
     </>
   );

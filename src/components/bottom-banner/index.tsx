@@ -41,7 +41,7 @@ const BottomBanner = ({
         {!fillBtn && !outlineBtn ? (
           <Button
             // onClick={register}
-            onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
+            onClick={() => window.open("https://accounts.getfarlo.com/auth/register", "_blank", "noopener,noreferrer")}
             variant="fill-white">
             Open Account <ArrowRight />
           </Button>

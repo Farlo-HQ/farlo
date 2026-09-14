@@ -6,8 +6,6 @@ import { Button } from "../button";
 import { Section } from "../section";
 import styles from "./styles.module.scss";
 import { ArrowRight } from "@/assets/icons/arrow-right";
-import { useRouter } from "next/navigation";
-import { ROUTES } from "@/utils/routes";
 
 interface HeroSection1Props {
   sectionClassName?: string;
@@ -30,9 +28,8 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
   element,
   txtClassName,
 }) => {
-  const router = useRouter();
   const register = () => {
-    router.push(ROUTES.signup);
+    window.open("https://accounts.getfarlo.com");
   };
 
   return (
@@ -47,12 +44,9 @@ const HeroSection1: React.FC<HeroSection1Props> = ({
           <p className={`${styles.txt} ${txtClassName}`}>{text}</p>
           <div className={styles.ctas}>
 
-            <Button variant="fill-red" className={styles.heroBtn} onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}>
+            <Button variant="fill-red" className={styles.heroBtn} onClick={() => window.open("https://accounts.getfarlo.com/auth/register", "_blank", "noopener,noreferrer")}>
               Open Account <ArrowRight />
             </Button>
-            {/* <Button onClick={register} variant="fill-red">
-              Open Account <ArrowRight />
-            </Button> */}
             <Button onClick={register} variant="outline-white" className={styles.heroBtn}>
               Open Demo <ArrowRight />
             </Button>

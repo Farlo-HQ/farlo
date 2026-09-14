@@ -19,7 +19,7 @@ const Opportunity: React.FC = () => {
           One platform. Two modes. Every market. Switch between FX trading and US stock investing in seconds.
         </p>
         <div className={styles.btns}>
-          <Button>
+          <Button onClick={() => window.open("https://accounts.getfarlo.com")}>
             Open Demo <ArrowRight />{" "}
           </Button>
           <Button variant="fill-white">

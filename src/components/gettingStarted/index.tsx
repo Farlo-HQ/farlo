@@ -105,7 +105,7 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
       <div className={styles.btnSec}>
         <Button
           // onClick={() => router.push(ROUTES.signup)}
-          onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
+          onClick={() => window.open("https://accounts.getfarlo.com/auth/register", "_blank", "noopener,noreferrer")}
         >
           Get Started <ArrowRight />
         </Button>
@@ -127,7 +127,7 @@ const GettingStarted = ({ greyBg }: { greyBg?: boolean }) => {
               </div>
               {index === 0 && !isMobile ? (
                 <Button
-                  onClick={() => window.open("https://accounts.farlofx.com/auth/register", "_blank", "noopener,noreferrer")}
+                  onClick={() => window.open("https://accounts.getfarlo.com/auth/register", "_blank", "noopener,noreferrer")}
                 >
                   Get Started <ArrowRight />
                 </Button>

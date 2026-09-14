@@ -152,15 +152,14 @@ const Navbar = () => {
               <div className={styles.ctaSec}>
                 <Link
                   className={styles.loginLink}
-                  href={"https://accounts.farlofx.com/auth/login"}
+                  href={"https://accounts.getfarlo.com/auth/login"}
                   target="_blank"
                   rel="noopener noreferrer">Log in
                 </Link>
-                <Button onClick={() => window.open("https://accounts.farlofx.com/auth/registw", "_blank", "noopener,noreferrer")}>
+                <Button onClick={() => window.open("https://accounts.getfarlo.com/auth/register", "_blank", "noopener,noreferrer")}>
                   Open Account
                 </Button>
-                {/* <Link className={styles.loginLink} href={ROUTES.login}>Log in</Link>
-                <Button onClick={() => router.push(ROUTES.signup)}>Open Account</Button> */}
+
               </div>
             </>
           )}
@@ -183,12 +182,12 @@ const Navbar = () => {
           <div className={styles.ctaSec}>
             <Link
               className={styles.loginLink}
-              href={"https://accounts.farlofx.com/auth/login"}
+              href={"https://accounts.getfarlo.com/auth/login"}
               onClick={() => setShowNav(false)}
               target="_blank"
               rel="noopener noreferrer">Log in
             </Link>
-            <Button onClick={() => window.open("https://accounts.farlofx.com/auth/registw", "_blank", "noopener,noreferrer")}>
+            <Button onClick={() => window.open("https://accounts.getfarlo.com/auth/registw", "_blank", "noopener,noreferrer")}>
               Open Account
             </Button>
           </div>
